@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour utilisateur complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="utilisateur"&gt;
@@ -46,7 +46,6 @@ import javax.xml.bind.annotation.XmlType;
     "ville"
 })
 public class Utilisateur {
-
     protected String adresse;
     protected String codePostal;
     protected int id;
@@ -58,7 +57,7 @@ public class Utilisateur {
     protected String ville;
 
     /**
-     * Obtient la valeur de la propriété adresse.
+     * Obtient la valeur de la propriï¿½tï¿½ adresse.
      * 
      * @return
      *     possible object is
@@ -70,7 +69,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété adresse.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ adresse.
      * 
      * @param value
      *     allowed object is
@@ -82,7 +81,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété codePostal.
+     * Obtient la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @return
      *     possible object is
@@ -94,7 +93,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété codePostal.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ codePostal.
      * 
      * @param value
      *     allowed object is
@@ -106,7 +105,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété id.
+     * Obtient la valeur de la propriï¿½tï¿½ id.
      * 
      */
     public int getId() {
@@ -114,7 +113,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété id.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ id.
      * 
      */
     public void setId(int value) {
@@ -122,7 +121,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété idProfil.
+     * Obtient la valeur de la propriï¿½tï¿½ idProfil.
      * 
      */
     public int getIdProfil() {
@@ -130,7 +129,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété idProfil.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ idProfil.
      * 
      */
     public void setIdProfil(int value) {
@@ -138,7 +137,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété login.
+     * Obtient la valeur de la propriï¿½tï¿½ login.
      * 
      * @return
      *     possible object is
@@ -150,7 +149,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété login.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ login.
      * 
      * @param value
      *     allowed object is
@@ -162,7 +161,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété mdp.
+     * Obtient la valeur de la propriï¿½tï¿½ mdp.
      * 
      * @return
      *     possible object is
@@ -174,7 +173,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété mdp.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ mdp.
      * 
      * @param value
      *     allowed object is
@@ -186,7 +185,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété nom.
+     * Obtient la valeur de la propriï¿½tï¿½ nom.
      * 
      * @return
      *     possible object is
@@ -198,7 +197,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété nom.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ nom.
      * 
      * @param value
      *     allowed object is
@@ -210,7 +209,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété prenom.
+     * Obtient la valeur de la propriï¿½tï¿½ prenom.
      * 
      * @return
      *     possible object is
@@ -222,7 +221,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété prenom.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ prenom.
      * 
      * @param value
      *     allowed object is
@@ -234,7 +233,7 @@ public class Utilisateur {
     }
 
     /**
-     * Obtient la valeur de la propriété ville.
+     * Obtient la valeur de la propriï¿½tï¿½ ville.
      * 
      * @return
      *     possible object is
@@ -246,7 +245,7 @@ public class Utilisateur {
     }
 
     /**
-     * Définit la valeur de la propriété ville.
+     * Dï¿½finit la valeur de la propriï¿½tï¿½ ville.
      * 
      * @param value
      *     allowed object is

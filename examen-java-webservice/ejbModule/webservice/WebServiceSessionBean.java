@@ -9,18 +9,24 @@ import javax.ejb.Stateless;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebParam.Mode;
+
 import javax.jws.WebService;
+
+import domains.Utilisateur;
+import services.UtilisateurService;
 
 @Stateless
 @LocalBean
 @WebService
 public class WebServiceSessionBean {
 
+	@EJB
+	UtilisateurService utilisateurService;
+	
 	// === Authentification === //
 	@WebMethod(action = "connexion")
-	public boolean connexion(@WebParam(name = "login", mode = Mode.IN) String login,
+	public Utilisateur connexion(@WebParam(name = "login", mode = Mode.IN) String login,
 			@WebParam(name = "mdp", mode = Mode.IN) String mdp) {
-		boolean verificationIdentifiants = false;//= utilisateurSessionBean.verificationIdentifiants(login, mdp);
-		return verificationIdentifiants;
+		return utilisateurService.findUserByLoginAndPassword(login, mdp);
 	}
 }
