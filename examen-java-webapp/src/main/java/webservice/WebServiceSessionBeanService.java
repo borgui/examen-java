@@ -26,7 +26,7 @@ public class WebServiceSessionBeanService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("http://Junzi:8080/exam-java-ws/WebServiceSessionBean?wsdl");
+            url = new URL("http://localhost:8080/examen-java-webservice/WebServiceSessionBean?wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(WebServiceSessionBeanService.class.getName())
                 .log(java.util.logging.Level.INFO, 

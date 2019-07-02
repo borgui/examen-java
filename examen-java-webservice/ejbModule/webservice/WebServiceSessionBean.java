@@ -11,6 +11,8 @@ import javax.jws.WebParam;
 import javax.jws.WebParam.Mode;
 
 import javax.jws.WebService;
+import javax.transaction.NotSupportedException;
+import javax.transaction.SystemException;
 
 import domains.Utilisateur;
 import services.UtilisateurService;
@@ -26,7 +28,7 @@ public class WebServiceSessionBean {
 	// === Authentification === //
 	@WebMethod(action = "connexion")
 	public Utilisateur connexion(@WebParam(name = "login", mode = Mode.IN) String login,
-			@WebParam(name = "mdp", mode = Mode.IN) String mdp) {
+			@WebParam(name = "mdp", mode = Mode.IN) String mdp) throws NotSupportedException, SystemException {
 		return utilisateurService.findUserByLoginAndPassword(login, mdp);
 	}
 }

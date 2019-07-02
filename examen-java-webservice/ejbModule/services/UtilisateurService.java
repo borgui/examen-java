@@ -1,28 +1,48 @@
 package services;
 
+import javax.annotation.Resource;
 import javax.ejb.LocalBean;
+import javax.ejb.SessionContext;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import domains.Utilisateur;
 
 @Stateful
 @LocalBean
+@TransactionManagement(javax.ejb.TransactionManagementType.BEAN)
 public class UtilisateurService {
 	
-    @PersistenceContext(unitName = "unit")
+    @PersistenceContext(unitName = "database")
     private EntityManager em;
     
-	public Utilisateur findUserByLoginAndPassword(String login, String mdp) {
+    @Resource
+    private SessionContext sessionContext;
+    
+	public Utilisateur findUserByLoginAndPassword(String login, String mdp) throws NotSupportedException, SystemException {
 		Utilisateur utilisateur = null;
-		this.em.getTransaction().begin();
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
 		String queryString = "FROM Utilisateur where login = '" + login + "' and password = '" + mdp + "'";
 		Query query = this.em.createQuery(queryString);
 		if(query.getResultList().size() != 0) {
 			utilisateur = (Utilisateur) query.getSingleResult();
+		}
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return utilisateur;
 	}

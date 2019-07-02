@@ -78,7 +78,7 @@ public class AuthentificationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		Utilisateur utilisateur = webService.getConnexion(login,password);
+		Utilisateur utilisateur = webService.connexion(login,password);
 			if (utilisateur != null) {
 				httpSession(login, password);
 				int idProfil = utilisateur.getIdProfil();

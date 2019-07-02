@@ -2,5 +2,7 @@
     <wb-module deploy-name="examen-java-webservice">
         <wb-resource deploy-path="/" source-path="/ejbModule" tag="defaultRootSource"/>
         <property name="java-output-path" value="/examen-java-webservice/build/classes"/>
+        <property name="ClientProject" value="examen-java-webserviceClient"/>
+        <property name="ClientJARURI" value="examen-java-webserviceClient.jar"/>
     </wb-module>
 </project-modules>

@@ -6,12 +6,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="UTILISATEUR")
+@Table(name="UTILISATEURS")
 public class Utilisateur {
 	
 	@Id
 	@Column(name="ID")
-	Long id;
+	Integer id;
 	
 	@Column(name="NOM")
 	String nom;
@@ -29,13 +29,75 @@ public class Utilisateur {
 	String adresse;
 
 	@Column(name="idProfil")
-	Long idProfil;
+	Integer idProfil;
 	
-	@Column(name="suspended")
+	@Column(nullable = false, columnDefinition = "TINYINT(4)")
 	boolean suspended;
 	
-	@Column(name="idPanier")
-	Long idPanier;
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+
+	public Integer getIdProfil() {
+		return idProfil;
+	}
+
+	public void setIdProfil(Integer idProfil) {
+		this.idProfil = idProfil;
+	}
+
+	public boolean isSuspended() {
+		return suspended;
+	}
+
+	public void setSuspended(boolean suspended) {
+		this.suspended = suspended;
+	}
+
 	
 	
 	

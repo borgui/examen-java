@@ -7,10 +7,10 @@
 	<div class="container">
 		<div id="content">
 			<h2>Connexion</h2>
-			<form method="get" action="ControllerServlet">
+			<form method="get" action="AuthentificationServlet">
 				<input type="hidden" name="action" value="connexion">
 				<label>Identifiant</label> <input type='text' name='login' />
-				<label>Mot de passe</label> <input type='password' name='mdp' />
+				<label>Mot de passe</label> <input type='password' name='password' />
 				<input type='submit' name='submit' value="submit">
 			</form>
 		</div>

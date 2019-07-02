@@ -36,224 +36,74 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "utilisateur", propOrder = {
     "adresse",
-    "codePostal",
     "id",
     "idProfil",
     "login",
-    "mdp",
     "nom",
     "prenom",
-    "ville"
+    "password",
+    "suspended"
 })
 public class Utilisateur {
     protected String adresse;
-    protected String codePostal;
     protected int id;
     protected int idProfil;
     protected String login;
-    protected String mdp;
     protected String nom;
     protected String prenom;
-    protected String ville;
+    protected String password;
+    protected boolean suspended;
+    
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdProfil() {
+		return idProfil;
+	}
+	public void setIdProfil(int idProfil) {
+		this.idProfil = idProfil;
+	}
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean isSuspended() {
+		return suspended;
+	}
+	public void setSuspended(boolean suspended) {
+		this.suspended = suspended;
+	}
 
-    /**
-     * Obtient la valeur de la propri�t� adresse.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAdresse() {
-        return adresse;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� adresse.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setAdresse(String value) {
-        this.adresse = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� codePostal.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getCodePostal() {
-        return codePostal;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� codePostal.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setCodePostal(String value) {
-        this.codePostal = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� id.
-     * 
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� id.
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� idProfil.
-     * 
-     */
-    public int getIdProfil() {
-        return idProfil;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� idProfil.
-     * 
-     */
-    public void setIdProfil(int value) {
-        this.idProfil = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� login.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getLogin() {
-        return login;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� login.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setLogin(String value) {
-        this.login = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� mdp.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getMdp() {
-        return mdp;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� mdp.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setMdp(String value) {
-        this.mdp = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� nom.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getNom() {
-        return nom;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� nom.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setNom(String value) {
-        this.nom = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� prenom.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPrenom() {
-        return prenom;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� prenom.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPrenom(String value) {
-        this.prenom = value;
-    }
-
-    /**
-     * Obtient la valeur de la propri�t� ville.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getVille() {
-        return ville;
-    }
-
-    /**
-     * D�finit la valeur de la propri�t� ville.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setVille(String value) {
-        this.ville = value;
-    }
+	
+ 
 
 }

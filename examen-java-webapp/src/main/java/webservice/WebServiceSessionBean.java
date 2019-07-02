@@ -18,10 +18,10 @@ import javax.xml.ws.ResponseWrapper;
 public interface WebServiceSessionBean {
 
     @WebMethod(action = "connexion")
-    @RequestWrapper(localName = "getConnexion", targetNamespace = "http://webservice/", className = "webservice.GetConnexion")
-    @ResponseWrapper(localName = "getConnexionResponse", targetNamespace = "http://webservice/", className = "webservice.GetConnexionResponse")
+    @RequestWrapper(localName = "connexion", targetNamespace = "http://webservice/", className = "webservice.Connexion")
+    @ResponseWrapper(localName = "connexionResponse", targetNamespace = "http://webservice/", className = "webservice.ConnexionResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public Utilisateur getConnexion(
+    public Utilisateur connexion(
         @WebParam(name = "login", targetNamespace = "")
         String login,
         @WebParam(name = "mdp", targetNamespace = "")
