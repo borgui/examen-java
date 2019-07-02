@@ -89,6 +89,12 @@ public class AdminServlet extends AbstractServlet {
 			redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
 	}
 	
+	private void supprimerUtilisateur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		Utilisateur compteVendeur = webservice.supprimerUtilisateur(Integer.parseInt(request.getParameter("id")));
+		this.request.setAttribute("compteVendeur", compteVendeur);
+		redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
+}
+	
 	
 	private void ajoutCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		

@@ -66,4 +66,13 @@ public interface WebServiceSessionBean {
         @WebParam(name = "id", targetNamespace = "")
         Integer id
     );
+    
+    @WebMethod(action = "supprimerUtilisateur")
+    @RequestWrapper(localName = "supprimerUtilisateur", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateur")
+    @ResponseWrapper(localName = "supprimerUtilisateurResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateurResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Utilisateur supprimerUtilisateur(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
+    );
 }
