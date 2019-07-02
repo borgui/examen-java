@@ -113,10 +113,10 @@ public class UtilisateurService {
 		return utilisateur;
 	}
 	
-	public Utilisateur supprimerUtilisateur(Utilisateur utilisateur) throws SystemException, NotSupportedException {
+	public void supprimerUtilisateur(Integer id) throws SystemException, NotSupportedException {
 		UserTransaction userTxn = sessionContext.getUserTransaction();
 		userTxn.begin();
-		
+		Utilisateur utilisateur = this.em.find(Utilisateur.class, id);
 		this.em.remove(utilisateur);
 
 		try {
@@ -126,7 +126,6 @@ public class UtilisateurService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return utilisateur;
 	}
 
 

@@ -37,7 +37,7 @@
 							<td><%= compteVendeur.getPrenom() %></td>
 							<td><%= compteVendeur.getNom() %></td>
 							<td><a href="AdminServlet?action=getVendeurDetail&id=<%=compteVendeur.getId()%>">Modifier</a></td>
-							<td>Supprimer</td>
+							<td><a href="AdminServlet?action=supprimerVendeur&id=<%=compteVendeur.getId()%>">Supprimer </a></td>
 						</tr>
 						<%
 							}

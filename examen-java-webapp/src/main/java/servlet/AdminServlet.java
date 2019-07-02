@@ -29,6 +29,8 @@ public class AdminServlet extends AbstractServlet {
 	
 	private static final String MODIF_COMPTE_VENDEUR_ACTION = "modifierVendeur";
 
+	private static final String SUPPRIMER_COMPTE_VENDEUR_ACTION = "supprimerVendeur";
+
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,6 +54,8 @@ public class AdminServlet extends AbstractServlet {
 			case MODIF_COMPTE_VENDEUR_ACTION:
 				modifierCompteVendeur(webService, request);
 				break;
+			case SUPPRIMER_COMPTE_VENDEUR_ACTION:
+				supprimerUtilisateur(webService, request);
 			default:
 				break;
 			}
@@ -90,10 +94,9 @@ public class AdminServlet extends AbstractServlet {
 	}
 	
 	private void supprimerUtilisateur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		Utilisateur compteVendeur = webservice.supprimerUtilisateur(Integer.parseInt(request.getParameter("id")));
-		this.request.setAttribute("compteVendeur", compteVendeur);
-		redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
-}
+		webservice.supprimerUtilisateur(Integer.parseInt(request.getParameter("id")));
+		this.getListeCompteVendeur(webservice, request);
+	}
 	
 	
 	private void ajoutCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
