@@ -52,4 +52,10 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return utilisateurService.findById(id);
     }
+    
+    @WebMethod( action = "supprimerUtilisateur" )
+    public void supprimerUtilisateur( @WebParam( name = "id", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        utilisateurService.supprimerUtilisateur(id);
+    }
 }
