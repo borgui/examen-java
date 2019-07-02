@@ -30,6 +30,16 @@ public interface WebServiceSessionBean {
         String mdp
     );
     
+
+    @WebMethod(action = "creerUtilisateur")
+    @RequestWrapper(localName = "creerUtilisateur", targetNamespace = "http://webservice/", className = "webservice.creerUtilisateur")
+    @ResponseWrapper(localName = "creerUtilisateurResponse", targetNamespace = "http://webservice/", className = "webservice.creerUtilisateur")
+    @WebResult(name = "return", targetNamespace = "")
+    public Utilisateur creerUtilisateur(
+        @WebParam(name = "utilisateur", targetNamespace = "")
+    );
+    
+    
     @WebMethod(action = "getByIdProfil")
     @RequestWrapper(localName = "getByIdProfil", targetNamespace = "http://webservice/", className = "webservice.getByIdProfil")
     @ResponseWrapper(localName = "getByIdProfilResponse", targetNamespace = "http://webservice/", className = "webservice.getByIdProfilResponse")

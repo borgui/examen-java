@@ -24,7 +24,7 @@
 							<th scope="col">Id</th>
 							<th scope="col">Nom</th>
 							<th scope="col">Prenom</th>
-							
+							<th scope="col">Supprimer</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -44,6 +44,28 @@
 				<%
 					}
 				%>
+			</div>
+			<div class="content">
+				<form method='get' action='AdminServlet/ajoutVendeur'>
+							
+							<label>Nom</label>
+							<input type='text' name='nom' required />
+							
+							<label>Prenom</label>
+							<input type='text' name='prenom' required />
+							
+							<label>Email</label>
+							<input type='text' name='email' required />
+							
+							<label>Login</label>
+							<input type='text' name='login' required />
+							
+							<label>Password :</label>
+							<input type='text' name='password' required />
+							
+							
+							<input type='submit' name='action' value="Ajouter">
+						</form>
 			</div>
 		</div>
 	</div>

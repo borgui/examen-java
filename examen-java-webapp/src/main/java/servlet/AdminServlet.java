@@ -20,6 +20,8 @@ public class AdminServlet extends AbstractServlet {
 	private static final String LISTE_COMPTE_VENDEUR_ACTION = "getListeCompteVendeur";
 	
 	private static final String LISTE_COMPTE_VENDEUR_PAGE = "ListeCompteVendeur";
+	
+	private static final String AJOUT_COMPTE_VENDEUR_ACTION = "ajoutVendeur";
 
 
 	
@@ -35,6 +37,9 @@ public class AdminServlet extends AbstractServlet {
 			case LISTE_COMPTE_VENDEUR_ACTION:
 				getListeCompteVendeur(webService, request);
 				break;
+			case AJOUT_COMPTE_VENDEUR_ACTION:
+				ajoutCompteVendeur(webService, request);
+				
 			default:
 				break;
 			}
@@ -46,6 +51,12 @@ public class AdminServlet extends AbstractServlet {
 	}
 	
 	private void getListeCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		List<Utilisateur> compteVendeur = webservice.getByIdProfil(2);
+		this.request.setAttribute("listeCompteVendeur", compteVendeur);
+		redirectionToView(LISTE_COMPTE_VENDEUR_PAGE);
+	}
+	
+	private void ajoutCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		List<Utilisateur> compteVendeur = webservice.getByIdProfil(2);
 		this.request.setAttribute("listeCompteVendeur", compteVendeur);
 		redirectionToView(LISTE_COMPTE_VENDEUR_PAGE);
