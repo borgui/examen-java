@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "Profils" )
-public class Profil {
+public class Sujet {
 
     @Id
     @Column( name = "ID" )
@@ -31,4 +31,5 @@ public class Profil {
     public void setLibelle( String libelle ) {
         this.libelle = libelle;
     }
+
 }
