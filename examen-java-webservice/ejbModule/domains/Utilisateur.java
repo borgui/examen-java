@@ -19,17 +19,32 @@ public class Utilisateur {
     @Column( name = "PRENOM" )
     String  prenom;
 
+    @Column( name = "ADRESSE" )
+    String  adresse;
+
+    @Column( name = "CODEPOSTAL" )
+    String  cp;
+
+    @Column( name = "VILLE" )
+    String  ville;
+
+    @Column( name = "MAIL" )
+    String  mail;
+
     @Column( name = "LOGIN" )
     String  login;
 
     @Column( name = "PASS" )
     String  password;
 
-    @Column( name = "ADRESSE" )
-    String  adresse;
-
     @Column( name = "idProfil" )
     Integer idProfil;
+
+    @Column( name = "idBanque" )
+    Integer idBanque;
+
+    @Column( name = "idContact" )
+    Integer idContact;
 
     @Column( nullable = false, columnDefinition = "TINYINT(4)" )
     boolean suspended;
@@ -58,6 +73,38 @@ public class Utilisateur {
         this.prenom = prenom;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse( String adresse ) {
+        this.adresse = adresse;
+    }
+
+    public String getCodePostal() {
+        return cp;
+    }
+
+    public void setCodePostal( String cp ) {
+        this.cp = cp;
+    }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille( String ville ) {
+        this.ville = ville;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail( String mail ) {
+        this.mail = mail;
+    }
+
     public String getLogin() {
         return login;
     }
@@ -74,20 +121,28 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse( String adresse ) {
-        this.adresse = adresse;
-    }
-
     public Integer getIdProfil() {
         return idProfil;
     }
 
     public void setIdProfil( Integer idProfil ) {
         this.idProfil = idProfil;
+    }
+
+    public Integer getIdBanque() {
+        return idBanque;
+    }
+
+    public void setIdBanque( Integer idBanque ) {
+        this.idBanque = idBanque;
+    }
+
+    public Integer getIdContact() {
+        return idContact;
+    }
+
+    public void setIdContact( Integer idContact ) {
+        this.idContact = idContact;
     }
 
     public boolean isSuspended() {
