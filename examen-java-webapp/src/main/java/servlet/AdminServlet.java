@@ -80,7 +80,7 @@ public class AdminServlet extends AbstractServlet {
 		
 		Utilisateur compteVendeur = webservice.modifierUtilisateur(utilisateur);
 		this.request.setAttribute("compteVendeur", compteVendeur);
-		redirectionToView(LISTE_COMPTE_VENDEUR_PAGE);
+		this.getListeCompteVendeur(webservice, request);
 	}
 	
 	private void getDetailCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
