@@ -37,6 +37,7 @@ public interface WebServiceSessionBean {
     @WebResult(name = "return", targetNamespace = "")
     public Utilisateur creerUtilisateur(
         @WebParam(name = "utilisateur", targetNamespace = "")
+        Utilisateur utilisateur
     );
     
     
