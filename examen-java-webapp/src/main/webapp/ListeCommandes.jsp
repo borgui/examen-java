@@ -27,59 +27,36 @@
 				<%
 					} else {
 				%>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th scope="col">Id</th>
-							<th scope="col">Date</th>
-							<th scope="col">Produit</th>
-							<th scope="col">Quantité</th>
-							<th scope="col">Prix</th>
-							<th scope="col">Nom fournisseur</th>
-							<%
-								if(session.getAttribute("session-role") == "comptable"){
-							%>
-							<th scope="col">Ajouter une Facture</th>
-							<%
-								}
-							%>
-							<%
-								if(session.getAttribute("session-role") == "responsableStock"){
-							%>
-							<th scope="col">Ajouter un accusé réception</th>
-							<%
-								}
-							%>
-						</tr>
-					</thead>
-					<tbody>
-						<%
-							for(int i = 0; i<commandesList.size(); i++){
-						%>
-						<tr>
-							<th scope="row"><a href="ControllerServlet?action=commandeDetail&idCommande=<%= commandesList.get(i).getId() %>"><%= commandesList.get(i).getId() %></a></th>
-							<td><%= commandesList.get(i).getDate().toString() %></td>
-							<td><%= commandesList.get(i).getProduit() %></td>
-							<td><%= commandesList.get(i).getQuantite() %></td>
-							<td><%= commandesList.get(i).getPrix() %></td>
-							<td><%= nomFournisseursList.get(i) %></td>
-							<%
-								if(session.getAttribute("session-role") == "comptable"){
-							%>
-							<th scope="col"><a href="ControllerServlet?action=ajoutFacture&idCommande=<%= commandesList.get(i).getId() %>"><img alt="ajout_icon" src="images/icon_add.png"></a></th>
-							<%
-								} else if(session.getAttribute("session-role") == "responsableStock"){
-							%>
-							<th scope="col"><a href="ControllerServlet?action=ajoutAccuseReception&idCommande=<%= commandesList.get(i).getId() %>"><img alt="ajout_icon" src="images/icon_add.png"></a></th>
-							<%
-								}
-							%>
-						</tr>
-						<%
-							}
-						%>
-					</tbody>
-				</table>
+				<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
 				<%
 					}
 				%>

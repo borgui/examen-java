@@ -1,5 +1,7 @@
 package webservice;
 
+import java.util.List;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -26,5 +28,14 @@ public interface WebServiceSessionBean {
         String login,
         @WebParam(name = "mdp", targetNamespace = "")
         String mdp
+    );
+    
+    @WebMethod(action = "getByIdProfil")
+    @RequestWrapper(localName = "getByIdProfil", targetNamespace = "http://webservice/", className = "webservice.getByIdProfil")
+    @ResponseWrapper(localName = "getByIdProfilResponse", targetNamespace = "http://webservice/", className = "webservice.getByIdProfilResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public List<Utilisateur> getByIdProfil(
+        @WebParam(name = "idProfil", targetNamespace = "")
+        Integer idProfil
     );
 }

@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
@@ -45,6 +47,23 @@ public class UtilisateurService {
 			e.printStackTrace();
 		}
 		return utilisateur;
+	}
+	
+	public List<Utilisateur> findUsersByProfil(Integer idProfil) throws SystemException, NotSupportedException{
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		String queryString = "FROM Utilisateur where idProfil = " + idProfil ;
+		Query query = this.em.createQuery(queryString);
+		List<Utilisateur> utilisateurs = (List<Utilisateur>) query.getResultList();
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateurs;
 	}
 
 }
