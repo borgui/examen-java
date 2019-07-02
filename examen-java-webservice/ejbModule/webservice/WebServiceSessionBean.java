@@ -13,7 +13,9 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
 import domains.Categorie;
+import domains.Entrepot;
 import domains.Utilisateur;
+import services.EntrepotService;
 import services.ProduitService;
 import services.UtilisateurService;
 
@@ -24,7 +26,8 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
-    ProduitService produitService;
+    ProduitService     produitService;
+    EntrepotService    entrepotService;
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -84,5 +87,23 @@ public class WebServiceSessionBean {
     public void supprimerCategorie( @WebParam( name = "id", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
         produitService.supprimerCategorie( id );
+    }
+
+    @WebMethod( action = "creerEntrepot" )
+    public Entrepot creerEntrepot( @WebParam( name = "entrepot", mode = Mode.IN ) Entrepot entrepot )
+            throws NotSupportedException, SystemException {
+        return entrepotService.creeEntrepot( entrepot );
+    }
+
+    @WebMethod( action = "modifierEntrepot" )
+    public Entrepot modifierEntrepot( @WebParam( name = "entrepot", mode = Mode.IN ) Entrepot entrepot )
+            throws NotSupportedException, SystemException {
+        return entrepotService.modifierEntrepot( entrepot );
+    }
+
+    @WebMethod( action = "supprimerEntrepot" )
+    public void supprimerEntrepot( @WebParam( name = "id", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        entrepotService.supprimerEntrepot( id );
     }
 }
