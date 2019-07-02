@@ -14,7 +14,7 @@ public class Entrepot {
     Integer id;
 
     @Column( name = "NOM" )
-    Integer nom;
+    String  nom;
 
     @Column( name = "PAYS" )
     String  pays;
@@ -27,11 +27,11 @@ public class Entrepot {
         this.id = id;
     }
 
-    public Integer getNom() {
+    public String getNom() {
         return nom;
     }
 
-    public void setNom( Integer nom ) {
+    public void setNom( String nom ) {
         this.nom = nom;
     }
 

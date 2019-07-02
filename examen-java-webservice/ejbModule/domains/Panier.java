@@ -19,7 +19,7 @@ public class Panier {
     @Column( name = "idProduit" )
     Integer idProduit;
 
-    @Column( name = "idUsers" )
+    @Column( name = "idUser" )
     Integer idUser;
 
     @Column( name = "idVendeur" )
