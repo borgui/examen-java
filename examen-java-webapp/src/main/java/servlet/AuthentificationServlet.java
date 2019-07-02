@@ -23,34 +23,15 @@ import webservice.WebServiceSessionBean;
  * Servlet implementation class ControllerServlet
  */
 @WebServlet("/AuthentificationServlet")
-public class AuthentificationServlet extends HttpServlet {
+public class AuthentificationServlet extends AbstractServlet {
 	private static final long serialVersionUID = 1L;
-	// === Profil ID === //
-	private static final int CLIENT = 1;
-	private static final int VENDEUR = 2;
-	private static final int ADMINISTRATEUR = 3;
-	// === JSP === //
-	private static final String HOME_PAGE = "Home";
-	private static final String CONNEXION_PAGE = "Connexion";
-	private static final String CONNEXION_ACTION = "connexion";
-	private static final String DECONNEXION_ACTION = "deconnexion";
-
-	private HttpServletRequest request;
-	private HttpServletResponse response;
-	private HttpSession session;
-	private String action;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		initialize(request, response);
 
 		try {
-			// URL url = new
-			// URL("http://DESKTOP-FDOSAPS:8080/exam-java-ws/WebServiceSessionBean?wsdl");
-			URL url = new URL("http://localhost:8080/examen-java-webservice/WebServiceSessionBean?wsdl");
-			QName qname = new QName("http://webservice/", "WebServiceSessionBeanService");
-			Service service = Service.create(url, qname);
-			WebServiceSessionBean webService = service.getPort(WebServiceSessionBean.class);
+			WebServiceSessionBean webService = getWebService();
 
 			switch (action) {
 			case CONNEXION_ACTION:
@@ -103,28 +84,6 @@ public class AuthentificationServlet extends HttpServlet {
 				redirectionToView(CONNEXION_PAGE);
 			}
 	}
-	
-	private void redirectionToView(String view) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher(view + ".jsp");
-		dispatcher.include(request, response);
-	}
-	
-	protected void httpSession(String login, String password) {
-		session.setAttribute("login", login);
-		session.setAttribute("password", password);
-	}
 
-	private void setVariableToView(String variable, String message) {
-		request.setAttribute(variable, message);
-	}
 
-	public void initialize(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		this.request = request;
-		this.response = response;
-		this.session = request.getSession();
-
-		action = request.getParameter("action");
-
-		response.setContentType("text/html");
-	}
 }

@@ -21,22 +21,22 @@
 			<header id="header" class="container">
 				<div id="logo">
 					<h1>
-						<a href="Home.jsp">Exam-Java</a>
+						<a href="Home.jsp">Amasoon</a>
 					</h1>
 				</div>
 				<nav id="nav">
 					<ul>
 						<li id="home"><a href="Home.jsp">Accueil</a></li>
 						<%
-							if (session.getAttribute("session-role") == "responsableAchat") {
+							if (session.getAttribute("session-role") == "client") {
 						%>
-						<li id="gestionResponsableAchat"><a href="ControllerServlet?action=listeCommandes">Gestion Commandes</a>
+						<li id="client"><a href="ControllerServlet?action=listeCommandes">Gestion Commandes</a>
 							<ul>
 								<li class="current" id="commandesList"><a href="ControllerServlet?action=listeCommandes">Récapitulatif des commandes</a></li>
 							</ul>
 						</li>
 						<%
-							}else if(session.getAttribute("session-role") == "responsableStock"){
+							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>
 						<li id="gestionResponsableStock"><a href="ControllerServlet?action=listeLivraisons">Gestion stock</a>
 							<ul>
@@ -50,18 +50,12 @@
 							</ul>
 						</li>
 						<%
-							}else if(session.getAttribute("session-role") == "comptable"){
+							}else if(session.getAttribute("session-role") == "admin"){
 						%>
-						<li id="gestionComptablePaiement"><a href="ControllerServlet?action=listePaiements">Gestion Paiements</a>
-							<ul>
-								<li id="listeFactures"><a href="ControllerServlet?action=listeFactures">Liste des factures</a></li>
-								<li class="current" id="paiementsList"><a href="ControllerServlet?action=listePaiements">Récapitulatif des paiements</a></li>
-							</ul>
-						</li>
-						<li id="gestionComptableCommande"><a href="ControllerServlet?action=listeCommandes">Gestion Commandes</a>
-							<ul>
-								<li class="current" id="commandesList"><a href="ControllerServlet?action=listeCommandes">Récapitulatif des commandes</a></li>
-							</ul>
+						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur">Gérer comptes vendeurs</a></li>
+						<li id="catégorieProduit"><a href="AdminServlet?action=listeCategorieProduit">Gérer catégorie produit</a></li>
+
+						<li id="entrepots"><a href="AdminServlet?action=listeEntrepots">Gérer les entrepots</a>
 						</li>
 						<%
 							}

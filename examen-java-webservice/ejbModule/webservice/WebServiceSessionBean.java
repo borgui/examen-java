@@ -1,5 +1,7 @@
 package webservice;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -21,10 +23,15 @@ public class WebServiceSessionBean {
     @EJB
     UtilisateurService utilisateurService;
 
-    // === Authentification === //
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
             @WebParam( name = "mdp", mode = Mode.IN ) String mdp ) throws NotSupportedException, SystemException {
         return utilisateurService.findUserByLoginAndPassword( login, mdp );
+    }
+
+    @WebMethod( action = "getByIdProfil" )
+    public List<Utilisateur> getByIdProfil( @WebParam( name = "idProfil", mode = Mode.IN ) Integer idProfil )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.findUsersByProfil( idProfil );
     }
 }
