@@ -65,5 +65,21 @@ public class UtilisateurService {
 		}
 		return utilisateurs;
 	}
+	
+	public Utilisateur creerUtilisateur(Utilisateur utilisateur) throws SystemException, NotSupportedException {
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		
+		this.em.persist(utilisateur);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateur;
+	}
 
 }

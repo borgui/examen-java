@@ -34,4 +34,10 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return utilisateurService.findUsersByProfil( idProfil );
     }
+    
+    @WebMethod( action = "getByIdProfil" )
+    public Utilisateur creerUtilisateur( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.creerUtilisateur(utilisateur);
+    }
 }

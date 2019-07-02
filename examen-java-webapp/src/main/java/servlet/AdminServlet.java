@@ -58,8 +58,15 @@ public class AdminServlet extends AbstractServlet {
 	
 	private void ajoutCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		
-		List<Utilisateur> compteVendeur = webservice.creerUtilisateur(2);
-		this.request.setAttribute("listeCompteVendeur", compteVendeur);
-		redirectionToView(LISTE_COMPTE_VENDEUR_PAGE);
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur.setPrenom(request.getParameter("prenom"));
+		utilisateur.setNom(request.getParameter("nom"));
+		utilisateur.setIdProfil(2);
+		utilisateur.setMail(request.getParameter("email"));
+		utilisateur.setPass(request.getParameter("password"));
+		utilisateur.setPseudo(request.getParameter("pseudo"));
+
+		Utilisateur compteVendeur = webservice.creerUtilisateur(utilisateur);
+		this.getListeCompteVendeur(webservice, request);
 	}
 }

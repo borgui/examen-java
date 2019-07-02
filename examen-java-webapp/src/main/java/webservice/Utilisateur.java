@@ -11,26 +11,6 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * <p>Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette classe.
  * 
- * <pre>
- * &lt;complexType name="utilisateur"&gt;
- *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="adresse" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="idProfil" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="login" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="mdp" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
- *   &lt;/complexContent&gt;
- * &lt;/complexType&gt;
- * </pre>
- * 
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -39,9 +19,11 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "idProfil",
     "login",
+    "mail",
     "nom",
     "prenom",
-    "password",
+    "pass",
+    "pseudo",
     "suspended"
 })
 public class Utilisateur {
@@ -50,10 +32,12 @@ public class Utilisateur {
     protected int idProfil;
     protected String login;
     protected String nom;
+    protected String mail;
     protected String prenom;
-    protected String password;
-    protected boolean suspended;
+    protected String pass;
+    protected String pseudo;
     
+    protected boolean suspended;
 	public String getAdresse() {
 		return adresse;
 	}
@@ -84,17 +68,23 @@ public class Utilisateur {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 	public String getPrenom() {
 		return prenom;
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getPassword() {
-		return password;
+	public String getPass() {
+		return pass;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	public boolean isSuspended() {
 		return suspended;
@@ -102,8 +92,13 @@ public class Utilisateur {
 	public void setSuspended(boolean suspended) {
 		this.suspended = suspended;
 	}
-
+	public String getPseudo() {
+		return pseudo;
+	}
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
+	}
 	
- 
+	
 
 }
