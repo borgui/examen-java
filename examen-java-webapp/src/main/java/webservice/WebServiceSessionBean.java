@@ -58,6 +58,16 @@ public interface WebServiceSessionBean {
         Integer idProfil
     );
     
+    @WebMethod(action = "supprimerUtilisateur")
+    @RequestWrapper(localName = "supprimerUtilisateur", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateur")
+    @ResponseWrapper(localName = "supprimerUtilisateurResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateurResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public void supprimerUtilisateur(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
+    );
+    
+    
     @WebMethod(action = "getByUtilisateurId")
     @RequestWrapper(localName = "getByUtilisateurId", targetNamespace = "http://webservice/", className = "webservice.getByUtilisateurId")
     @ResponseWrapper(localName = "getByUtilisateurIdResponse", targetNamespace = "http://webservice/", className = "webservice.getByUtilisateurIdResponse")
@@ -67,12 +77,54 @@ public interface WebServiceSessionBean {
         Integer id
     );
     
-    @WebMethod(action = "supprimerUtilisateur")
-    @RequestWrapper(localName = "supprimerUtilisateur", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateur")
-    @ResponseWrapper(localName = "supprimerUtilisateurResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerUtilisateurResponse")
+
+    /**
+     * CATEGORIE
+     */
+    
+    @WebMethod(action = "getCategories")
+    @RequestWrapper(localName = "getCategories", targetNamespace = "http://webservice/", className = "webservice.getCategories")
+    @ResponseWrapper(localName = "getCategoriesResponse", targetNamespace = "http://webservice/", className = "webservice.getCategoriesResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public void supprimerUtilisateur(
+    public List<Categorie> getCategories(
+            @WebParam(name = "test", targetNamespace = "")
+            boolean test);
+    
+    @WebMethod(action = "supprimerCategorie")
+    @RequestWrapper(localName = "supprimerCategorie", targetNamespace = "http://webservice/", className = "webservice.supprimerCategorie")
+    @ResponseWrapper(localName = "supprimerCategorieResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerCategorieResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public void supprimerCategorie(
         @WebParam(name = "id", targetNamespace = "")
         Integer id
     );
+    
+    @WebMethod(action = "modifierCategorie")
+    @RequestWrapper(localName = "modifierCategorie", targetNamespace = "http://webservice/", className = "webservice.modifierCategorie")
+    @ResponseWrapper(localName = "modifierCategorieResponse", targetNamespace = "http://webservice/", className = "webservice.modifierCategorie")
+    @WebResult(name = "return", targetNamespace = "")
+    public Categorie modifierCategorie(
+        @WebParam(name = "categorie", targetNamespace = "")
+        Categorie categorie
+    );
+    
+    @WebMethod(action = "creerCategorie")
+    @RequestWrapper(localName = "creerCategorie", targetNamespace = "http://webservice/", className = "webservice.creerCategorie")
+    @ResponseWrapper(localName = "creerCategorieResponse", targetNamespace = "http://webservice/", className = "webservice.creerCategorie")
+    @WebResult(name = "return", targetNamespace = "")
+    public Categorie creerCategorie(
+        @WebParam(name = "categorie", targetNamespace = "")
+        Categorie categorie
+    );
+    
+    @WebMethod(action = "getCategorieById")
+    @RequestWrapper(localName = "getCategorieById", targetNamespace = "http://webservice/", className = "webservice.getCategorieById")
+    @ResponseWrapper(localName = "getCategorieByIdResponse", targetNamespace = "http://webservice/", className = "webservice.getCategorieByIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Categorie getCategorieById(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
+    );
+    
+    
 }

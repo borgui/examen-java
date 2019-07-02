@@ -56,6 +56,7 @@ public class AdminServlet extends AbstractServlet {
 				break;
 			case SUPPRIMER_COMPTE_VENDEUR_ACTION:
 				supprimerUtilisateur(webService, request);
+				break;
 			default:
 				break;
 			}

@@ -24,7 +24,7 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
-    ProduitService     produitService;
+    ProduitService produitService;
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -66,6 +66,12 @@ public class WebServiceSessionBean {
     public Categorie creerCategorie( @WebParam( name = "categorie", mode = Mode.IN ) Categorie categorie )
             throws NotSupportedException, SystemException {
         return produitService.creerCategorie( categorie );
+    }
+    
+    @WebMethod( action = "getCategories" )
+    public List<Categorie> getCategories( @WebParam( name = "test", mode = Mode.IN ) boolean test)
+            throws NotSupportedException, SystemException {
+        return produitService.findAllCategories();
     }
 
     @WebMethod( action = "modifierCategorie" )

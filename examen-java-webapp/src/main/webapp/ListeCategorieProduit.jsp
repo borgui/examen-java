@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
-<%@ page import="webservice.Utilisateur"%>
+<%@ page import="webservice.Categorie"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer compte vendeurs</h2>
+				<h2>Gérer catégorie produit</h2>
 				<%
-					List<Utilisateur> compteVendeurList = (List<Utilisateur>) request.getAttribute( "listeCompteVendeur" );
+					List<Categorie> categorieList = (List<Categorie>) request.getAttribute( "listeCategorie" );
 	
-					if (compteVendeurList == null) {
+					if (categorieList == null) {
 				%>
-				<p>Il n'y a aucun compte vendeur</p>
+				<p>Il n'y a aucune categorie</p>
 				<%
 					} else {
 				%>
@@ -22,22 +22,20 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Prenom</th>
+							<th scope="col">Libelle</th>
 							<th scope="col">Modifier</th>
 							<th scope="col">Supprimer</th>
 						</tr>
 					</thead>
 					<tbody>
 						<%
-							for(Utilisateur compteVendeur : compteVendeurList){
+							for(Categorie categorie : categorieList){
 						%>
 						<tr>
-							<th scope="row"><%= compteVendeur.getId() %></a></th>
-							<td><%= compteVendeur.getPrenom() %></td>
-							<td><%= compteVendeur.getNom() %></td>
-							<td><a href="AdminServlet?action=getVendeurDetail&id=<%=compteVendeur.getId()%>">Modifier</a></td>
-							<td><a href="AdminServlet?action=supprimerVendeur&id=<%=compteVendeur.getId()%>">Supprimer </a></td>
+							<th scope="row"><%= categorie.getId() %></a></th>
+							<td><%= categorie.getLibelle() %></td>
+							<td><a href="CategorieServlet?action=getCategorieDetaill&id=<%=categorie.getId()%>">Modifier</a></td>
+							<td><a href="CategorieServlet?action=supprimerCategorie&id=<%=categorie.getId()%>">Supprimer </a></td>
 						</tr>
 						<%
 							}
@@ -49,24 +47,10 @@
 				%>
 			</div>
 			<div class="content">
-				<form method='get' action='AdminServlet?action=ajoutVendeur'>
-							<input hidden name="action" value="ajoutVendeur">
-							<label>Nom</label>
-							<input type='text' name='nom' required />
-							
-							<label>Prenom</label>
-							<input type='text' name='prenom' required />
-							
-							<label>Email</label>
-							<input type='text' name='email' required />
-							
-							<label>Pseudo</label>
-							<input type='text' name='login' required />
-							
-							<label>Password :</label>
-							<input type='text' name='password' required />
-							
-							
+				<form method='get' action='CategorieServlet'>
+							<input hidden name="action" value="ajouterCategorie">
+							<label>Libelle</label>
+							<input type='text' name='libelle' required />
 							<input type='submit' name='submit' value="Ajouter">
 						</form>
 			</div>

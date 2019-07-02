@@ -65,6 +65,7 @@ public class ProduitService {
         }
         return categorie;
     }
+    
 
     public Categorie modifierCategorie( Categorie categorie ) throws SystemException, NotSupportedException {
         UserTransaction userTxn = sessionContext.getUserTransaction();

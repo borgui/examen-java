@@ -53,7 +53,7 @@
 							}else if(session.getAttribute("session-role") == "admin"){
 						%>
 						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur">Gérer comptes vendeurs</a></li>
-						<li id="catégorieProduit"><a href="AdminServlet?action=listeCategorieProduit">Gérer catégorie produit</a></li>
+						<li id="catégorieProduit"><a href="CategorieServlet?action=getListeCategorie">Gérer catégorie produit</a></li>
 
 						<li id="entrepots"><a href="AdminServlet?action=listeEntrepots">Gérer les entrepots</a>
 						</li>
