@@ -12,7 +12,9 @@ import javax.jws.WebService;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
+import domains.Categorie;
 import domains.Utilisateur;
+import services.ProduitService;
 import services.UtilisateurService;
 
 @Stateless
@@ -22,6 +24,7 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
+    ProduitService     produitService;
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -34,28 +37,46 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return utilisateurService.findUsersByProfil( idProfil );
     }
-    
+
     @WebMethod( action = "creerUtilisateur" )
     public Utilisateur creerUtilisateur( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
             throws NotSupportedException, SystemException {
-        return utilisateurService.creerUtilisateur(utilisateur);
+        return utilisateurService.creerUtilisateur( utilisateur );
     }
-    
+
     @WebMethod( action = "modifierUtilisateur" )
     public Utilisateur modifierUtilisateur( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
             throws NotSupportedException, SystemException {
-        return utilisateurService.modifierUtilisateur(utilisateur);
+        return utilisateurService.modifierUtilisateur( utilisateur );
     }
-    
+
     @WebMethod( action = "getByUtilisateurId" )
     public Utilisateur getByUtilisateurId( @WebParam( name = "id", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
-        return utilisateurService.findById(id);
+        return utilisateurService.findById( id );
     }
-    
+
     @WebMethod( action = "supprimerUtilisateur" )
     public void supprimerUtilisateur( @WebParam( name = "id", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
-        utilisateurService.supprimerUtilisateur(id);
+        utilisateurService.supprimerUtilisateur( id );
+    }
+
+    @WebMethod( action = "creerCategorie" )
+    public Categorie creerCategorie( @WebParam( name = "categorie", mode = Mode.IN ) Categorie categorie )
+            throws NotSupportedException, SystemException {
+        return produitService.creerCategorie( categorie );
+    }
+
+    @WebMethod( action = "modifierCategorie" )
+    public Categorie modifierCategorie( @WebParam( name = "categorie", mode = Mode.IN ) Categorie categorie )
+            throws NotSupportedException, SystemException {
+        return produitService.modifierCategorie( categorie );
+    }
+
+    @WebMethod( action = "supprimerCategorie" )
+    public void supprimerCategorie( @WebParam( name = "id", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        produitService.supprimerCategorie( id );
     }
 }
