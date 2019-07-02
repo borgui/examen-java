@@ -112,6 +112,23 @@ public class UtilisateurService {
 		}
 		return utilisateur;
 	}
+	
+	public Utilisateur supprimerUtilisateur(Utilisateur utilisateur) throws SystemException, NotSupportedException {
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		
+		this.em.remove(utilisateur);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateur;
+	}
+
 
 
 }

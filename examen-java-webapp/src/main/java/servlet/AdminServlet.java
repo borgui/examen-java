@@ -45,10 +45,13 @@ public class AdminServlet extends AbstractServlet {
 				break;
 			case AJOUT_COMPTE_VENDEUR_ACTION:
 				ajoutCompteVendeur(webService, request);
+				break;
 			case DETAIL_COMPTE_VENDEUR_ACTION:
 				getDetailCompteVendeur(webService, request);
+				break;
 			case MODIF_COMPTE_VENDEUR_ACTION:
 				modifierCompteVendeur(webService, request);
+				break;
 			default:
 				break;
 			}
@@ -81,9 +84,9 @@ public class AdminServlet extends AbstractServlet {
 	}
 	
 	private void getDetailCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		Utilisateur compteVendeur = webservice.getByUtilisateurId(Integer.parseInt(request.getParameter("id")));
-		this.request.setAttribute("compteVendeur", compteVendeur);
-		redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
+			Utilisateur compteVendeur = webservice.getByUtilisateurId(Integer.parseInt(request.getParameter("id")));
+			this.request.setAttribute("compteVendeur", compteVendeur);
+			redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
 	}
 	
 	
