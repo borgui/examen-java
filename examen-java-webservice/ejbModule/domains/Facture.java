@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "Commandes" )
-public class Commande {
+@Table( name = "Factures" )
+public class Facture {
 
     @Id
     @Column( name = "ID" )
@@ -18,8 +18,8 @@ public class Commande {
     @Column( name = "DATE" )
     Date    date;
 
-    @Column( name = "IDPANIER" )
-    Integer idPanier;
+    @Column( name = "idCommande" )
+    Integer idCommande;
 
     public Integer getId() {
         return id;
@@ -29,19 +29,19 @@ public class Commande {
         this.id = id;
     }
 
+    public Integer getIdCommande() {
+        return idCommande;
+    }
+
+    public void setIdCommande( Integer idCommande ) {
+        this.idCommande = idCommande;
+    }
+
     public Date getDate() {
         return date;
     }
 
     public void setDate( Date date ) {
         this.date = date;
-    }
-
-    public Integer getIdPanier() {
-        return idPanier;
-    }
-
-    public void setIdPanier( Integer idPanier ) {
-        this.idPanier = idPanier;
     }
 }

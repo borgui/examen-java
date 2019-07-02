@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "Sujet" )
-public class Sujet {
+@Table( name = "EtatLivraison" )
+public class EtatLivraison {
 
     @Id
     @Column( name = "ID" )
@@ -31,5 +31,4 @@ public class Sujet {
     public void setLibelle( String libelle ) {
         this.libelle = libelle;
     }
-
 }
