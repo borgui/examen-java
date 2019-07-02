@@ -77,7 +77,7 @@ public class AdminServlet extends AbstractServlet {
 		
 		Utilisateur compteVendeur = webservice.modifierUtilisateur(utilisateur);
 		this.request.setAttribute("compteVendeur", compteVendeur);
-		redirectionToView(DETAIL_COMPTE_VENDEUR_PAGE);
+		redirectionToView(LISTE_COMPTE_VENDEUR_PAGE);
 	}
 	
 	private void getDetailCompteVendeur(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
