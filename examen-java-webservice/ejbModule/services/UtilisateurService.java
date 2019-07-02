@@ -66,6 +66,21 @@ public class UtilisateurService {
 		return utilisateurs;
 	}
 	
+	public Utilisateur findById(Integer id) throws SystemException, NotSupportedException{
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		Utilisateur utilisateur = this.em.find(Utilisateur.class, id);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateur;
+	}
+	
 	public Utilisateur creerUtilisateur(Utilisateur utilisateur) throws SystemException, NotSupportedException {
 		UserTransaction userTxn = sessionContext.getUserTransaction();
 		userTxn.begin();
@@ -81,5 +96,22 @@ public class UtilisateurService {
 		}
 		return utilisateur;
 	}
+	
+	public Utilisateur modifierUtilisateur(Utilisateur utilisateur) throws SystemException, NotSupportedException {
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		
+		this.em.merge(utilisateur);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return utilisateur;
+	}
+
 
 }

@@ -12,7 +12,7 @@
 				<%
 					List<Utilisateur> compteVendeurList = (List<Utilisateur>) request.getAttribute( "listeCompteVendeur" );
 	
-					if (compteVendeurList.size() == 0) {
+					if (compteVendeurList == null) {
 				%>
 				<p>Il n'y a aucun compte vendeur</p>
 				<%
@@ -24,6 +24,7 @@
 							<th scope="col">Id</th>
 							<th scope="col">Nom</th>
 							<th scope="col">Prenom</th>
+							<th scope="col">Modifier</th>
 							<th scope="col">Supprimer</th>
 						</tr>
 					</thead>
@@ -35,6 +36,8 @@
 							<th scope="row"><%= compteVendeur.getId() %></a></th>
 							<td><%= compteVendeur.getPrenom() %></td>
 							<td><%= compteVendeur.getNom() %></td>
+							<td><a href="AdminServlet?action=getVendeurDetail&id=<%=compteVendeur.getId()%>">Modifier</a></td>
+							<td>Supprimer</td>
 						</tr>
 						<%
 							}
@@ -46,8 +49,8 @@
 				%>
 			</div>
 			<div class="content">
-				<form method='get' action='AdminServlet/ajoutVendeur'>
-							
+				<form method='get' action='AdminServlet?action=ajoutVendeur'>
+							<input hidden name="action" value="ajoutVendeur">
 							<label>Nom</label>
 							<input type='text' name='nom' required />
 							
@@ -57,14 +60,14 @@
 							<label>Email</label>
 							<input type='text' name='email' required />
 							
-							<label>Login</label>
+							<label>Pseudo</label>
 							<input type='text' name='login' required />
 							
 							<label>Password :</label>
 							<input type='text' name='password' required />
 							
 							
-							<input type='submit' name='action' value="Ajouter">
+							<input type='submit' name='submit' value="Ajouter">
 						</form>
 			</div>
 		</div>

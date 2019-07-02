@@ -22,8 +22,7 @@ import javax.xml.bind.annotation.XmlType;
     "mail",
     "nom",
     "prenom",
-    "pass",
-    "pseudo",
+    "password",
     "suspended"
 })
 public class Utilisateur {
@@ -34,8 +33,7 @@ public class Utilisateur {
     protected String nom;
     protected String mail;
     protected String prenom;
-    protected String pass;
-    protected String pseudo;
+    protected String password;
     
     protected boolean suspended;
 	public String getAdresse() {
@@ -80,11 +78,13 @@ public class Utilisateur {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-	public String getPass() {
-		return pass;
+
+	
+	public String getPassword() {
+		return password;
 	}
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public boolean isSuspended() {
 		return suspended;
@@ -92,13 +92,6 @@ public class Utilisateur {
 	public void setSuspended(boolean suspended) {
 		this.suspended = suspended;
 	}
-	public String getPseudo() {
-		return pseudo;
-	}
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-	
 	
 
 }

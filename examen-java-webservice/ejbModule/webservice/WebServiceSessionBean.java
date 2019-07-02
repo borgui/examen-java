@@ -35,9 +35,21 @@ public class WebServiceSessionBean {
         return utilisateurService.findUsersByProfil( idProfil );
     }
     
-    @WebMethod( action = "getByIdProfil" )
+    @WebMethod( action = "creerUtilisateur" )
     public Utilisateur creerUtilisateur( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
             throws NotSupportedException, SystemException {
         return utilisateurService.creerUtilisateur(utilisateur);
+    }
+    
+    @WebMethod( action = "modifierUtilisateur" )
+    public Utilisateur modifierUtilisateur( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.modifierUtilisateur(utilisateur);
+    }
+    
+    @WebMethod( action = "getByUtilisateurId" )
+    public Utilisateur getByUtilisateurId( @WebParam( name = "id", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.findById(id);
     }
 }

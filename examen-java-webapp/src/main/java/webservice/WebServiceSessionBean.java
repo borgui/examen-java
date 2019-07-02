@@ -40,6 +40,14 @@ public interface WebServiceSessionBean {
         Utilisateur utilisateur
     );
     
+    @WebMethod(action = "modifierUtilisateur")
+    @RequestWrapper(localName = "modifierUtilisateur", targetNamespace = "http://webservice/", className = "webservice.modifierUtilisateur")
+    @ResponseWrapper(localName = "modifierUtilisateurResponse", targetNamespace = "http://webservice/", className = "webservice.modifierUtilisateur")
+    @WebResult(name = "return", targetNamespace = "")
+    public Utilisateur modifierUtilisateur(
+        @WebParam(name = "utilisateur", targetNamespace = "")
+        Utilisateur utilisateur
+    );
     
     @WebMethod(action = "getByIdProfil")
     @RequestWrapper(localName = "getByIdProfil", targetNamespace = "http://webservice/", className = "webservice.getByIdProfil")
@@ -48,5 +56,14 @@ public interface WebServiceSessionBean {
     public List<Utilisateur> getByIdProfil(
         @WebParam(name = "idProfil", targetNamespace = "")
         Integer idProfil
+    );
+    
+    @WebMethod(action = "getByUtilisateurId")
+    @RequestWrapper(localName = "getByUtilisateurId", targetNamespace = "http://webservice/", className = "webservice.getByUtilisateurId")
+    @ResponseWrapper(localName = "getByUtilisateurIdResponse", targetNamespace = "http://webservice/", className = "webservice.getByUtilisateurIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Utilisateur getByUtilisateurId(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
     );
 }
