@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
@@ -7,6 +9,7 @@ import javax.ejb.Stateful;
 import javax.ejb.TransactionManagement;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
@@ -14,7 +17,9 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import domains.Categorie;
 import domains.Entrepot;
+import domains.Utilisateur;
 
 @Stateful
 @LocalBean
@@ -26,6 +31,25 @@ public class EntrepotService {
 
     @Resource
     private SessionContext sessionContext;
+    
+    public List<Entrepot> findAllEntrepots() throws NotSupportedException, SystemException {
+
+        UserTransaction userTxn = sessionContext.getUserTransaction();
+        userTxn.begin();
+
+        String queryString = "FROM Entrepot";
+        Query query = this.em.createQuery( queryString );
+        List<Entrepot> entrepots = (List<Entrepot>) query.getResultList();
+
+        try {
+            userTxn.commit();
+        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+                | HeuristicRollbackException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return entrepots;
+    }
 
     public Entrepot creeEntrepot( Entrepot entrepot ) throws NotSupportedException, SystemException {
 
@@ -75,4 +99,18 @@ public class EntrepotService {
         }
     }
 
+	public Entrepot findById(Integer id) throws SystemException, NotSupportedException{
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		Entrepot entrepot = this.em.find(Entrepot.class, id);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return entrepot;
+	}
 }

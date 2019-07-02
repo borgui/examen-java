@@ -50,9 +50,11 @@ public class AuthentificationServlet extends AbstractServlet {
 
 	}
 
-	private void disconnectUser() {
-		// TODO Auto-generated method stub
-		
+	private void disconnectUser() throws ServletException, IOException {
+		// delete params in http session
+		session.invalidate();
+		// redirection home
+		redirectionToView(HOME_PAGE);		
 	}
 
 	private void connectUser(WebServiceSessionBean webService, HttpServletRequest request) throws ServletException, IOException {

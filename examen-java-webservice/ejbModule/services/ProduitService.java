@@ -35,7 +35,7 @@ public class ProduitService {
         UserTransaction userTxn = sessionContext.getUserTransaction();
         userTxn.begin();
 
-        String queryString = "FROM Categories";
+        String queryString = "FROM Categorie";
         Query query = this.em.createQuery( queryString );
         List<Categorie> categories = (List<Categorie>) query.getResultList();
 

@@ -26,7 +26,11 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
+    
+    @EJB
     ProduitService     produitService;
+    
+    @EJB
     EntrepotService    entrepotService;
 
     @WebMethod( action = "connexion" )
@@ -72,7 +76,7 @@ public class WebServiceSessionBean {
     }
     
     @WebMethod( action = "getCategories" )
-    public List<Categorie> getCategories( @WebParam( name = "test", mode = Mode.IN ) boolean test)
+    public List<Categorie> getCategories()
             throws NotSupportedException, SystemException {
         return produitService.findAllCategories();
     }
@@ -87,6 +91,18 @@ public class WebServiceSessionBean {
     public void supprimerCategorie( @WebParam( name = "id", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
         produitService.supprimerCategorie( id );
+    }
+    
+    @WebMethod( action = "getEntrepots" )
+    public List<Entrepot> getEntrepots()
+            throws NotSupportedException, SystemException {
+        return entrepotService.findAllEntrepots();
+    }
+    
+    @WebMethod( action = "getEntrepotById" )
+    public Entrepot getEntrepotById( @WebParam( name = "id", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        return entrepotService.findById(id);
     }
 
     @WebMethod( action = "creerEntrepot" )

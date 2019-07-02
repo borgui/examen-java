@@ -30,11 +30,10 @@
 						<%
 							if (session.getAttribute("session-role") == "client") {
 						%>
-						<li id="client"><a href="ControllerServlet?action=listeCommandes">Gestion Commandes</a>
-							<ul>
-								<li class="current" id="commandesList"><a href="ControllerServlet?action=listeCommandes">Récapitulatif des commandes</a></li>
-							</ul>
-						</li>
+						<li id="categorieProduit"><a href="CategorieServlet?action=getCategorieShop">Catégories de produit</a></li>
+						<li id="panier"><a href="CategorieServlet?action=getListeCategorie">Panier</a></li>
+
+						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Mon compte</a>
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>
@@ -55,7 +54,7 @@
 						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur">Gérer comptes vendeurs</a></li>
 						<li id="catégorieProduit"><a href="CategorieServlet?action=getListeCategorie">Gérer catégorie produit</a></li>
 
-						<li id="entrepots"><a href="AdminServlet?action=listeEntrepots">Gérer les entrepots</a>
+						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Gérer les entrepots</a>
 						</li>
 						<%
 							}
@@ -63,7 +62,7 @@
 						<%
 							if (session.getAttribute("login") != null) {
 						%>
-						<li id="deconnexion"><a href="ControllerServlet?action=deconnexion">Déconnexion</a></li>
+						<li id="deconnexion"><a href="AuthentificationServlet?action=deconnexion">Déconnexion</a></li>
 						<%
 							} else {
 						%>

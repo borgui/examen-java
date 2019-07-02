@@ -86,9 +86,7 @@ public interface WebServiceSessionBean {
     @RequestWrapper(localName = "getCategories", targetNamespace = "http://webservice/", className = "webservice.getCategories")
     @ResponseWrapper(localName = "getCategoriesResponse", targetNamespace = "http://webservice/", className = "webservice.getCategoriesResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public List<Categorie> getCategories(
-            @WebParam(name = "test", targetNamespace = "")
-            boolean test);
+    public List<Categorie> getCategories();
     
     @WebMethod(action = "supprimerCategorie")
     @RequestWrapper(localName = "supprimerCategorie", targetNamespace = "http://webservice/", className = "webservice.supprimerCategorie")
@@ -122,6 +120,52 @@ public interface WebServiceSessionBean {
     @ResponseWrapper(localName = "getCategorieByIdResponse", targetNamespace = "http://webservice/", className = "webservice.getCategorieByIdResponse")
     @WebResult(name = "return", targetNamespace = "")
     public Categorie getCategorieById(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
+    );
+    
+    /**
+     * ENTREPOT
+     */
+    
+    @WebMethod(action = "getEntrepots")
+    @RequestWrapper(localName = "getEntrepots", targetNamespace = "http://webservice/", className = "webservice.getEntrepots")
+    @ResponseWrapper(localName = "getEntrepotsResponse", targetNamespace = "http://webservice/", className = "webservice.getEntrepotsResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public List<Entrepot> getEntrepots();
+    
+    @WebMethod(action = "supprimerEntrepot")
+    @RequestWrapper(localName = "supprimerEntrepot", targetNamespace = "http://webservice/", className = "webservice.supprimerEntrepot")
+    @ResponseWrapper(localName = "supprimerEntrepotResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerEntrepotResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public void supprimerEntrepot(
+        @WebParam(name = "id", targetNamespace = "")
+        Integer id
+    );
+    
+    @WebMethod(action = "modifierEntrepot")
+    @RequestWrapper(localName = "modifierEntrepot", targetNamespace = "http://webservice/", className = "webservice.modifierEntrepot")
+    @ResponseWrapper(localName = "modifierEntrepotResponse", targetNamespace = "http://webservice/", className = "webservice.modifierEntrepot")
+    @WebResult(name = "return", targetNamespace = "")
+    public Entrepot modifierEntrepot(
+        @WebParam(name = "Entrepot", targetNamespace = "")
+        Entrepot entrepot
+    );
+    
+    @WebMethod(action = "creerEntrepot")
+    @RequestWrapper(localName = "creerEntrepot", targetNamespace = "http://webservice/", className = "webservice.creerEntrepot")
+    @ResponseWrapper(localName = "creerEntrepotResponse", targetNamespace = "http://webservice/", className = "webservice.creerEntrepot")
+    @WebResult(name = "return", targetNamespace = "")
+    public Entrepot creerEntrepot(
+        @WebParam(name = "Entrepot", targetNamespace = "")
+        Entrepot entrepot
+    );
+    
+    @WebMethod(action = "getEntrepotById")
+    @RequestWrapper(localName = "getEntrepotById", targetNamespace = "http://webservice/", className = "webservice.getEntrepotById")
+    @ResponseWrapper(localName = "getEntrepotByIdResponse", targetNamespace = "http://webservice/", className = "webservice.getEntrepotByIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Entrepot getEntrepotById(
         @WebParam(name = "id", targetNamespace = "")
         Integer id
     );

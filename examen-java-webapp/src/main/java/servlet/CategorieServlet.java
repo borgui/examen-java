@@ -18,10 +18,13 @@ import webservice.WebServiceSessionBean;
 public class CategorieServlet extends AbstractServlet {
 	
 	private static final String LISTE_CATEGORIE_ACTION = "getListeCategorie";
+	private static final String CATEGORIE_SHOP_ACTION = "getCategorieShop";
+	private static final String CATEGORIE_SHOP_PAGE = "CategorieShop";
+
 	
-	private static final String LISTE_CATEGORIE_PAGE = "ListeCategorie";
+	private static final String LISTE_CATEGORIE_PAGE = "ListeCategorieProduit";
 	
-	private static final String AJOUT_CATEGORIE_ACTION = "ajoutCategorie";
+	private static final String AJOUT_CATEGORIE_ACTION = "ajouterCategorie";
 
 	private static final String DETAIL_CATEGORIE_ACTION = "getCategorieDetail";
 	
@@ -57,6 +60,9 @@ public class CategorieServlet extends AbstractServlet {
 			case SUPPRIMER_CATEGORIE_ACTION:
 				supprimercategorie(webService, request);
 				break;
+			case CATEGORIE_SHOP_ACTION:
+				getCategorieShop(webService,request);
+				break;
 			default:
 				break;
 			}
@@ -68,7 +74,7 @@ public class CategorieServlet extends AbstractServlet {
 	}
 	
 	private void getListeCategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		List<Categorie> categories = webservice.getCategories(true);
+		List<Categorie> categories = webservice.getCategories();
 		this.request.setAttribute("listeCategorie", categories);
 		redirectionToView(LISTE_CATEGORIE_PAGE);
 	}
@@ -103,4 +109,11 @@ public class CategorieServlet extends AbstractServlet {
 		categorie = webservice.creerCategorie(categorie);
 		this.getListeCategorie(webservice, request);
 	}
+	
+	private void getCategorieShop(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		List<Categorie> categories = webservice.getCategories();
+		this.request.setAttribute("listeCategorie", categories);
+		redirectionToView(CATEGORIE_SHOP_PAGE);
+	}
+	
 }
