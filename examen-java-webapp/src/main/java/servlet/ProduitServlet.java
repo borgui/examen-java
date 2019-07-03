@@ -109,6 +109,9 @@ public class ProduitServlet extends AbstractServlet {
 		
 		produit = webservice.modifierProduit(produit);
 		this.request.setAttribute("produit", produit);
+		
+        setVariableToView( "alert-success", "Produit " + produit.getNom() + "modifié" );
+
 		this.getListeProduit(webservice, request);
 	}
 	
@@ -127,6 +130,8 @@ public class ProduitServlet extends AbstractServlet {
 	
 	private void supprimerProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		webservice.supprimerProduit(Integer.parseInt(request.getParameter("id")));
+        setVariableToView( "alert-success", "Produit supprimé" );
+
 		this.getListeProduit(webservice, request);
 	}
 	
@@ -149,6 +154,7 @@ public class ProduitServlet extends AbstractServlet {
 		produit.setCategorie(categorie);
 
 		produit = webservice.creerProduit(produit);
+        setVariableToView( "alert-success", "Produit " + produit.getNom() + "ajouté" );
 		this.getListeProduit(webservice, request);
 	}
 
