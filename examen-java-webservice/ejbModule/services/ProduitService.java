@@ -19,6 +19,7 @@ import javax.transaction.UserTransaction;
 
 import domains.Categorie;
 import domains.Entrepot;
+import domains.Panier;
 import domains.Produit;
 
 @Stateful
@@ -117,5 +118,85 @@ public class ProduitService {
 		}
 		return produits;
 	}
+	
+	public Produit getProduitById(Integer id) throws SystemException, NotSupportedException{
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		Produit produit = this.em.find(Produit.class, id);
 
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return produit;
+	}
+	
+	   public List<Produit> getProduitByUserId(Integer id) throws NotSupportedException, SystemException {
+
+	        UserTransaction userTxn = sessionContext.getUserTransaction();
+	        userTxn.begin();
+	        String queryString = "FROM Produit WHERE idVendeur = " + id;
+	        Query query = this.em.createQuery( queryString );
+	        List<Produit> produits = (List<Produit>) query.getResultList();
+	        try {
+	            userTxn.commit();
+	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+	                | HeuristicRollbackException e ) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        return produits;
+	    }
+
+	 public Produit creerProduit( Produit produit ) throws NotSupportedException, SystemException {
+
+	        UserTransaction userTxn = sessionContext.getUserTransaction();
+	        userTxn.begin();
+
+	        this.em.persist( produit );
+
+	        try {
+	            userTxn.commit();
+	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+	                | HeuristicRollbackException e ) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        return produit;
+	    }
+	    
+
+	    public Produit modifierProduit( Produit produit ) throws SystemException, NotSupportedException {
+	        UserTransaction userTxn = sessionContext.getUserTransaction();
+	        userTxn.begin();
+
+	        this.em.merge( produit );
+
+	        try {
+	            userTxn.commit();
+	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+	                | HeuristicRollbackException e ) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        return produit;
+	    }
+
+	    public void supprimerProduit( Integer id ) throws SystemException, NotSupportedException {
+	        UserTransaction userTxn = sessionContext.getUserTransaction();
+	        userTxn.begin();
+	        Produit produit = this.em.find( Produit.class, id );
+	        this.em.remove( produit );
+
+	        try {
+	            userTxn.commit();
+	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+	                | HeuristicRollbackException e ) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	    }
 }

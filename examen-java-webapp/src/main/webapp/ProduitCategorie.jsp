@@ -34,6 +34,8 @@
                            	<form method='get' action='PanierServlet'>
                            	<input type="text" hidden name="action" value="ajouterProduit">
                             <input type="text" hidden name="idProduit" value="<%= produit.getId() %>">
+                            <input type="text" hidden name="idCategorie" value="<%= produit.getCategorie().getId() %>">
+                            
                             <div class="row">
                                 <div class="col-5">
                                 Quantite: 

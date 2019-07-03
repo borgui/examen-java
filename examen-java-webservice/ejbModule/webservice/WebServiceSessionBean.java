@@ -164,12 +164,45 @@ public class WebServiceSessionBean {
     }
     
     
-    
     @WebMethod( action = "creerPanierProduit" )
     public PanierProduit creerPanierProduit( @WebParam( name = "panier", mode = Mode.IN ) PanierProduit panierProduit )
             throws NotSupportedException, SystemException {
         return panierService.creerPanierProduit(panierProduit);
     }
     
+    @WebMethod(action = "supprimerPanierProduit")
+    public void supprimerPanierProduit( @WebParam( name = "panier", mode = Mode.IN ) Integer idPanierProduit )
+            throws NotSupportedException, SystemException {
+        panierService.supprimerPanierProduit(idPanierProduit);
+    }
     
+    @WebMethod( action = "creerProduit" )
+    public Produit creerProduit( @WebParam( name = "produit", mode = Mode.IN ) Produit produit )
+            throws NotSupportedException, SystemException {
+        return produitService.creerProduit(produit);
+    }
+    
+    @WebMethod(action = "supprimerProduit")
+    public void supprimerProduit( @WebParam( name = "idProduit", mode = Mode.IN ) Integer idProduit )
+            throws NotSupportedException, SystemException {
+    	produitService.supprimerProduit(idProduit);
+    }
+    
+    @WebMethod(action = "modifierProduit")
+    public void modifierProduit( @WebParam( name = "idProduit", mode = Mode.IN ) Produit produit )
+            throws NotSupportedException, SystemException {
+    	produitService.modifierProduit(produit);
+    }
+    
+    @WebMethod( action = "getProduitsByUserId" )
+    public List<Produit> getProduitsByUserId( @WebParam( name = "userId", mode = Mode.IN ) Integer userId )
+            throws NotSupportedException, SystemException {
+        return produitService.getProduitByUserId( userId );
+    }
+    
+    @WebMethod( action = "getProduitById" )
+    public Produit getProduitById( @WebParam( name = "idProduit", mode = Mode.IN ) Integer idProduit )
+            throws NotSupportedException, SystemException {
+        return produitService.getProduitById( idProduit );
+    }
 }

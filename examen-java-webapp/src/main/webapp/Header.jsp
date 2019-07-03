@@ -37,17 +37,8 @@
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>
-						<li id="gestionResponsableStock"><a href="ControllerServlet?action=listeLivraisons">Gestion stock</a>
-							<ul>
-								<li id="listeAccusesReceptions"><a href="ControllerServlet?action=listeAccusesReceptions">Liste des accusés réceptions</a></li>
-								<li id="listeLivraisons"><a href="ControllerServlet?action=listeLivraisons">Liste des livraisons</a></li>
-							</ul>
-						</li>
-						<li id="gestionResponsableStock"><a href="ControllerServlet?action=listeCommandes">Gestion Commandes</a>
-							<ul>
-								<li class="current" id="commandesList"><a href="ControllerServlet?action=listeCommandes">Récapitulatif des commandes</a></li>
-							</ul>
-						</li>
+						<li id="produits"><a href="ProduitServlet?action=getProduitVendeur">Gérer les produits</a></li>
+					
 						<%
 							}else if(session.getAttribute("session-role") == "admin"){
 						%>

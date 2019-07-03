@@ -179,4 +179,53 @@ public interface WebServiceSessionBean {
         	@WebParam(name = "panierProduit")
         	PanierProduit panierProduit
     );
+    
+    @WebMethod(action = "supprimerPanierProduit")
+    @RequestWrapper(localName = "supprimerPanierProduit", targetNamespace = "http://webservice/", className = "webservice.supprimerPanierProduit")
+    @ResponseWrapper(localName = "supprimerPanierProduitResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerPanierProduitResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public void supprimerPanierProduit(
+        	@WebParam(name = "idPanierProduit")
+        	Integer idPanierProduit
+    );
+    
+    /**
+     * PRODUIT
+     */
+    
+    @WebMethod( action = "getProduitsByUserId" )
+    @RequestWrapper( localName = "getProduitsByUserId", targetNamespace = "http://webservice/", className = "webservice.getProduitsByUserId" )
+    @ResponseWrapper( localName = "getProduitsByUserIdResponse", targetNamespace = "http://webservice/", className = "webservice.getProduitsByUserIdResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public List<Produit> getProduitsByUserId(
+    		@WebParam(name="userId", targetNamespace = "") Integer userId);
+
+    @WebMethod( action = "supprimerProduit" )
+    @RequestWrapper( localName = "supprimerProduit", targetNamespace = "http://webservice/", className = "webservice.supprimerProduit" )
+    @ResponseWrapper( localName = "supprimerProduitResponse", targetNamespace = "http://webservice/", className = "webservice.supprimerProduitResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public void supprimerProduit(
+            @WebParam( name = "idProduit", targetNamespace = "" ) Integer idProduit );
+
+    @WebMethod( action = "modifierProduit" )
+    @RequestWrapper( localName = "modifierProduit", targetNamespace = "http://webservice/", className = "webservice.modifierProduit" )
+    @ResponseWrapper( localName = "modifierProduitResponse", targetNamespace = "http://webservice/", className = "webservice.modifierProduit" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Produit modifierProduit(
+            @WebParam( name = "produit", targetNamespace = "" ) Produit produit );
+
+    @WebMethod( action = "creerProduit" )
+    @RequestWrapper( localName = "creerProduit", targetNamespace = "http://webservice/", className = "webservice.creerProduit" )
+    @ResponseWrapper( localName = "creerProduitResponse", targetNamespace = "http://webservice/", className = "webservice.creerProduit" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Produit creerProduit(
+            @WebParam( name = "produit", targetNamespace = "" ) Produit produit );
+
+    @WebMethod( action = "getProduitById" )
+    @RequestWrapper( localName = "getProduitById", targetNamespace = "http://webservice/", className = "webservice.getProduitById" )
+    @ResponseWrapper( localName = "getProduitByIdResponse", targetNamespace = "http://webservice/", className = "webservice.getProduitByIdResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Produit getProduitById(
+            @WebParam( name = "idProduit", targetNamespace = "" ) Integer idProduit );
+    
 }

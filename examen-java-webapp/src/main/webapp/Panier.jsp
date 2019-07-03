@@ -14,7 +14,7 @@
 					Panier panier = (Panier) request.getAttribute("panier");
 					double total = 0;
 
-					if (panier.getPanierProduits() == null) {
+					if (panier.getPanierProduits() == null || panier.getPanierProduits().size() == 0) {
 				%>
 				<p>Votre panier est vide</p>
 				<%
@@ -40,7 +40,7 @@
                             <td><%=panierProduit.getProduit().getNom()%></td>
                             <td><input class="form-control" type="text" name="quantite" value="<%= panierProduit.getQuantite() %>" /></td>
                             <td class="text-right"><%= panierProduit.getProduit().getPrix() * panierProduit.getQuantite() %> &euro;</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            <td class="text-right"><a href="PanierServlet?action=supprimerProduit&id=<%= panierProduit.getId() %>"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button></a> </td>
                         </tr>
                        <% total += panierProduit.getProduit().getPrix() * panierProduit.getQuantite();
                        } %>
@@ -49,7 +49,7 @@
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right"><%= total %></td>
+                            <td class="text-right"><%= total %>&euro;</td>
                         </tr>
                         <tr>
                             <td></td>
@@ -61,7 +61,7 @@
                         <tr>
                             <td></td>
                             <td></td>
-=                           <td></td>
+                            <td></td>
                             <td><strong>Total</strong></td>
                             <td class="text-right"><%= total %>&euro;<strong></strong></td>
                         </tr>

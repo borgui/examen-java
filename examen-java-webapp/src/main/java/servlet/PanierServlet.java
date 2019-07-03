@@ -26,6 +26,9 @@ public class PanierServlet extends AbstractServlet {
 	private static final String PANIER_PAGE = "Panier";
 	
 	private static final String AJOUT_PRODUIT = "ajouterProduit";
+	
+	private static final String SUPPRIMER_PRODUIT = "supprimerProduit";
+
 
 
 
@@ -45,6 +48,8 @@ public class PanierServlet extends AbstractServlet {
 			case AJOUT_PRODUIT:
 				ajouterProduit(webService, request);
 				break;
+			case SUPPRIMER_PRODUIT:
+				supprimerPanierProduit(webService, request);
 			default:
 				break;
 			}
@@ -97,8 +102,14 @@ public class PanierServlet extends AbstractServlet {
 		produit.setId(Integer.parseInt(request.getParameter("idProduit")));
 		panierProduit.setQuantite(Integer.parseInt(request.getParameter("quantite")));
 		panierProduit.setProduit(produit);
-		webservice.creerPanierProduit(panierProduit);
-		redirectionToView(PRODUIT_CATEGORIE_PAGE);
+		panierProduit = webservice.creerPanierProduit(panierProduit);
+        setVariableToView( "alert-success", "Produit correctement ajouté" );
+		this.response.sendRedirect("ProduitServlet?action=getProduitCategorie&categorieId=" + request.getParameter("idCategorie"));
 	}
-
+	
+	private void supprimerPanierProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		webservice.supprimerPanierProduit(Integer.parseInt(request.getParameter("id")));
+        setVariableToView( "alert-success", "Produit correctement supprimé" );
+		this.getPanier(webservice, request);
+	}
 }

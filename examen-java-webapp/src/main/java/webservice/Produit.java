@@ -13,9 +13,10 @@ import javax.xml.bind.annotation.XmlType;
     "nom",
     "prix",
     "stock",
-    "idCategorie",
-    "idEntrepot",
-    "description"
+    "categorie",
+    "entrepot",
+    "description",
+    "idVendeur"
 })
 public class Produit {
 	
@@ -23,9 +24,10 @@ public class Produit {
     protected String nom;
     protected Double prix;
     protected Integer stock;
-    protected Integer idCategorie;
-    protected Integer idEntrepot;
+    protected Categorie categorie;
+    protected Entrepot entrepot;
     protected String description;
+    protected Integer idVendeur;
     
 	public Integer getId() {
 		return id;
@@ -51,23 +53,30 @@ public class Produit {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
-	public Integer getIdCategorie() {
-		return idCategorie;
+	
+	public Categorie getCategorie() {
+		return categorie;
 	}
-	public void setIdCategorie(Integer idCategorie) {
-		this.idCategorie = idCategorie;
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
-	public Integer getIdEntrepot() {
-		return idEntrepot;
+	public Entrepot getEntrepot() {
+		return entrepot;
 	}
-	public void setIdEntrepot(Integer idEntrepot) {
-		this.idEntrepot = idEntrepot;
+	public void setEntrepot(Entrepot entrepot) {
+		this.entrepot = entrepot;
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Integer getIdVendeur() {
+		return idVendeur;
+	}
+	public void setIdVendeur(Integer idVendeur) {
+		this.idVendeur = idVendeur;
 	}
 	
 

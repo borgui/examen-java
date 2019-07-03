@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,14 +18,16 @@ public class Produit {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
     Integer id;
 
-    @Column( name = "idCategorie" )
-    Integer idCategorie;
+    @ManyToOne
+    @JoinColumn( name = "idCategorie" )
+    Categorie categorie;
 
     @Column( name = "description" )
     String  description;
 
-    @Column( name = "idEntrepot" )
-    Integer idEntrepot;
+    @ManyToOne
+    @JoinColumn( name = "idEntrepot" )
+    Entrepot entrepot;
 
     @Column( name = "idVendeur" )
     Integer idVendeur;
@@ -43,22 +47,6 @@ public class Produit {
 
     public void setId( Integer id ) {
         this.id = id;
-    }
-
-    public Integer getIdCategorie() {
-        return idCategorie;
-    }
-
-    public void setIdCategorie( Integer idCategorie ) {
-        this.idCategorie = idCategorie;
-    }
-
-    public Integer getIdEntrepot() {
-        return idEntrepot;
-    }
-
-    public void setIdEntrepot( Integer idEntrepot ) {
-        this.idEntrepot = idEntrepot;
     }
 
     public Integer getIdVendeur() {
@@ -100,5 +88,23 @@ public class Produit {
     public void setDescription( String description ) {
         this.description = description;
     }
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public Entrepot getEntrepot() {
+		return entrepot;
+	}
+
+	public void setEntrepot(Entrepot entrepot) {
+		this.entrepot = entrepot;
+	}
+
+	
 
 }

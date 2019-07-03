@@ -12,25 +12,28 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.resteasy.spi.HttpRequest;
 
 import webservice.Categorie;
+import webservice.Entrepot;
 import webservice.Produit;
 import webservice.WebServiceSessionBean;
 
 @WebServlet("/ProduitServlet")
 public class ProduitServlet extends AbstractServlet {
 	
+	private static final String PRODUIT_ACTION = "getProduitVendeur";
+	private static final String PRODUIT_PAGE = "ListeProduit";
+	
 	private static final String PRODUIT_CATEGORIE = "getProduitCategorie";
 
 	
-	
-	private static final String AJOUT_CATEGORIE_ACTION = "ajouterCategorie";
+	private static final String AJOUT_PRODUIT_ACTION = "ajouterProduit";
 
-	private static final String DETAIL_CATEGORIE_ACTION = "getCategorieDetail";
+	private static final String DETAIL_PRODUIT_ACTION = "getProduitDetail";
 	
-	private static final String DETAIL_CATEGORIE_PAGE = "CategorieDetail";
+	private static final String DETAIL_PRODUIT_PAGE = "ProduitDetail";
 	
-	private static final String MODIF_CATEGORIE_ACTION = "modifierCategorie";
+	private static final String MODIF_PRODUIT_ACTION = "modifierProduit";
 
-	private static final String SUPPRIMER_CATEGORIE_ACTION = "supprimerCategorie";
+	private static final String SUPPRIMER_PRODUIT_ACTION = "supprimerProduit";
 
 
 	
@@ -44,7 +47,21 @@ public class ProduitServlet extends AbstractServlet {
 
 			switch (action) {
 			case PRODUIT_CATEGORIE:
-				getListeCategorie(webService, request);
+				getCategorieProduit(webService, request);
+			case PRODUIT_ACTION:
+				getListeProduit(webService, request);
+				break;
+			case AJOUT_PRODUIT_ACTION:
+				ajoutProduit(webService, request);
+				break;
+			case DETAIL_PRODUIT_ACTION:
+				getDetailProduit(webService, request);
+				break;
+			case MODIF_PRODUIT_ACTION:
+				modifierProduit(webService, request);
+				break;
+			case SUPPRIMER_PRODUIT_ACTION:
+				supprimerProduit(webService, request);
 				break;
 			default:
 				break;
@@ -55,42 +72,84 @@ public class ProduitServlet extends AbstractServlet {
 		}
 
 	}
-	
-	private void getListeCategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+	private void getCategorieProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		List<Produit> produits = webservice.getProduitByCategorie(Integer.parseInt(request.getParameter("categorieId")));
 		this.request.setAttribute("listeProduit", produits);
 		redirectionToView(PRODUIT_CATEGORIE_PAGE);
 	}
 	
-	private void modifierCategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		Categorie categorie = new Categorie();
-		categorie.setId(Integer.parseInt(request.getParameter("id")));
-		categorie.setLibelle(request.getParameter("libelle"));
-		
-		Categorie Categorie = webservice.modifierCategorie(categorie);
-		this.request.setAttribute("Categorie", Categorie);
-		this.getListeCategorie(webservice, request);
-	}
-	
-	private void getDetailCategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-			Categorie Categorie = webservice.getCategorieById(Integer.parseInt(request.getParameter("id")));
-			this.request.setAttribute("Categorie", Categorie);
-			redirectionToView(DETAIL_CATEGORIE_PAGE);
-	}
-	
-	private void supprimercategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		webservice.supprimerCategorie(Integer.parseInt(request.getParameter("id")));
-		this.getListeCategorie(webservice, request);
-	}
-	
-	
-	private void ajoutCategorie(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		
-		Categorie categorie = new Categorie();
-		categorie.setLibelle(request.getParameter("libelle"));
+	private void getListeProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		List<Produit> produits = webservice.getProduitsByUserId((Integer) this.session.getAttribute("id"));
+		//Additional entities
+		List<Entrepot> entrepots = webservice.getEntrepots();
+		List<Categorie> categories = webservice.getCategories();
 
-		categorie = webservice.creerCategorie(categorie);
-		this.getListeCategorie(webservice, request);
+		this.request.setAttribute("listeProduit", produits);
+		this.request.setAttribute("listeEntrepot", entrepots);
+		this.request.setAttribute("listeCategorie", categories);
+		redirectionToView(PRODUIT_PAGE);
+	}
+	
+	private void modifierProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		Produit produit = new Produit();
+		produit.setId(Integer.parseInt(request.getParameter("id")));
+		produit.setStock(Integer.parseInt(request.getParameter("stock")));
+		produit.setNom(request.getParameter("nom"));
+		produit.setDescription(request.getParameter("description"));
+		produit.setPrix(Double.parseDouble(request.getParameter("prix")));
+		produit.setIdVendeur((Integer) this.session.getAttribute("id"));
+		
+		Entrepot entrepot = new Entrepot();
+		entrepot.setId(Integer.parseInt(request.getParameter("idEntrepot")));
+		produit.setEntrepot(entrepot);
+
+		Categorie categorie = new Categorie();
+		categorie.setId(Integer.parseInt(request.getParameter("idCategorie")));
+		produit.setCategorie(categorie);
+		
+		produit = webservice.modifierProduit(produit);
+		this.request.setAttribute("produit", produit);
+		this.getListeProduit(webservice, request);
+	}
+	
+	private void getDetailProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+			Produit produit = webservice.getProduitById(Integer.parseInt(request.getParameter("id")));
+			
+			//Additional entities
+			List<Entrepot> entrepots = webservice.getEntrepots();
+			List<Categorie> categories = webservice.getCategories();
+
+			this.request.setAttribute("produit", produit);
+			this.request.setAttribute("listeEntrepot", entrepots);
+			this.request.setAttribute("listeCategorie", categories);
+			redirectionToView(DETAIL_PRODUIT_PAGE);
+	}
+	
+	private void supprimerProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		webservice.supprimerProduit(Integer.parseInt(request.getParameter("id")));
+		this.getListeProduit(webservice, request);
+	}
+	
+	
+	private void ajoutProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+		
+		Produit produit = new Produit();
+		produit.setStock(Integer.parseInt(request.getParameter("stock")));
+		produit.setNom(request.getParameter("nom"));
+		produit.setDescription(request.getParameter("description"));
+		produit.setPrix(Double.parseDouble(request.getParameter("prix")));
+		produit.setIdVendeur((Integer) this.session.getAttribute("id"));
+		
+		Entrepot entrepot = new Entrepot();
+		entrepot.setId(Integer.parseInt(request.getParameter("idEntrepot")));
+		produit.setEntrepot(entrepot);
+
+		Categorie categorie = new Categorie();
+		categorie.setId(Integer.parseInt(request.getParameter("idCategorie")));
+		produit.setCategorie(categorie);
+
+		produit = webservice.creerProduit(produit);
+		this.getListeProduit(webservice, request);
 	}
 
 }

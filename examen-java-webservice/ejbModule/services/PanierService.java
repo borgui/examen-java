@@ -106,4 +106,19 @@ public class PanierService {
 	        }
 	        return panierProduit;
 	    }
+	   
+	   public void supprimerPanierProduit( Integer id ) throws SystemException, NotSupportedException {
+	        UserTransaction userTxn = sessionContext.getUserTransaction();
+	        userTxn.begin();
+	        PanierProduit panierProduit = this.em.find( PanierProduit.class, id );
+	        this.em.remove( panierProduit );
+
+	        try {
+	            userTxn.commit();
+	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+	                | HeuristicRollbackException e ) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	    }
 }
