@@ -8,13 +8,14 @@ import javax.xml.bind.annotation.XmlType;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Entrepot", propOrder = {
+@XmlType(name = "Produit", propOrder = {
     "id",
     "nom",
     "prix",
     "stock",
     "idCategorie",
-    "idEntrepot"
+    "idEntrepot",
+    "description"
 })
 public class Produit {
 	
@@ -24,6 +25,7 @@ public class Produit {
     protected Integer stock;
     protected Integer idCategorie;
     protected Integer idEntrepot;
+    protected String description;
     
 	public Integer getId() {
 		return id;
@@ -61,8 +63,14 @@ public class Produit {
 	public void setIdEntrepot(Integer idEntrepot) {
 		this.idEntrepot = idEntrepot;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 
+	
    
 }

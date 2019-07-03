@@ -14,6 +14,7 @@ import javax.transaction.SystemException;
 
 import domains.Categorie;
 import domains.Entrepot;
+import domains.Produit;
 import domains.Utilisateur;
 import services.EntrepotService;
 import services.ProduitService;
@@ -124,8 +125,8 @@ public class WebServiceSessionBean {
     }
     
     @WebMethod( action = "getProduitByCategorie" )
-    public void getProduitByCategorie( @WebParam( name = "categorieId", mode = Mode.IN ) Integer id )
+    public List<Produit> getProduitByCategorie( @WebParam( name = "categorieId", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
-        entrepotService.supprimerEntrepot( id );
+        return produitService.findByCategorieId( id );
     }
 }

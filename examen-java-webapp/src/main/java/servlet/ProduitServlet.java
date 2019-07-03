@@ -15,13 +15,13 @@ import webservice.Categorie;
 import webservice.Produit;
 import webservice.WebServiceSessionBean;
 
-@WebServlet("/ProductServlet")
+@WebServlet("/ProduitServlet")
 public class ProduitServlet extends AbstractServlet {
 	
 	private static final String PRODUIT_CATEGORIE = "getProduitCategorie";
 
 	
-	private static final String PRODUIT_CATEGORIE_PAGE = "ProduitCategore";
+	private static final String PRODUIT_CATEGORIE_PAGE = "ProduitCategorie";
 	
 	private static final String AJOUT_CATEGORIE_ACTION = "ajouterCategorie";
 

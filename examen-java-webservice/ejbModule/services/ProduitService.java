@@ -19,6 +19,7 @@ import javax.transaction.UserTransaction;
 
 import domains.Categorie;
 import domains.Entrepot;
+import domains.Produit;
 
 @Stateful
 @LocalBean
@@ -99,10 +100,13 @@ public class ProduitService {
         }
     }
     
-	public Entrepot findByCategorieId(Integer categorieId) throws SystemException, NotSupportedException{
+	public List<Produit> findByCategorieId(Integer categorieId) throws SystemException, NotSupportedException{
 		UserTransaction userTxn = sessionContext.getUserTransaction();
 		userTxn.begin();
-		Entrepot entrepot = this.em.find(Produit.class, categorieId);
+        String queryString = "FROM Produit WHERE idCategorie = " + categorieId;
+
+        Query query = this.em.createQuery(queryString);
+		List<Produit> produits = query.getResultList();
 
 		try {
 			userTxn.commit();
@@ -111,7 +115,7 @@ public class ProduitService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return entrepot;
+		return produits;
 	}
 
 }

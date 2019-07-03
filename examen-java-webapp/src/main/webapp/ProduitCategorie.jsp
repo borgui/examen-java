@@ -24,16 +24,19 @@
 					%>
 					<div class="col-3">
 						<div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
                         <div class="card-body">
                             <h4 class="card-title"><a href="product.html" title="View Product"><%= produit.getNom()%></a></h4>
-                            <p class="card-text">produit.getDescription()</p>
+                            <p class="card-text">
+                            <%=produit.getDescription()%>
+                            <br/>
+                            <div>Quantité: <%= produit.getStock() %></div>
+                            </p>
                             <div class="row">
                                 <div class="col">
-                                    <p class="btn btn-danger btn-block"><%= produit.getPrix()%></p>
+                                    <p class="btn btn-danger btn-block"><%= produit.getPrix()%> &euro;</p>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Add to cart</a>
+                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
                                 </div>
                             </div>
                         </div>

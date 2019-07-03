@@ -15,6 +15,9 @@ public class Produit {
 
     @Column( name = "idCategorie" )
     Integer idCategorie;
+    
+    @Column(name = "description")
+    String description;
 
     @Column( name = "idEntrepot" )
     Integer idEntrepot;
@@ -23,7 +26,7 @@ public class Produit {
     String  nom;
 
     @Column( name = "PRIX" )
-    Integer prix;
+    Double prix;
 
     @Column( name = "STOCK" )
     Integer stock;
@@ -60,11 +63,11 @@ public class Produit {
         this.nom = nom;
     }
 
-    public Integer getPrix() {
+    public Double getPrix() {
         return prix;
     }
 
-    public void setPrix( Integer prix ) {
+    public void setPrix( Double prix ) {
         this.prix = prix;
     }
 
@@ -75,4 +78,14 @@ public class Produit {
     public void setStock( Integer stock ) {
         this.stock = stock;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+    
+    
 }

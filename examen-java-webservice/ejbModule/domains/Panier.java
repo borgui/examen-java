@@ -13,12 +13,6 @@ public class Panier {
     @Column( name = "ID" )
     Integer id;
 
-    @Column( name = "QUANTITE" )
-    Integer quantite;
-
-    @Column( name = "idProduit" )
-    Integer idProduit;
-
     @Column( name = "idUser" )
     Integer idUser;
 
@@ -36,22 +30,10 @@ public class Panier {
         this.id = id;
     }
 
-    public Integer getQuantite() {
-        return quantite;
-    }
-
-    public void setQuantite( Integer quantite ) {
-        this.quantite = quantite;
-    }
-
     public Integer getIdProduit() {
         return idUser;
     }
-
-    public void setIdProduit( Integer idProduit ) {
-        this.idProduit = idProduit;
-    }
-
+    
     public Integer getIdUsers() {
         return idUser;
     }
