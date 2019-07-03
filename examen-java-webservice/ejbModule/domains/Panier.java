@@ -16,9 +16,6 @@ public class Panier {
     @Column( name = "idUser" )
     Integer idUser;
 
-    @Column( name = "idVendeur" )
-    Integer idVendeur;
-
     @Column( name = "idFDP" )
     Integer idFDP;
 
@@ -33,21 +30,13 @@ public class Panier {
     public Integer getIdProduit() {
         return idUser;
     }
-    
+
     public Integer getIdUsers() {
         return idUser;
     }
 
     public void setIdUser( Integer idUser ) {
         this.idUser = idUser;
-    }
-
-    public Integer getIdVendeur() {
-        return idVendeur;
-    }
-
-    public void setIdVendeur( Integer idVendeur ) {
-        this.idVendeur = idVendeur;
     }
 
     public Integer getIdFDP() {
