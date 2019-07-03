@@ -37,7 +37,10 @@
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>
-						<li id="gestionResponsableStock"><a href="ControllerServlet?action=listeLivraisons">Gestion stock</a>
+						<li id="gestionResponsableStock">
+							<a href="ControllerServlet?action=listeCommandes">Gestion Produits</a>
+						</li>
+						<li id="gestionResponsableStock"><a href="ControllerServlet?action=listeLivraisons">Gestion stocks</a>
 							<ul>
 								<li id="listeAccusesReceptions"><a href="ControllerServlet?action=listeAccusesReceptions">Liste des accusés réceptions</a></li>
 								<li id="listeLivraisons"><a href="ControllerServlet?action=listeLivraisons">Liste des livraisons</a></li>
