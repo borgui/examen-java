@@ -30,8 +30,14 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
+    
+    @EJB
     ProduitService     produitService;
+    
+    @EJB
     EntrepotService    entrepotService;
+    
+    @EJB
     PanierService    panierService;
 
 
@@ -152,9 +158,9 @@ public class WebServiceSessionBean {
     
     
     @WebMethod( action = "getPanierByUserId" )
-    public Panier getPanierByUserId( @WebParam( name = "userId", mode = Mode.IN ) Integer id )
+    public Panier getPanierByUserId( @WebParam( name = "userId", mode = Mode.IN ) Integer userId )
             throws NotSupportedException, SystemException {
-        return panierService.getPanierByUserId( id );
+        return panierService.getPanierByUserId( userId );
     }
     
     

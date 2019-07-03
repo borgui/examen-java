@@ -1,9 +1,14 @@
 package domains;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,6 +20,7 @@ public class Panier {
 
     @Id
     @Column( name = "ID" )
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     Integer id;
 
     @Column( name = "idUser" )
@@ -23,9 +29,9 @@ public class Panier {
     @Column( name = "idFDP" )
     Integer idFDP;
     
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="idPanier", referencedColumnName="id")
-    List<PanierProduit> panierProduits;
+    List<PanierProduit> panierProduits = new ArrayList();
 
     public Integer getId() {
         return id;

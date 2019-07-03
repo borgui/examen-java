@@ -14,11 +14,13 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "idUser",
     "panierProduits",
+    "idFDP"
 })
 public class Panier {
 	
     protected Integer id;
     protected Integer idUser;
+    protected Integer idFDP;
     protected List<PanierProduit> panierProduits;
     
 	public Integer getId() {
@@ -39,6 +41,13 @@ public class Panier {
 	public void setPanierProduits(List<PanierProduit> panierProduits) {
 		this.panierProduits = panierProduits;
 	}
+	public Integer getIdFDP() {
+		return idFDP;
+	}
+	public void setIdFDP(Integer idFDP) {
+		this.idFDP = idFDP;
+	}
+	
 	
 	
 	

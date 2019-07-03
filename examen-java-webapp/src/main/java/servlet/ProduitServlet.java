@@ -21,7 +21,6 @@ public class ProduitServlet extends AbstractServlet {
 	private static final String PRODUIT_CATEGORIE = "getProduitCategorie";
 
 	
-	private static final String PRODUIT_CATEGORIE_PAGE = "ProduitCategorie";
 	
 	private static final String AJOUT_CATEGORIE_ACTION = "ajouterCategorie";
 

@@ -9,9 +9,10 @@
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Boutique</h2>
+				<h2>Panier</h2>
 				<%
 					Panier panier = (Panier) request.getAttribute("panier");
+					double total = 0;
 
 					if (panier.getPanierProduits() == null) {
 				%>
@@ -36,35 +37,33 @@
                     <% for(PanierProduit panierProduit : panier.getPanierProduits()){ %>
                         <tr>
                             <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>panierProduit.getProduit().getNom()</td>
+                            <td><%=panierProduit.getProduit().getNom()%></td>
                             <td><input class="form-control" type="text" name="quantite" value="<%= panierProduit.getQuantite() %>" /></td>
                             <td class="text-right"><%= panierProduit.getProduit().getPrix() * panierProduit.getQuantite() %> &euro;</td>
                             <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
-                       <% } %>
+                       <% total += panierProduit.getProduit().getPrix() * panierProduit.getQuantite();
+                       } %>
                         <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Sub-Total</td>
-                            <td class="text-right">255,90 €</td>
+                            <td class="text-right"><%= total %></td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td>Shipping</td>
-                            <td class="text-right">6,90 €</td>
+                            <td class="text-right">0 &euro;</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
+=                           <td></td>
                             <td><strong>Total</strong></td>
-                            <td class="text-right"><strong></strong></td>
+                            <td class="text-right"><%= total %>&euro;<strong></strong></td>
                         </tr>
                     </tbody>
                 </table>

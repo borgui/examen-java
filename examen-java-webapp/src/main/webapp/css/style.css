@@ -26,4 +26,6 @@
 
 input[type=submit] {
 	float : right;
+	font-size:1.2em;
+	font-weight:normal;
 }

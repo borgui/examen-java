@@ -31,7 +31,9 @@
                             <br/>
                             <div>Stock: <%= produit.getStock() %></div>
                             <p class="bloc_left_price"><%= produit.getPrix()%> &euro;</p>
-                            
+                           	<form method='get' action='PanierServlet'>
+                           	<input type="text" hidden name="action" value="ajouterProduit">
+                            <input type="text" hidden name="idProduit" value="<%= produit.getId() %>">
                             <div class="row">
                                 <div class="col-5">
                                 Quantite: 
@@ -42,9 +44,10 @@
                
                                 </div>
                                 <div class="col-12">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
+                                    <input type="submit" style="background-color: #28a745;border-color: #28a745;"  class="btn btn-success btn-block" value="Ajouter au panier"></a>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
 					</div>

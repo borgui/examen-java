@@ -27,13 +27,6 @@ public class PanierServlet extends AbstractServlet {
 	
 	private static final String AJOUT_PRODUIT = "ajouterProduit";
 
-	private static final String DETAIL_CATEGORIE_ACTION = "getCategorieDetail";
-	
-	private static final String DETAIL_CATEGORIE_PAGE = "CategorieDetail";
-	
-	private static final String MODIF_CATEGORIE_ACTION = "modifierCategorie";
-
-	private static final String SUPPRIMER_CATEGORIE_ACTION = "supprimerCategorie";
 
 
 	
@@ -74,10 +67,17 @@ public class PanierServlet extends AbstractServlet {
 	}
 	
 	private void getPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		Panier panier = webservice.getPanierByUserId((Integer) session.getAttribute("id"));
+		Integer userId = (Integer) session.getAttribute("id");
+		Panier panier = null;
+		try {
+			panier = webservice.getPanierByUserId(userId);
+		} catch(Exception e){
+			System.out.print(e.getMessage());
+		}
+		
 		if(panier == null) {
 			panier = this.creerPanier(webservice, request);
-			panier.setIdUser(Integer.parseInt((String) session.getAttribute("id")));
+			panier.setIdUser((Integer) session.getAttribute("id"));
 		}		
 		
 		request.setAttribute("panier", panier);
@@ -86,7 +86,7 @@ public class PanierServlet extends AbstractServlet {
 	
 	private void ajouterProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		
-		Panier panier = webservice.getPanierByUserId(Integer.parseInt((String) session.getAttribute("id")));
+		Panier panier = webservice.getPanierByUserId((Integer) session.getAttribute("id"));
 		if(panier == null) {
 			panier = this.creerPanier(webservice, request);
 		}
@@ -98,6 +98,7 @@ public class PanierServlet extends AbstractServlet {
 		panierProduit.setQuantite(Integer.parseInt(request.getParameter("quantite")));
 		panierProduit.setProduit(produit);
 		webservice.creerPanierProduit(panierProduit);
+		redirectionToView(PRODUIT_CATEGORIE_PAGE);
 	}
 
 }

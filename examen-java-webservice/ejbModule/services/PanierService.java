@@ -72,11 +72,13 @@ public class PanierService {
 
 	        UserTransaction userTxn = sessionContext.getUserTransaction();
 	        userTxn.begin();
-
+	        Panier panier = null;
 	        String queryString = "FROM Panier WHERE idUser = " + id;
 	        Query query = this.em.createQuery( queryString );
-	        Panier panier = (Panier) query.getSingleResult();
-
+	        List<Panier> paniers = (List<Panier>) query.getResultList();
+	        if(paniers.size() > 0) {
+	        	panier = paniers.get(0);
+	        }
 	        try {
 	            userTxn.commit();
 	        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
