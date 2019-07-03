@@ -15,18 +15,21 @@ public class Produit {
 
     @Column( name = "idCategorie" )
     Integer idCategorie;
-    
-    @Column(name = "description")
-    String description;
+
+    @Column( name = "description" )
+    String  description;
 
     @Column( name = "idEntrepot" )
     Integer idEntrepot;
+
+    @Column( name = "idVendeur" )
+    Integer idVendeur;
 
     @Column( name = "NOM" )
     String  nom;
 
     @Column( name = "PRIX" )
-    Double prix;
+    Double  prix;
 
     @Column( name = "STOCK" )
     Integer stock;
@@ -55,6 +58,14 @@ public class Produit {
         this.idEntrepot = idEntrepot;
     }
 
+    public Integer getIdVendeur() {
+        return idVendeur;
+    }
+
+    public void setIdVendeur( Integer idVendeur ) {
+        this.idVendeur = idVendeur;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -79,13 +90,12 @@ public class Produit {
         this.stock = stock;
     }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-    
-    
+    public void setDescription( String description ) {
+        this.description = description;
+    }
+
 }

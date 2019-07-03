@@ -38,7 +38,7 @@ public class Panier {
     public Integer getIdProduit() {
         return idUser;
     }
-    
+
     public Integer getIdUsers() {
         return idUser;
     }
