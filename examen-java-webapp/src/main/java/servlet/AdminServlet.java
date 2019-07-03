@@ -87,6 +87,7 @@ public class AdminServlet extends AbstractServlet {
 
         Utilisateur compteVendeur = webservice.modifierUtilisateur( utilisateur );
         this.request.setAttribute( "compteVendeur", compteVendeur );
+        
         this.getListeCompteVendeur( webservice, request );
     }
 
@@ -100,6 +101,7 @@ public class AdminServlet extends AbstractServlet {
     private void supprimerUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request )
             throws ServletException, IOException {
         webservice.supprimerUtilisateur( Integer.parseInt( request.getParameter( "id" ) ) );
+        setVariableToView( "alert-success", "Vendeur supprimé" );
         this.getListeCompteVendeur( webservice, request );
     }
 
@@ -129,6 +131,8 @@ public class AdminServlet extends AbstractServlet {
         utilisateur.setLogin( request.getParameter( "login" ) );
 
         Utilisateur compteVendeur = webservice.creerUtilisateur( utilisateur );
+        setVariableToView( "alert-success", "Vendeur " + compteVendeur.getNom() + " ajouté" );
+
         this.getListeCompteVendeur( webservice, request );
     }
 }

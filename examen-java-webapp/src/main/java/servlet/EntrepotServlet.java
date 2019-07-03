@@ -79,6 +79,7 @@ public class EntrepotServlet extends AbstractServlet {
 
 		entrepot = webservice.modifierEntrepot(entrepot);
 		this.request.setAttribute("entrepot", entrepot);
+		
 		this.getListeEntrepot(webservice, request);
 	}
 
@@ -92,6 +93,8 @@ public class EntrepotServlet extends AbstractServlet {
 	private void supprimerEntrepot(WebServiceSessionBean webservice, HttpServletRequest request)
 			throws ServletException, IOException {
 		webservice.supprimerEntrepot(Integer.parseInt(request.getParameter("id")));
+        setVariableToView( "alert-success", "Entrepot supprimé" );
+
 		this.getListeEntrepot(webservice, request);
 	}
 
@@ -103,6 +106,8 @@ public class EntrepotServlet extends AbstractServlet {
 		entrepot.setPays(request.getParameter("pays"));
 
 		entrepot = webservice.creerEntrepot(entrepot);
+        setVariableToView( "alert-success", "Entrepot " + entrepot.getNom() + " ajouté" );
+
 		this.getListeEntrepot(webservice, request);
 	}
 
