@@ -17,7 +17,7 @@ import webservice.PanierProduit;
 import webservice.Produit;
 import webservice.WebServiceSessionBean;
 
-@WebServlet("/ProduitServlet")
+@WebServlet("/PanierServlet")
 public class PanierServlet extends AbstractServlet {
 	
 	private static final String PANIER = "getPanier";
@@ -67,14 +67,14 @@ public class PanierServlet extends AbstractServlet {
 	
 	private Panier creerPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		Panier panier = new Panier();
-		panier.setIdUser(Integer.parseInt((String) session.getAttribute("id")));
+		panier.setIdUser((Integer) session.getAttribute("id"));
 		panier = webservice.creerPanier(panier);
 		
 		return panier;
 	}
 	
 	private void getPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
-		Panier panier = webservice.getPanierByUserId(Integer.parseInt((String) session.getAttribute("id")));
+		Panier panier = webservice.getPanierByUserId((Integer) session.getAttribute("id"));
 		if(panier == null) {
 			panier = this.creerPanier(webservice, request);
 			panier.setIdUser(Integer.parseInt((String) session.getAttribute("id")));

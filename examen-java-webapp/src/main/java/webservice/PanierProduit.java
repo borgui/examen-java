@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "PanierProduit", propOrder = {
     "id",
     "idPanier",
-    "idProduit",
+    "produit",
     "quantite"
 })
 public class PanierProduit {

@@ -31,7 +31,7 @@
 							if (session.getAttribute("session-role") == "client") {
 						%>
 						<li id="categorieProduit"><a href="CategorieServlet?action=getCategorieShop">Catégories de produit</a></li>
-						<li id="panier"><a href="CategorieServlet?action=getListeCategorie">Panier</a></li>
+						<li id="panier"><a href="PanierServlet?action=getPanier">Panier</a></li>
 
 						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Mon compte</a>
 						<%
