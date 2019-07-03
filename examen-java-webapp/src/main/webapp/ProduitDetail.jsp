@@ -28,7 +28,7 @@
 							<input hidden name="id" value="<%= produit.getId()%>">
 						
 							<label>Nom</label>
-							<input type='text' name='nom' value="<%= produit.getNom() %>" />
+							<input type='text' name='nom' value="<%= produit.getNom() %>" required/>
 							
 							<label>Description</label>
 							<input type='text' name='description' value="<%= produit.getDescription() %>" required />
@@ -37,17 +37,17 @@
 							<input type='text' name='prix' value="<%= produit.getPrix() %>"  required />
 							
 							<label>Stock</label>
-							<input type='text' name='stock' value="<%= produit.getStock() %>"  />
+							<input type='text' name='stock' value="<%= produit.getStock() %>"  required/>
 							
 							<label>Categorie :</label>
-							<select name="idCategorie" id="categorie">
+							<select name="idCategorie" id="categorie" required>
 							    <%for(Categorie categorie : categories){ %>
 							    <option value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
 							    <% } %>
 							</select>							
 							
 							<label>Entrepot :</label>
-							<select name="idEntrepot" id="entrepot">
+							<select name="idEntrepot" id="entrepot" required>
 							    <%for(Entrepot entrepot : entrepots){ %>
 							    <option value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>
 							    <% } %>

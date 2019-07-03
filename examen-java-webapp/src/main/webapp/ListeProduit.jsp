@@ -71,7 +71,7 @@
 							<input hidden name="action" value="ajouterProduit">
 						
 							<label>Nom</label>
-							<input type='text' name='nom'/>
+							<input type='text' name='nom' required/>
 							
 							<label>Description</label>
 							<input type='text' name='description' required />
@@ -80,17 +80,17 @@
 							<input type='text' name='prix' required />
 							
 							<label>Stock</label>
-							<input type='text' name='stock'   />
+							<input type='text' name='stock'  required />
 							
 							<label>Categorie :</label>
-							<select name="idCategorie" id="categorie">
+							<select name="idCategorie" id="categorie" required>
 							    <%for(Categorie categorie : categories){ %>
 							    <option value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
 							    <% } %>
 							</select>							
 							
 							<label>Entrepot :</label>
-							<select name="idEntrepot" id="entrepot">
+							<select name="idEntrepot" id="entrepot" required>
 							    <%for(Entrepot entrepot : entrepots){ %>
 							    <option value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>
 							    <% } %>
