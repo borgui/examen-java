@@ -14,9 +14,12 @@ import javax.transaction.SystemException;
 
 import domains.Categorie;
 import domains.Entrepot;
+import domains.Panier;
+import domains.PanierProduit;
 import domains.Produit;
 import domains.Utilisateur;
 import services.EntrepotService;
+import services.PanierService;
 import services.ProduitService;
 import services.UtilisateurService;
 
@@ -27,12 +30,10 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
-    
-    @EJB
     ProduitService     produitService;
-    
-    @EJB
     EntrepotService    entrepotService;
+    PanierService    panierService;
+
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -129,4 +130,33 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return produitService.findByCategorieId( id );
     }
+    
+    @WebMethod( action = "creerPanier" )
+    public Panier creerPanier( @WebParam( name = "panier", mode = Mode.IN ) Panier panier )
+            throws NotSupportedException, SystemException {
+        return panierService.creePanier(panier);
+    }
+    
+    @WebMethod( action = "getPanierById" )
+    public Panier getPanierById( @WebParam( name = "panierId", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        return panierService.getPanierById( id );
+    }
+    
+    
+    @WebMethod( action = "getPanierByUserId" )
+    public Panier getPanierByUserId( @WebParam( name = "userId", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        return panierService.getPanierByUserId( id );
+    }
+    
+    
+    
+    @WebMethod( action = "creerPanierProduit" )
+    public PanierProduit creerPanierProduit( @WebParam( name = "panier", mode = Mode.IN ) PanierProduit panierProduit )
+            throws NotSupportedException, SystemException {
+        return panierService.creerPanierProduit(panierProduit);
+    }
+    
+    
 }

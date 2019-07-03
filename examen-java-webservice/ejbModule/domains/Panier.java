@@ -1,8 +1,12 @@
 package domains;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +20,12 @@ public class Panier {
     @Column( name = "idUser" )
     Integer idUser;
 
-    @Column( name = "idVendeur" )
-    Integer idVendeur;
-
     @Column( name = "idFDP" )
     Integer idFDP;
+    
+    @OneToMany
+    @JoinColumn(name="idPanier", referencedColumnName="id")
+    List<PanierProduit> panierProduits;
 
     public Integer getId() {
         return id;
@@ -42,14 +47,6 @@ public class Panier {
         this.idUser = idUser;
     }
 
-    public Integer getIdVendeur() {
-        return idVendeur;
-    }
-
-    public void setIdVendeur( Integer idVendeur ) {
-        this.idVendeur = idVendeur;
-    }
-
     public Integer getIdFDP() {
         return idFDP;
     }
@@ -57,4 +54,18 @@ public class Panier {
     public void setIdFDP( Integer idFDP ) {
         this.idFDP = idFDP;
     }
+
+	public List<PanierProduit> getPanierProduits() {
+		return panierProduits;
+	}
+
+	public void setPanierProduits(List<PanierProduit> panierProduits) {
+		this.panierProduits = panierProduits;
+	}
+
+	public Integer getIdUser() {
+		return idUser;
+	}
+    
+    
 }

@@ -3,10 +3,12 @@ package domains;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "PanierProduit" )
+@Table( name = "panierproduit" )
 public class PanierProduit {
 
     @Id
@@ -16,8 +18,9 @@ public class PanierProduit {
     @Column( name = "idPanier" )
     Integer idPanier;
 
-    @Column( name = "idProduit" )
-    Integer idProduit;
+    @ManyToOne
+    @JoinColumn( name = "idProduit" ) 
+    Produit produit;
 
     @Column( name = "QUANTITE" )
     Integer quantite;
@@ -38,15 +41,16 @@ public class PanierProduit {
         this.idPanier = idPanier;
     }
 
-    public Integer getIdProduit() {
-        return idProduit;
-    }
 
-    public void setIdProduit( Integer idProduit ) {
-        this.idProduit = idProduit;
-    }
+    public Produit getProduit() {
+		return produit;
+	}
 
-    public Integer getQuantite() {
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+
+	public Integer getQuantite() {
         return quantite;
     }
 

@@ -63,7 +63,7 @@ public class AuthentificationServlet extends AbstractServlet {
 		String password = request.getParameter("password");
 		Utilisateur utilisateur = webService.connexion(login,password);
 			if (utilisateur != null) {
-				httpSession(login, password);
+				httpSession(login, password, utilisateur.getId());
 				int idProfil = utilisateur.getIdProfil();
 
 				switch (idProfil) {

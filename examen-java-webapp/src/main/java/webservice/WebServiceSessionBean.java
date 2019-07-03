@@ -179,5 +179,39 @@ public interface WebServiceSessionBean {
     	Integer categorieId
     );
     
+    @WebMethod(action = "creerPanier")
+    @RequestWrapper(localName = "creerPanier", targetNamespace = "http://webservice/", className = "webservice.creerPanier")
+    @ResponseWrapper(localName = "creerPanierResponse", targetNamespace = "http://webservice/", className = "webservice.creerPanierResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Panier creerPanier(
+    	@WebParam(name="panier", targetNamespace = "")
+    	Panier panier
+    );
     
+    @WebMethod(action = "getPanierById")
+    @RequestWrapper(localName = "getPanierById", targetNamespace = "http://webservice/", className = "webservice.getPanierById")
+    @ResponseWrapper(localName = "getPanierByIdResponse", targetNamespace = "http://webservice/", className = "webservice.getPanierByIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Panier getPanierById(
+    	@WebParam(name="panierId", targetNamespace = "")
+    	Integer panierId
+    );
+    
+    @WebMethod(action = "getPanierByUserId")
+    @RequestWrapper(localName = "getPanierByUserId", targetNamespace = "http://webservice/", className = "webservice.getPanierByUserId")
+    @ResponseWrapper(localName = "getPanierByUserIdResponse", targetNamespace = "http://webservice/", className = "webservice.getPanierByUserIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public Panier getPanierByUserId(
+    	@WebParam(name = "userId")
+    	Integer userId
+    );
+    
+    @WebMethod(action = "creerPanierProduit")
+    @RequestWrapper(localName = "creerPanierProduit", targetNamespace = "http://webservice/", className = "webservice.creerPanierProduit")
+    @ResponseWrapper(localName = "creerPanierProduitResponse", targetNamespace = "http://webservice/", className = "webservice.creerPanierProduitResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public PanierProduit creerPanierProduit(
+        	@WebParam(name = "panierProduit")
+        	PanierProduit panierProduit
+    );
 }

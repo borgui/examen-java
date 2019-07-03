@@ -58,9 +58,10 @@ public class AbstractServlet extends HttpServlet {
 		dispatcher.include(request, response);
 	}
 	
-	protected void httpSession(String login, String password) {
+	protected void httpSession(String login, String password, Integer id) {
 		session.setAttribute("login", login);
 		session.setAttribute("password", password);
+		session.setAttribute("id", id);
 	}
 
 	protected void setVariableToView(String variable, String message) {

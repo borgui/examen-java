@@ -29,13 +29,19 @@
                             <p class="card-text">
                             <%=produit.getDescription()%>
                             <br/>
-                            <div>Quantité: <%= produit.getStock() %></div>
-                            </p>
+                            <div>Stock: <%= produit.getStock() %></div>
+                            <p class="bloc_left_price"><%= produit.getPrix()%> &euro;</p>
+                            
                             <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block"><%= produit.getPrix()%> &euro;</p>
+                                <div class="col-5">
+                                Quantite: 
                                 </div>
-                                <div class="col">
+                            
+                                <div class="col-7">
+                                 	<input type="text" class="form-control"  id="quantity" name="quantite" min="1" max="100" value="1">
+               
+                                </div>
+                                <div class="col-12">
                                     <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
                                 </div>
                             </div>
