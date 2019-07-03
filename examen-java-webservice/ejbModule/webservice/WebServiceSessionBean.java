@@ -27,10 +27,10 @@ public class WebServiceSessionBean {
 
     @EJB
     UtilisateurService utilisateurService;
-    
+
     @EJB
     ProduitService     produitService;
-    
+
     @EJB
     EntrepotService    entrepotService;
 
@@ -70,12 +70,19 @@ public class WebServiceSessionBean {
         utilisateurService.supprimerUtilisateur( id );
     }
 
+    @WebMethod( action = "suspendreDebloqUser" )
+    public Utilisateur suspendreDebloqUser(
+            @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.modifierUtilisateur( utilisateur );
+    }
+
     @WebMethod( action = "creerCategorie" )
     public Categorie creerCategorie( @WebParam( name = "categorie", mode = Mode.IN ) Categorie categorie )
             throws NotSupportedException, SystemException {
         return produitService.creerCategorie( categorie );
     }
-    
+
     @WebMethod( action = "getCategories" )
     public List<Categorie> getCategories()
             throws NotSupportedException, SystemException {
@@ -93,17 +100,17 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         produitService.supprimerCategorie( id );
     }
-    
+
     @WebMethod( action = "getEntrepots" )
     public List<Entrepot> getEntrepots()
             throws NotSupportedException, SystemException {
         return entrepotService.findAllEntrepots();
     }
-    
+
     @WebMethod( action = "getEntrepotById" )
     public Entrepot getEntrepotById( @WebParam( name = "id", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {
-        return entrepotService.findById(id);
+        return entrepotService.findById( id );
     }
 
     @WebMethod( action = "creerEntrepot" )
@@ -123,7 +130,7 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         entrepotService.supprimerEntrepot( id );
     }
-    
+
     @WebMethod( action = "getProduitByCategorie" )
     public List<Produit> getProduitByCategorie( @WebParam( name = "categorieId", mode = Mode.IN ) Integer id )
             throws NotSupportedException, SystemException {

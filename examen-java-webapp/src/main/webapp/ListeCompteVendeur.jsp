@@ -26,6 +26,7 @@
 							<th scope="col">Prenom</th>
 							<th scope="col">Modifier</th>
 							<th scope="col">Supprimer</th>
+							<th scope="col">Suspendre/ Débloquer</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -38,6 +39,19 @@
 							<td><%= compteVendeur.getNom() %></td>
 							<td><a href="AdminServlet?action=getVendeurDetail&id=<%=compteVendeur.getId()%>">Modifier</a></td>
 							<td><a href="AdminServlet?action=supprimerVendeur&id=<%=compteVendeur.getId()%>">Supprimer </a></td>
+							<%
+								if (compteVendeur.isSuspended() == false) {
+							%>
+							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteVendeur.getId()%>">Suspendre</a></td>
+							<%
+								}
+								else
+								{
+							%>
+							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteVendeur.getId()%>">Débloquer</a></td>
+							<%
+								}
+							%>
 						</tr>
 						<%
 							}
