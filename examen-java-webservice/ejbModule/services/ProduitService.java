@@ -18,6 +18,7 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
 import domains.Categorie;
+import domains.Entrepot;
 
 @Stateful
 @LocalBean
@@ -97,5 +98,20 @@ public class ProduitService {
             e.printStackTrace();
         }
     }
+    
+	public Entrepot findByCategorieId(Integer categorieId) throws SystemException, NotSupportedException{
+		UserTransaction userTxn = sessionContext.getUserTransaction();
+		userTxn.begin();
+		Entrepot entrepot = this.em.find(Produit.class, categorieId);
+
+		try {
+			userTxn.commit();
+		} catch (SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+				| HeuristicRollbackException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return entrepot;
+	}
 
 }

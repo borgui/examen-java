@@ -170,5 +170,14 @@ public interface WebServiceSessionBean {
         Integer id
     );
     
+    @WebMethod(action = "getProduitByCategorieId")
+    @RequestWrapper(localName = "getProduitByCategorieId", targetNamespace = "http://webservice/", className = "webservice.getProduitByCategorieId")
+    @ResponseWrapper(localName = "getProduitByCategorieIdResponse", targetNamespace = "http://webservice/", className = "webservice.getProduitByCategorieIdResponse")
+    @WebResult(name = "return", targetNamespace = "")
+    public List<Produit> getProduitByCategorie(
+    	@WebParam(name="categorieId", targetNamespace = "")
+    	Integer categorieId
+    );
+    
     
 }

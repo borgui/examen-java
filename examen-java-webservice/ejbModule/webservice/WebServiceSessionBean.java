@@ -122,4 +122,10 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         entrepotService.supprimerEntrepot( id );
     }
+    
+    @WebMethod( action = "getProduitByCategorie" )
+    public void getProduitByCategorie( @WebParam( name = "categorieId", mode = Mode.IN ) Integer id )
+            throws NotSupportedException, SystemException {
+        entrepotService.supprimerEntrepot( id );
+    }
 }

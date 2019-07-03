@@ -23,7 +23,7 @@
 							for(Categorie categorie : categorieList){
 						%>
 						<div class="col-3">
-						<a href="" class="btn btn-primary"><%= categorie.getLibelle() %></a>
+						<a href="ProduitServlet?action=getProduitCategorie&categorieId=<%= categorie.getId()%>" class="btn btn-primary"><%= categorie.getLibelle() %></a>
 						</div>
 						<%
 							}
