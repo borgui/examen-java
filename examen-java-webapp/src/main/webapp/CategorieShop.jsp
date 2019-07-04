@@ -4,17 +4,18 @@
 <%@ page import="webservice.Categorie"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/> 
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2> Catégories de produit</h2>
+				<h2> <fmt:message key="prodcateg.title.select" /></h2>
 				<%
 					List<Categorie> categorieList = (List<Categorie>) request.getAttribute( "listeCategorie" );
 	
 					if (categorieList == null) {
 				%>
-				<p>Il n'y a aucune categorie</p>
+				<p><fmt:message key="prodcateg.err.notfound.select" /></p>
 				<%
 					} else {
 				%>

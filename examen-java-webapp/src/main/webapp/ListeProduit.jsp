@@ -7,11 +7,13 @@
 
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/> 
+
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer produit</h2>
+				<h2><fmt:message key="produit.title" /></h2>
 				<%
 					List<Produit> produitList = (List<Produit>) request.getAttribute( "listeProduit" );
 				List<Entrepot> entrepots = (List<Entrepot>) request.getAttribute("listeEntrepot");
@@ -19,7 +21,7 @@
 				
 					if (produitList == null) {
 				%>
-				<p>Il n'y a aucun produit</p>
+				<p><fmt:message key="produit.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -27,18 +29,18 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Description</th>
-							<th scope="col">Prix</th>
-							<th scope="col">Stock</th>
-							<th scope="col">Categorie</th>
-							<th scope="col">Entrepot</th>
+							<th scope="col"><fmt:message key="produit.table.nom" /></th>
+							<th scope="col"><fmt:message key="produit.table.description" /></th>
+							<th scope="col"><fmt:message key="produit.table.prix" /></th>
+							<th scope="col"><fmt:message key="produit.table.stock" /></th>
+							<th scope="col"><fmt:message key="produit.table.categorie" /></th>
+							<th scope="col"><fmt:message key="produit.table.entrepot" /></th>
 							
 							
 							
 
-							<th scope="col">Modifier</th>
-							<th scope="col">Supprimer</th>
+							<th scope="col"><fmt:message key="produit.table.modifier" /></th>
+							<th scope="col"><fmt:message key="produit.table.supprimer" /></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -54,8 +56,8 @@
 							<td><%= produit.getCategorie().getLibelle()%></td>
 							<td><%= produit.getEntrepot().getNom()%></td>
 							
-							<td><a href="ProduitServlet?action=getProduitDetail&id=<%=produit.getId()%>">Modifier</a></td>
-							<td><a href="ProduitServlet?action=supprimerProduit&id=<%=produit.getId()%>">Supprimer </a></td>
+							<td><a href="ProduitServlet?action=getProduitDetail&id=<%=produit.getId()%>"><fmt:message key="produit.table.modifier" /></a></td>
+							<td><a href="ProduitServlet?action=supprimerProduit&id=<%=produit.getId()%>"><fmt:message key="produit.table.supprimer" /> </a></td>
 						</tr>
 						<%
 							}
@@ -70,29 +72,29 @@
 				<form method='get' action='ProduitServlet'>
 							<input hidden name="action" value="ajouterProduit">
 						
-							<label>Nom</label>
+							<label><fmt:message key="produit.table.nom" /></label>
 							<input type='text' name='nom' required/>
 							
-							<label>Description</label>
+							<label><fmt:message key="produit.table.description" /></label>
 							<input type='text' name='description' required />
 							
 							<label>URL Image</label>
 							<input type='text' name='image' required />
 							
-							<label>Prix</label>
+							<label><fmt:message key="produit.table.prix" /></label>
 							<input type='text' name='prix' required />
 							
-							<label>Stock</label>
+							<label><fmt:message key="produit.table.stock" /></label>
 							<input type='text' name='stock'  required />
 							
-							<label>Categorie :</label>
+							<label><fmt:message key="produit.table.categorie" /> :</label>
 							<select name="idCategorie" id="categorie" required>
 							    <%for(Categorie categorie : categories){ %>
 							    <option value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
 							    <% } %>
 							</select>							
 							
-							<label>Entrepot :</label>
+							<label><fmt:message key="produit.table.entrepot" /> :</label>
 							<select name="idEntrepot" id="entrepot" required>
 							    <%for(Entrepot entrepot : entrepots){ %>
 							    <option value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>
