@@ -8,13 +8,14 @@
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer compte vendeurs</h2>
+				<%Integer idProfil = (Integer) request.getAttribute("idProfil"); %>
+				<h2>Gérer comptes <%if(idProfil == 1){ %>clients <%} else { %>vendeurs <%} %></h2>
 				<%
-					List<Utilisateur> compteVendeurList = (List<Utilisateur>) request.getAttribute( "listeCompteVendeur" );
+					List<Utilisateur> compteUtilisateurList = (List<Utilisateur>) request.getAttribute( "listeCompteUtilisateur" );
 	
-					if (compteVendeurList == null) {
+					if (compteUtilisateurList == null) {
 				%>
-				<p>Il n'y a aucun compte vendeur</p>
+				<p>Il n'y a aucun compte</p>
 				<%
 					} else {
 				%>
@@ -31,24 +32,24 @@
 					</thead>
 					<tbody>
 						<%
-							for(Utilisateur compteVendeur : compteVendeurList){
+							for(Utilisateur compteUtilisateur : compteUtilisateurList){
 						%>
 						<tr>
-							<th scope="row"><%= compteVendeur.getId() %></a></th>
-							<td><%= compteVendeur.getPrenom() %></td>
-							<td><%= compteVendeur.getNom() %></td>
-							<td><a href="AdminServlet?action=getVendeurDetail&id=<%=compteVendeur.getId()%>">Modifier</a></td>
-							<td><a href="AdminServlet?action=supprimerVendeur&id=<%=compteVendeur.getId()%>">Supprimer </a></td>
+							<th scope="row"><%= compteUtilisateur.getId() %></a></th>
+							<td><%= compteUtilisateur.getPrenom() %></td>
+							<td><%= compteUtilisateur.getNom() %></td>
+							<td><a href="AdminServlet?action=getUtilisateurDetail&id=<%=compteUtilisateur.getId()%>">Modifier</a></td>
+							<td><a href="AdminServlet?action=supprimerUtilisateur&id=<%=compteUtilisateur.getId()%>&idProfil=<%=idProfil%>">Supprimer </a></td>
 							<%
-								if (compteVendeur.isSuspended() == false) {
+								if (compteUtilisateur.isSuspended() == false) {
 							%>
-							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteVendeur.getId()%>">Suspendre</a></td>
+							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteUtilisateur.getId()%>">Suspendre</a></td>
 							<%
 								}
 								else
 								{
 							%>
-							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteVendeur.getId()%>">Débloquer</a></td>
+							<td><a href="AdminServlet?action=suspendreDebloqUser&id=<%=compteUtilisateur.getId()%>">Débloquer</a></td>
 							<%
 								}
 							%>
@@ -63,8 +64,10 @@
 				%>
 			</div>
 			<div class="content">
-				<form method='get' action='AdminServlet?action=ajoutVendeur'>
-							<input hidden name="action" value="ajoutVendeur">
+				<form method='get' action='AdminServlet'>
+							<input hidden name="action" value="ajouterUtilisateur">
+							<input hidden name="idProfil" value="<%= idProfil %>">
+							
 							<label>Nom</label>
 							<input type='text' name='nom' required />
 							
@@ -78,7 +81,7 @@
 							<input type='text' name='login' required />
 							
 							<label>Password :</label>
-							<input type='text' name='password' required />
+							<input type='password' name='password' required />
 							
 							
 							<input type='submit' name='submit' value="Ajouter">

@@ -17,6 +17,9 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 
+import domains.Panier;
+import domains.PanierProduit;
+import domains.Produit;
 import domains.Utilisateur;
 
 @Stateful
@@ -120,6 +123,27 @@ public class UtilisateurService {
         UserTransaction userTxn = sessionContext.getUserTransaction();
         userTxn.begin();
         Utilisateur utilisateur = this.em.find( Utilisateur.class, id );
+        if(utilisateur.getIdProfil() == 1) {
+            String queryString = "FROM Panier where idUser = " + utilisateur.getId();
+            Query query = this.em.createQuery( queryString );
+            List<Panier> paniers = (List<Panier>) query.getResultList();
+            paniers.forEach(panier -> {
+                this.em.remove(panier);
+            });
+         } else {
+             String queryString = "FROM Produit where idVendeur = " + utilisateur.getId();
+             String paniersProduitString = "FROM PanierProduit where idProduit IN (select id FROM Produit WHERE idVendeur = " + utilisateur.getId() + ")";
+             Query panierProduitQuery = this.em.createQuery( paniersProduitString );
+             List<PanierProduit> paniersProduit = (List<PanierProduit>) panierProduitQuery.getResultList();
+             paniersProduit.forEach(produit -> {
+                 this.em.remove(produit);
+             });
+             Query query = this.em.createQuery( queryString );
+             List<Produit> produits = (List<Produit>) query.getResultList();
+             produits.forEach(produit -> {
+                 this.em.remove(produit);
+             });
+         }
         this.em.remove( utilisateur );
 
         try {

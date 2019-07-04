@@ -16,18 +16,21 @@ import webservice.WebServiceSessionBean;
 public class AdminServlet extends AbstractServlet {
 
     private static final String LISTE_COMPTE_VENDEUR_ACTION     = "getListeCompteVendeur";
+    private static final String LISTE_COMPTE_CLIENT_ACTION     = "getListeCompteClient";
 
-    private static final String LISTE_COMPTE_VENDEUR_PAGE       = "ListeCompteVendeur";
+    
 
-    private static final String AJOUT_COMPTE_VENDEUR_ACTION     = "ajoutVendeur";
+    private static final String LISTE_COMPTE_UTILISATEUR_PAGE       = "ListeCompteUtilisateur";
 
-    private static final String DETAIL_COMPTE_VENDEUR_ACTION    = "getVendeurDetail";
+    private static final String AJOUT_COMPTE_UTILISATEUR_ACTION     = "ajouterUtilisateur";
 
-    private static final String DETAIL_COMPTE_VENDEUR_PAGE      = "CompteVendeurDetail";
+    private static final String DETAIL_COMPTE_UTILISATEUR_ACTION    = "getUtilisateurDetail";
 
-    private static final String MODIF_COMPTE_VENDEUR_ACTION     = "modifierVendeur";
+    private static final String DETAIL_COMPTE_UTILISATEUR_PAGE      = "CompteUtilisateurDetail";
 
-    private static final String SUPPRIMER_COMPTE_VENDEUR_ACTION = "supprimerVendeur";
+    private static final String MODIF_COMPTE_UTILISATEUR_ACTION     = "modifierUtilisateur";
+
+    private static final String SUPPRIMER_COMPTE_UTILISATEUR_ACTION = "supprimerUtilisateur";
 
     private static final String SUSPENDRE_DEBLOQ_USER           = "suspendreDebloqUser";
 
@@ -40,18 +43,21 @@ public class AdminServlet extends AbstractServlet {
 
             switch ( action ) {
             case LISTE_COMPTE_VENDEUR_ACTION:
-                getListeCompteVendeur( webService, request );
+                getListeCompteUtilisateur( webService, request, VENDEUR);
                 break;
-            case AJOUT_COMPTE_VENDEUR_ACTION:
-                ajoutCompteVendeur( webService, request );
+            case LISTE_COMPTE_CLIENT_ACTION:
+                getListeCompteUtilisateur( webService, request, CLIENT );
                 break;
-            case DETAIL_COMPTE_VENDEUR_ACTION:
-                getDetailCompteVendeur( webService, request );
+            case AJOUT_COMPTE_UTILISATEUR_ACTION:
+                ajoutCompteUtilisateur( webService, request );
                 break;
-            case MODIF_COMPTE_VENDEUR_ACTION:
-                modifierCompteVendeur( webService, request );
+            case DETAIL_COMPTE_UTILISATEUR_ACTION:
+                getDetailCompteUtilisateur( webService, request );
                 break;
-            case SUPPRIMER_COMPTE_VENDEUR_ACTION:
+            case MODIF_COMPTE_UTILISATEUR_ACTION:
+            	modifierCompteUtilisateur( webService, request );
+                break;
+            case SUPPRIMER_COMPTE_UTILISATEUR_ACTION:
                 supprimerUtilisateur( webService, request );
                 break;
             case SUSPENDRE_DEBLOQ_USER:
@@ -67,42 +73,44 @@ public class AdminServlet extends AbstractServlet {
 
     }
 
-    private void getListeCompteVendeur( WebServiceSessionBean webservice, HttpServletRequest request )
+    private void getListeCompteUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request , Integer idProfil)
             throws ServletException, IOException {
-        List<Utilisateur> compteVendeur = webservice.getByIdProfil( 2 );
-        this.request.setAttribute( "listeCompteVendeur", compteVendeur );
-        redirectionToView( LISTE_COMPTE_VENDEUR_PAGE );
+        List<Utilisateur> compteUtilisateur = webservice.getByIdProfil(idProfil);
+        this.request.setAttribute( "listeCompteUtilisateur", compteUtilisateur );
+        this.request.setAttribute("idProfil", idProfil);
+        redirectionToView( LISTE_COMPTE_UTILISATEUR_PAGE );
     }
 
-    private void modifierCompteVendeur( WebServiceSessionBean webservice, HttpServletRequest request )
+    private void modifierCompteUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request )
             throws ServletException, IOException {
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setId( Integer.parseInt( request.getParameter( "id" ) ) );
         utilisateur.setPrenom( request.getParameter( "prenom" ) );
         utilisateur.setNom( request.getParameter( "nom" ) );
-        utilisateur.setIdProfil( 2 );
+        utilisateur.setIdProfil(Integer.parseInt(request.getParameter("idProfil")));
         utilisateur.setMail( request.getParameter( "email" ) );
         utilisateur.setPassword( request.getParameter( "password" ) );
         utilisateur.setLogin( request.getParameter( "login" ) );
 
-        Utilisateur compteVendeur = webservice.modifierUtilisateur( utilisateur );
-        this.request.setAttribute( "compteVendeur", compteVendeur );
-        
-        this.getListeCompteVendeur( webservice, request );
+        utilisateur = webservice.modifierUtilisateur( utilisateur );
+        this.request.setAttribute( "utilisateur", utilisateur );
+        setVariableToView( "alert-success", "Compte modifié" );
+        this.getListeCompteUtilisateur( webservice, request, utilisateur.getIdProfil());
     }
 
-    private void getDetailCompteVendeur( WebServiceSessionBean webservice, HttpServletRequest request )
+    private void getDetailCompteUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request )
             throws ServletException, IOException {
-        Utilisateur compteVendeur = webservice.getByUtilisateurId( Integer.parseInt( request.getParameter( "id" ) ) );
-        this.request.setAttribute( "compteVendeur", compteVendeur );
-        redirectionToView( DETAIL_COMPTE_VENDEUR_PAGE );
+        Utilisateur compteUtilisateur = webservice.getByUtilisateurId( Integer.parseInt( request.getParameter( "id" ) ) );
+        this.request.setAttribute( "compteUtilisateur", compteUtilisateur );
+        redirectionToView( DETAIL_COMPTE_UTILISATEUR_PAGE );
     }
 
     private void supprimerUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request )
             throws ServletException, IOException {
         webservice.supprimerUtilisateur( Integer.parseInt( request.getParameter( "id" ) ) );
-        setVariableToView( "alert-success", "Vendeur supprimé" );
-        this.getListeCompteVendeur( webservice, request );
+        int idProfil = Integer.parseInt( request.getParameter( "idProfil" ));
+        setVariableToView( "alert-success", "Compte supprimé" );
+        this.getListeCompteUtilisateur( webservice, request, idProfil);
     }
 
     private void suspendreDebloqUser( WebServiceSessionBean webservice, HttpServletRequest request )
@@ -116,16 +124,16 @@ public class AdminServlet extends AbstractServlet {
             utilisateur.setSuspended( false );
         }
         webservice.modifierUtilisateur( utilisateur );
-        this.getListeCompteVendeur( webservice, request );
+        this.getListeCompteUtilisateur( webservice, request, utilisateur.getIdProfil());
     }
 
-    private void ajoutCompteVendeur( WebServiceSessionBean webservice, HttpServletRequest request )
+    private void ajoutCompteUtilisateur( WebServiceSessionBean webservice, HttpServletRequest request )
             throws ServletException, IOException {
 
         Utilisateur utilisateur = new Utilisateur();
         utilisateur.setPrenom( request.getParameter( "prenom" ) );
         utilisateur.setNom( request.getParameter( "nom" ) );
-        utilisateur.setIdProfil( 2 );
+        utilisateur.setIdProfil(Integer.parseInt(request.getParameter("idProfil")));
         utilisateur.setMail( request.getParameter( "email" ) );
         utilisateur.setPassword( request.getParameter( "password" ) );
         utilisateur.setLogin( request.getParameter( "login" ) );
@@ -133,6 +141,6 @@ public class AdminServlet extends AbstractServlet {
         Utilisateur compteVendeur = webservice.creerUtilisateur( utilisateur );
         setVariableToView( "alert-success", "Vendeur " + compteVendeur.getNom() + " ajouté" );
 
-        this.getListeCompteVendeur( webservice, request );
+        this.getListeCompteUtilisateur( webservice, request, utilisateur.getIdProfil());
     }
 }

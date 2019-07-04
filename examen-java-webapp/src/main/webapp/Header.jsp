@@ -27,7 +27,6 @@
 				</div>
 				<nav id="nav">
 					<ul>
-						<li id="home"><a href="Home.jsp"><fmt:message key="home.title" /></a></li>
 						<%
 							if (session.getAttribute("session-role") == "client") {
 						%>
@@ -45,6 +44,8 @@
 							}else if(session.getAttribute("session-role") == "admin"){
 						%>
 						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur"><fmt:message key="home.managevendor" /></a></li>
+						<li id="compteClient"><a href="AdminServlet?action=getListeCompteClient"><fmt:message key="home.manageclient" /></a></li>
+						
 						<li id="catégorieProduit"><a href="CategorieServlet?action=getListeCategorie"><fmt:message key="home.managecategprod" /></a></li>
 
 						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot"><fmt:message key="home.managewarehouse" /></a>
