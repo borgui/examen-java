@@ -15,14 +15,14 @@ public class PanierProduit {
 
     @Id
     @Column( name = "ID" )
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     Integer id;
 
     @Column( name = "idPanier" )
     Integer idPanier;
 
     @ManyToOne
-    @JoinColumn( name = "idProduit" ) 
+    @JoinColumn( name = "idProduit" )
     Produit produit;
 
     @Column( name = "QUANTITE" )
@@ -44,16 +44,15 @@ public class PanierProduit {
         this.idPanier = idPanier;
     }
 
-
     public Produit getProduit() {
-		return produit;
-	}
+        return produit;
+    }
 
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
+    public void setProduit( Produit produit ) {
+        this.produit = produit;
+    }
 
-	public Integer getQuantite() {
+    public Integer getQuantite() {
         return quantite;
     }
 
