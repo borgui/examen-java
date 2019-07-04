@@ -4,17 +4,18 @@
 <%@ page import="webservice.Produit"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/> 
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Boutique</h2>
+				<h2><fmt:message key="prodcateg.title" /></h2>
 				<%
 					List<Produit> produitList = (List<Produit>) request.getAttribute("listeProduit");
 
 					if (produitList == null) {
 				%>
-				<p>Il n'y a aucun produit</p>
+				<p><fmt:message key="prodcateg.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -36,7 +37,7 @@
                             <p class="card-text" style="height:50px">
                             <%=produit.getDescription()%>
                             <br/>
-                            <div>Stock: <%= produit.getStock() %></div>
+                            <div><fmt:message key="prodcateg.stock" />: <%= produit.getStock() %></div>
                             <p class="bloc_left_price"><%= produit.getPrix()%> &euro;</p>
                            	<form method='get' action='PanierServlet'>
                            	<input type="text" hidden name="action" value="ajouterProduit">
@@ -45,7 +46,7 @@
                             
                             <div class="row">
                                 <div class="col-5">
-                                Quantite: 
+                                <fmt:message key="prodcateg.quantite" />: 
                                 </div>
                             
                                 <div class="col-7">

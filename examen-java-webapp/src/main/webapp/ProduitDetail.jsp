@@ -8,6 +8,7 @@
 
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/> 
 
 <%
 	Produit produit = (Produit) request.getAttribute("produit");
@@ -19,7 +20,7 @@
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer produit</h2>
+				<h2><fmt:message key="produit.title.manage" /></h2>
 			</div>
 			<div class="content">
 			<div><%produit.getId(); %></div>
@@ -27,29 +28,29 @@
 							<input hidden name="action" value="modifierProduit">
 							<input hidden name="id" value="<%= produit.getId()%>">
 						
-							<label>Nom</label>
+							<label><fmt:message key="produit.table.nom" /></label>
 							<input type='text' name='nom' value="<%= produit.getNom() %>" required/>
 							
-							<label>Description</label>
+							<label><fmt:message key="produit.table.description" /></label>
 							<input type='text' name='description' value="<%= produit.getDescription() %>" required />
 							
 							<label>URL Image</label>
 							<input type='text' name='image' value="<%= produit.getImage() %>" required />
 							
-							<label>Prix</label>
+							<label><fmt:message key="produit.table.prix" /></label>
 							<input type='text' name='prix' value="<%= produit.getPrix() %>"  required />
 							
-							<label>Stock</label>
+							<label><fmt:message key="produit.table.stock" /></label>
 							<input type='text' name='stock' value="<%= produit.getStock() %>"  required/>
 							
-							<label>Categorie :</label>
+							<label><fmt:message key="produit.table.categorie" /> :</label>
 							<select name="idCategorie" id="categorie" required>
 							    <%for(Categorie categorie : categories){ %>
 							    <option value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
 							    <% } %>
 							</select>							
 							
-							<label>Entrepot :</label>
+							<label><fmt:message key="produit.table.entrepot" /> :</label>
 							<select name="idEntrepot" id="entrepot" required>
 							    <%for(Entrepot entrepot : entrepots){ %>
 							    <option value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>

@@ -5,6 +5,7 @@
 
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/>
 
 <%
 	Entrepot entrepot = (Entrepot) request.getAttribute("entrepot");
@@ -13,17 +14,17 @@
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer entrepot</h2>
+				<h2><fmt:message key="entrepot.title.manage" /></h2>
 			</div>
 			<div class="content">
 				<form method='get' action='EntrepotServlet?action=modifierEntrepot'>
 							<input hidden name="action" value="modifierEntrepot">
 							<input hidden name="id" value="<%= entrepot.getId()%>">
 						
-							<label>Nom</label>
+							<label><fmt:message key="entrepot.table.nom" /></label>
 							<input type='text' name='nom' value="<%= entrepot.getNom() %>" />
 							
-							<label>Pays</label>
+							<label><fmt:message key="entrepot.table.pays" /></label>
 							<input type='text' name='pays' value="<%= entrepot.getPays() %>" required />
 							
 							

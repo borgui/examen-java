@@ -5,18 +5,19 @@
 <%@ page import="webservice.PanierProduit"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/> 
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Panier</h2>
+				<h2><fmt:message key="panier.title" /></h2>
 				<%
 					Panier panier = (Panier) request.getAttribute("panier");
 					double total = 0;
 
 					if (panier.getPanierProduits() == null || panier.getPanierProduits().size() == 0) {
 				%>
-				<p>Votre panier est vide</p>
+				<p><fmt:message key="panier.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -27,9 +28,9 @@
                     <thead>
                         <tr>
                             <th scope="col"> </th>
-                            <th scope="col">Produit</th>
-                            <th scope="col" class="text-center">Quantité</th>
-                            <th scope="col" class="text-right">Prix</th>
+                            <th scope="col"><fmt:message key="panier.produit" /></th>
+                            <th scope="col" class="text-center"><fmt:message key="panier.quantite" /></th>
+                            <th scope="col" class="text-right"><fmt:message key="panier.prix" /></th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -52,21 +53,21 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Sub-Total</td>
+                            <td><fmt:message key="panier.subtot" /></td>
                             <td class="text-right"><%= total %>&euro;</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>Shipping</td>
+                            <td><fmt:message key="panier.fdp" /></td>
                             <td class="text-right">0 &euro;</td>
                         </tr>
                         <tr>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td><strong>Total</strong></td>
+                            <td><strong><fmt:message key="panier.total" /></strong></td>
                             <td class="text-right"><%= total %>&euro;<strong></strong></td>
                         </tr>
                     </tbody>
@@ -76,14 +77,15 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block btn-light">Continue Shopping</button>
+                    <button class="btn btn-block btn-light"><fmt:message key="panier.continueshop" /></button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
+
                 <form method="post" action="CommandeServlet">
                 	<input hidden name="idPanier" value="<%= panier.getId()%>">
                 	<input hidden name="total" value="<%= total%>">
                 	<input hidden name="action" value="ajouterCommande">
-                    <input type="submit" class="btn btn-lg btn-block btn-success text-uppercase" value="Checkout">
+                    <input type="submit" class="btn btn-lg btn-block btn-success text-uppercase" value="<fmt:message key="panier.checkout" />">
                 </form>
                 </div>
             </div>

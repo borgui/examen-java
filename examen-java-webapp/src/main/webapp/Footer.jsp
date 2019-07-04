@@ -1,3 +1,4 @@
+<fmt:setBundle basename="messages"/>
 </div>
 <div id="footer-wrapper">
 	<footer id="footer" class="container">
