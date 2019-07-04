@@ -4,17 +4,18 @@
 <%@ page import="webservice.Commande"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/>
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Mes commandes</h2>
+				<h2><fmt:message key="commande.title" /></h2>
 				<%
 					List<Commande> commandeList = (List<Commande>) request.getAttribute( "listeCommande" );
 	
 					if (commandeList == null) {
 				%>
-				<p>Il n'y a aucune commande</p>
+				<p><fmt:message key="commande.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -22,8 +23,8 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th scope="col">Date</th>
-							<th scope="col">Status</th>
+							<th scope="col"><fmt:message key="commande.date" /></th>
+							<th scope="col"><fmt:message key="commande.status" /></th>
 						</tr>
 					</thead>
 					<tbody>
