@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ResourceBundle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,13 +17,12 @@ import webservice.WebServiceSessionBean;
  */
 @WebServlet( "/AuthentificationServlet" )
 public class AuthentificationServlet extends AbstractServlet {
-    private static final long serialVersionUID = 1L;
-    
-    private static final String MODIFIER_ACTION = "modifierCompte";
-    private static final String MONCOMPTE_ACTION = "monCompte";
+    private static final long   serialVersionUID  = 1L;
+
+    private static final String MODIFIER_ACTION   = "modifierCompte";
+    private static final String MONCOMPTE_ACTION  = "monCompte";
     private static final String MODIFICATION_PAGE = "MonCompte";
-    private static final String INSCRIPTION_PAGE = "Inscription";
-    
+    private static final String INSCRIPTION_PAGE  = "Inscription";
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
@@ -36,8 +36,8 @@ public class AuthentificationServlet extends AbstractServlet {
                 disconnectUser();
                 break;
             case MONCOMPTE_ACTION:
-            	getDetailCompte(webService, request);
-            	break;
+                getDetailCompte( webService, request );
+                break;
             default:
                 break;
             }
@@ -47,7 +47,7 @@ public class AuthentificationServlet extends AbstractServlet {
         }
 
     }
-    
+
     protected void doPost( HttpServletRequest request, HttpServletResponse response )
             throws ServletException, IOException {
         initialize( request, response );
@@ -57,14 +57,14 @@ public class AuthentificationServlet extends AbstractServlet {
 
             switch ( action ) {
             case INSCRIPTION_ACTION:
-            	createUser(webService, request);
-            	break;
+                createUser( webService, request );
+                break;
             case CONNEXION_ACTION:
                 connectUser( webService, request );
                 break;
             case MODIFIER_ACTION:
-            	modifierUser(webService, request);
-            	break;
+                modifierUser( webService, request );
+                break;
             default:
                 break;
             }
@@ -75,40 +75,41 @@ public class AuthentificationServlet extends AbstractServlet {
 
     }
 
-
     private void disconnectUser() throws ServletException, IOException {
         // delete params in http session
         session.invalidate();
         // redirection home
         redirectionToView( HOME_PAGE );
     }
-    
-    private void getDetailCompte( WebServiceSessionBean webService, HttpServletRequest request ) throws ServletException, IOException {
-    	Utilisateur utilisateur = webService.getByUtilisateurId((Integer)  session.getAttribute("id"));
-    	request.setAttribute("utilisateur", utilisateur);
-    	redirectionToView(MODIFICATION_PAGE);
+
+    private void getDetailCompte( WebServiceSessionBean webService, HttpServletRequest request )
+            throws ServletException, IOException {
+        Utilisateur utilisateur = webService.getByUtilisateurId( (Integer) session.getAttribute( "id" ) );
+        request.setAttribute( "utilisateur", utilisateur );
+        redirectionToView( MODIFICATION_PAGE );
     }
-    
-    private void modifierUser( WebServiceSessionBean webService, HttpServletRequest request ) throws ServletException, Exception {
-       	Utilisateur utilisateur = new Utilisateur();
-    	utilisateur.setIdProfil(CLIENT);
-    	utilisateur.setId((Integer) session.getAttribute("id"));
-    	utilisateur.setNom(request.getParameter( "nom" ));
-    	utilisateur.setPrenom(request.getParameter( "login"));
-        utilisateur.setPassword(request.getParameter( "password"));
-        utilisateur.setMail(request.getParameter("email"));
-        utilisateur.setLogin(request.getParameter( "login"));
-        utilisateur.setSuspended(false);
-        if(!utilisateur.getPassword().equals(request.getParameter("confirmationPassword"))) {
-            setVariableToView( "alert-danger", "Les mots de passe entrés sont différents");
+
+    private void modifierUser( WebServiceSessionBean webService, HttpServletRequest request )
+            throws ServletException, Exception {
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setIdProfil( CLIENT );
+        utilisateur.setId( (Integer) session.getAttribute( "id" ) );
+        utilisateur.setNom( request.getParameter( "nom" ) );
+        utilisateur.setPrenom( request.getParameter( "login" ) );
+        utilisateur.setPassword( request.getParameter( "password" ) );
+        utilisateur.setMail( request.getParameter( "email" ) );
+        utilisateur.setLogin( request.getParameter( "login" ) );
+        utilisateur.setSuspended( false );
+        if ( !utilisateur.getPassword().equals( request.getParameter( "confirmationPassword" ) ) ) {
+            setVariableToView( "alert-danger", "Les mots de passe entrés sont différents" );
         } else {
-            utilisateur = webService.modifierUtilisateur(utilisateur);
+            utilisateur = webService.modifierUtilisateur( utilisateur );
             setVariableToView( "alert-success", "Votre compte a bien été modifié" );
 
         }
-        getDetailCompte(webService, request);
+        getDetailCompte( webService, request );
     }
-    
+
     private void connectUser( WebServiceSessionBean webService, HttpServletRequest request )
             throws ServletException, IOException {
         // TODO Auto-generated method stub
@@ -135,28 +136,29 @@ public class AuthentificationServlet extends AbstractServlet {
 
             redirectionToView( HOME_PAGE );
         } else {
-            setVariableToView( "alert-danger", "Identifiants incorrect ou compte bloqué" );
+            ResourceBundle messages = ResourceBundle.getBundle( "messages" );
+            setVariableToView( "alert-danger", messages.getString( "error.login" ) );
             redirectionToView( CONNEXION_PAGE );
         }
     }
-    
+
     private void createUser( WebServiceSessionBean webService, HttpServletRequest request )
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-    	Utilisateur utilisateur = new Utilisateur();
-    	utilisateur.setIdProfil(CLIENT);
-    	utilisateur.setNom(request.getParameter( "nom" ));
-    	utilisateur.setPrenom(request.getParameter( "login"));
-        utilisateur.setPassword(request.getParameter( "password"));
-        utilisateur.setMail(request.getParameter("email"));
-        utilisateur.setLogin(request.getParameter( "login"));
-        utilisateur.setSuspended(false);
-        if(!utilisateur.getPassword().equals(request.getParameter("confirmationPassword"))) {
-            setVariableToView( "alert-error", "Les mots de passe entrés sont différents");
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setIdProfil( CLIENT );
+        utilisateur.setNom( request.getParameter( "nom" ) );
+        utilisateur.setPrenom( request.getParameter( "login" ) );
+        utilisateur.setPassword( request.getParameter( "password" ) );
+        utilisateur.setMail( request.getParameter( "email" ) );
+        utilisateur.setLogin( request.getParameter( "login" ) );
+        utilisateur.setSuspended( false );
+        if ( !utilisateur.getPassword().equals( request.getParameter( "confirmationPassword" ) ) ) {
+            setVariableToView( "alert-error", "Les mots de passe entrés sont différents" );
             redirectionToView( INSCRIPTION_PAGE );
         }
-        
-        utilisateur = webService.inscription(utilisateur);
+
+        utilisateur = webService.inscription( utilisateur );
         if ( utilisateur != null ) {
             httpSession( utilisateur.getLogin(), utilisateur.getPassword(), utilisateur.getId() );
             int idProfil = utilisateur.getIdProfil();
@@ -181,6 +183,5 @@ public class AuthentificationServlet extends AbstractServlet {
             redirectionToView( CONNEXION_PAGE );
         }
     }
-
 
 }
