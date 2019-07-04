@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
 <%@ page import="webservice.Entrepot"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/>
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer entrepot</h2>
+				<h2><fmt:message key="entrepot.title" /></h2>
 				<%
 					List<Entrepot> entrepotList = (List<Entrepot>) request.getAttribute( "listeEntrepot" );
 	
 					if (entrepotList == null) {
 				%>
-				<p>Il n'y a aucun entrepot</p>
+				<p><fmt:message key="entrepot.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -22,10 +22,10 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Pays</th>
-							<th scope="col">Modifier</th>
-							<th scope="col">Supprimer</th>
+							<th scope="col"><fmt:message key="entrepot.table.nom" /></th>
+							<th scope="col"><fmt:message key="entrepot.table.pays" /></th>
+							<th scope="col"><fmt:message key="entrepot.table.modifier" /></th>
+							<th scope="col"><fmt:message key="entrepot.table.supprimer" /></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -36,8 +36,8 @@
 							<th scope="row"><%= entrepot.getId() %></a></th>
 							<td><%= entrepot.getNom() %></td>
 							<td><%= entrepot.getPays() %></td>
-							<td><a href="EntrepotServlet?action=getEntrepotDetail&id=<%=entrepot.getId()%>">Modifier</a></td>
-							<td><a href="EntrepotServlet?action=supprimerEntrepot&id=<%=entrepot.getId()%>">Supprimer </a></td>
+							<td><a href="EntrepotServlet?action=getEntrepotDetail&id=<%=entrepot.getId()%>"><fmt:message key="entrepot.table.modifier" /></a></td>
+							<td><a href="EntrepotServlet?action=supprimerEntrepot&id=<%=entrepot.getId()%>"><fmt:message key="entrepot.table.supprimer" /> </a></td>
 						</tr>
 						<%
 							}
@@ -51,13 +51,13 @@
 			<div class="content">
 				<form method='get' action='EntrepotServlet'>
 							<input hidden name="action" value="ajoutEntrepot">
-							<label>Nom</label>
+							<label><fmt:message key="entrepot.table.nom" /></label>
 							<input type='text' name='nom' required />
 							
-							<label>Pays</label>
+							<label><fmt:message key="entrepot.table.pays" /></label>
 							<input type='text' name='pays' required />
 							
-							<input type='submit' name='submit' value="Ajouter">
+							<input type='submit' name='submit' value="Ajouter"/>
 						</form>
 			</div>
 		</div>
