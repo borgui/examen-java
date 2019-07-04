@@ -1,8 +1,13 @@
 package domains;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,6 +16,7 @@ public class Utilisateur {
 
     @Id
     @Column( name = "ID" )
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
     Integer id;
 
     @Column( name = "NOM" )
@@ -40,117 +46,121 @@ public class Utilisateur {
     @Column( name = "idProfil" )
     Integer idProfil;
 
-    @Column( name = "idBanque" )
-    Integer idBanque;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn( name = "idBanque" )
+    Banque banque;
 
     @Column( name = "idContact" )
     Integer idContact;
 
     @Column( nullable = false, columnDefinition = "TINYINT(4)" )
-    boolean suspended;
+    Boolean suspended;
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId( Integer id ) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getNom() {
-        return nom;
-    }
+	public String getNom() {
+		return nom;
+	}
 
-    public void setNom( String nom ) {
-        this.nom = nom;
-    }
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
 
-    public String getPrenom() {
-        return prenom;
-    }
+	public String getPrenom() {
+		return prenom;
+	}
 
-    public void setPrenom( String prenom ) {
-        this.prenom = prenom;
-    }
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 
-    public String getAdresse() {
-        return adresse;
-    }
+	public String getAdresse() {
+		return adresse;
+	}
 
-    public void setAdresse( String adresse ) {
-        this.adresse = adresse;
-    }
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
 
-    public String getCodePostal() {
-        return cp;
-    }
+	public String getCp() {
+		return cp;
+	}
 
-    public void setCodePostal( String cp ) {
-        this.cp = cp;
-    }
+	public void setCp(String cp) {
+		this.cp = cp;
+	}
 
-    public String getVille() {
-        return ville;
-    }
+	public String getVille() {
+		return ville;
+	}
 
-    public void setVille( String ville ) {
-        this.ville = ville;
-    }
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
 
-    public String getMail() {
-        return mail;
-    }
+	public String getMail() {
+		return mail;
+	}
 
-    public void setMail( String mail ) {
-        this.mail = mail;
-    }
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
-    public String getLogin() {
-        return login;
-    }
+	public String getLogin() {
+		return login;
+	}
 
-    public void setLogin( String login ) {
-        this.login = login;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword( String password ) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Integer getIdProfil() {
-        return idProfil;
-    }
+	public Integer getIdProfil() {
+		return idProfil;
+	}
 
-    public void setIdProfil( Integer idProfil ) {
-        this.idProfil = idProfil;
-    }
+	public void setIdProfil(Integer idProfil) {
+		this.idProfil = idProfil;
+	}
 
-    public Integer getIdBanque() {
-        return idBanque;
-    }
+	public Banque getBanque() {
+		return banque;
+	}
 
-    public void setIdBanque( Integer idBanque ) {
-        this.idBanque = idBanque;
-    }
+	public void setBanque(Banque banque) {
+		this.banque = banque;
+	}
 
-    public Integer getIdContact() {
-        return idContact;
-    }
+	public Integer getIdContact() {
+		return idContact;
+	}
 
-    public void setIdContact( Integer idContact ) {
-        this.idContact = idContact;
-    }
+	public void setIdContact(Integer idContact) {
+		this.idContact = idContact;
+	}
 
-    public boolean isSuspended() {
-        return suspended;
-    }
+	public Boolean getSuspended() {
+		return suspended;
+	}
 
-    public void setSuspended( boolean suspended ) {
-        this.suspended = suspended;
-    }
+	public void setSuspended(Boolean suspended) {
+		this.suspended = suspended;
+	}
+
+    
+    
 
 }

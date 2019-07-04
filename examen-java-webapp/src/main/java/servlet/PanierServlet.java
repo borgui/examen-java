@@ -19,12 +19,8 @@ import webservice.WebServiceSessionBean;
 
 @WebServlet("/PanierServlet")
 public class PanierServlet extends AbstractServlet {
-	
-	private static final String PANIER = "getPanier";
 
-	
-	private static final String PANIER_PAGE = "Panier";
-	
+
 	private static final String AJOUT_PRODUIT = "ajouterProduit";
 	
 	private static final String SUPPRIMER_PRODUIT = "supprimerProduit";
@@ -34,6 +30,33 @@ public class PanierServlet extends AbstractServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		initialize(request, response);
+		
+
+		try {
+			WebServiceSessionBean webService = getWebService();
+
+			switch (action) {
+			case PANIER:
+				getPanier(webService, request);
+				break;
+			case AJOUT_PRODUIT:
+				ajouterProduit(webService, request);
+				break;
+			case SUPPRIMER_PRODUIT:
+				supprimerPanierProduit(webService, request);
+			default:
+				break;
+			}
+
+		} catch (MalformedURLException e) {
+			redirectionToView(HOME_PAGE);
+		}
+
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		initialize(request, response);
 		
@@ -72,7 +95,7 @@ public class PanierServlet extends AbstractServlet {
 		return panier;
 	}
 	
-	private void getPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+	public void getPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		Integer userId = (Integer) session.getAttribute("id");
 		Panier panier = null;
 		try {
@@ -90,7 +113,7 @@ public class PanierServlet extends AbstractServlet {
 		redirectionToView(PANIER_PAGE);
 	}
 	
-	private void ajouterProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+	public void ajouterProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		
 		Panier panier = webservice.getPanierByUserId((Integer) session.getAttribute("id"));
 		if(panier == null) {
@@ -108,7 +131,7 @@ public class PanierServlet extends AbstractServlet {
 		this.response.sendRedirect("ProduitServlet?action=getProduitCategorie&categorieId=" + request.getParameter("idCategorie"));
 	}
 	
-	private void supprimerPanierProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
+	public void supprimerPanierProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		webservice.supprimerPanierProduit(Integer.parseInt(request.getParameter("id")));
         setVariableToView( "alert-success", "Produit correctement supprimé" );
 		this.getPanier(webservice, request);

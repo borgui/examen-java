@@ -2,6 +2,8 @@ package domains;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,10 +13,11 @@ public class Banque {
 
     @Id
     @Column( name = "ID" )
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
     Integer id;
 
     @Column( name = "BALANCE" )
-    Integer balance;
+    Double balance;
 
     public Integer getId() {
         return id;
@@ -24,12 +27,14 @@ public class Banque {
         this.id = id;
     }
 
-    public Integer getBalance() {
-        return balance;
-    }
+	public Double getBalance() {
+		return balance;
+	}
 
-    public void setBalance( Integer balance ) {
-        this.balance = balance;
-    }
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
+
+    
 
 }

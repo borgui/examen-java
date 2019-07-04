@@ -45,3 +45,4 @@
     </div>
 </div>
 </body>
+<core:import url="Footer.jsp" />

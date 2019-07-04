@@ -32,6 +32,12 @@ public class AbstractServlet extends HttpServlet {
 
 	
 	protected static final String PRODUIT_CATEGORIE_PAGE = "ProduitCategorie";
+	
+	protected static final String PANIER_PAGE = "Panier";
+	
+	protected static final String PANIER = "getPanier";
+
+
 
 
 	protected HttpServletRequest request;

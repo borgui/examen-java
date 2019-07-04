@@ -2,12 +2,14 @@ package servlet;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import webservice.Banque;
 import webservice.Utilisateur;
 import webservice.WebServiceSessionBean;
 
@@ -99,12 +101,13 @@ public class AuthentificationServlet extends AbstractServlet {
         utilisateur.setMail(request.getParameter("email"));
         utilisateur.setLogin(request.getParameter( "login"));
         utilisateur.setSuspended(false);
-        if(!utilisateur.getPassword().equals(request.getParameter("confirmationPassword"))) {
-            setVariableToView( "alert-danger", "Les mots de passe entrés sont différents");
+        
+        String errorMsg = validateUser(utilisateur, webService);
+        if(errorMsg != null) {
+            setVariableToView( "alert-danger", errorMsg);
         } else {
             utilisateur = webService.modifierUtilisateur(utilisateur);
             setVariableToView( "alert-success", "Votre compte a bien été modifié" );
-
         }
         getDetailCompte(webService, request);
     }
@@ -140,6 +143,19 @@ public class AuthentificationServlet extends AbstractServlet {
         }
     }
     
+    
+    private String validateUser(Utilisateur utilisateur, WebServiceSessionBean webService) {
+    	 if(!utilisateur.getPassword().equals(request.getParameter("confirmationPassword"))) {
+             return "Les mots de passe entrés sont différents";
+    	 }
+         
+         List<Utilisateur> utilisateursExistant = webService.getUtilisateurByEmailOrLogin(utilisateur.getMail(), utilisateur.getLogin());
+         if(utilisateursExistant != null && utilisateursExistant.size() > 0) {
+             return "Le login ou l'email utilisateur existe déjà";
+         }
+         return null;
+    }
+    
     private void createUser( WebServiceSessionBean webService, HttpServletRequest request )
             throws ServletException, IOException {
         // TODO Auto-generated method stub
@@ -151,13 +167,17 @@ public class AuthentificationServlet extends AbstractServlet {
         utilisateur.setMail(request.getParameter("email"));
         utilisateur.setLogin(request.getParameter( "login"));
         utilisateur.setSuspended(false);
-        if(!utilisateur.getPassword().equals(request.getParameter("confirmationPassword"))) {
-            setVariableToView( "alert-error", "Les mots de passe entrés sont différents");
-            redirectionToView( INSCRIPTION_PAGE );
-        }
         
+        Banque banque = new Banque();
+        banque.setBalance(0D);
+        utilisateur.setBanque(banque);
+        String errorMsg = validateUser(utilisateur, webService);
+        if(errorMsg != null) {
+            setVariableToView( "alert-danger", errorMsg);
+            redirectionToView( INSCRIPTION_PAGE );
+            return;
+        }
         utilisateur = webService.inscription(utilisateur);
-        if ( utilisateur != null ) {
             httpSession( utilisateur.getLogin(), utilisateur.getPassword(), utilisateur.getId() );
             int idProfil = utilisateur.getIdProfil();
 
@@ -176,10 +196,6 @@ public class AuthentificationServlet extends AbstractServlet {
             }
 
             redirectionToView( HOME_PAGE );
-        } else {
-            setVariableToView( "alert-danger", "Identifiants incorrect ou compte bloqué" );
-            redirectionToView( CONNEXION_PAGE );
-        }
     }
 
 

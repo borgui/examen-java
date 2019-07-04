@@ -67,6 +67,17 @@ public interface WebServiceSessionBean {
     public Utilisateur getByUtilisateurId(
             @WebParam( name = "id", targetNamespace = "" ) Integer id );
 
+    @WebMethod( action = "getUtilisateurByEmailOrLogin" )
+    @RequestWrapper( localName = "getUtilisateurByEmailOrLogin", targetNamespace = "http://webservice/", className = "webservice.getUtilisateurByEmailOrLogin" )
+    @ResponseWrapper( localName = "getUtilisateurByEmailOrLoginResponse", targetNamespace = "http://webservice/", className = "webservice.getUtilisateurByEmailOrLoginResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public List<Utilisateur> getUtilisateurByEmailOrLogin(
+            @WebParam( name = "email", targetNamespace = "" ) String email ,
+    		@WebParam( name = "login", targetNamespace = "" ) String login );
+
+
+    
+    
     /**
      * CATEGORIE
      */
@@ -250,4 +261,18 @@ public interface WebServiceSessionBean {
     @WebResult( name = "return", targetNamespace = "" )
     public Commande ajouterCommande(
     		@WebParam(name="commande", targetNamespace = "") Commande commande);
+    
+    
+    /**
+     * BANQUE
+     */
+    
+    @WebMethod( action = "modifierBanque" )
+    @RequestWrapper( localName = "modifierBanque", targetNamespace = "http://webservice/", className = "webservice.modifierBanque" )
+    @ResponseWrapper( localName = "modifierBanqueResponse", targetNamespace = "http://webservice/", className = "webservice.modifierBanqueResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Banque modifierBanque(
+    		@WebParam(name="banque", targetNamespace = "") Banque banque);
+    
+    
 }

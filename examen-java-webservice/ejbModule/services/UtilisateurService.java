@@ -130,5 +130,22 @@ public class UtilisateurService {
             e.printStackTrace();
         }
     }
+    
+    public List<Utilisateur> getUtilisateurByEmailOrLogin(String email, String login) throws SystemException, NotSupportedException {
+        UserTransaction userTxn = sessionContext.getUserTransaction();
+        userTxn.begin();
+        String queryString = "FROM Utilisateur where mail = '" + email + "' OR login = '" + login + "'";
+        Query query = this.em.createQuery( queryString );
+        List<Utilisateur> utilisateurs = (List<Utilisateur>) query.getResultList();
+
+        try {
+            userTxn.commit();
+        } catch ( SecurityException | IllegalStateException | RollbackException | HeuristicMixedException
+                | HeuristicRollbackException e ) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return utilisateurs;
+    }
 
 }

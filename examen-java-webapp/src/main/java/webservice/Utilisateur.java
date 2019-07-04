@@ -23,17 +23,19 @@ import javax.xml.bind.annotation.XmlType;
     "nom",
     "prenom",
     "password",
-    "suspended"
+    "suspended",
+    "banque"
 })
 public class Utilisateur {
     protected String adresse;
-    protected int id;
-    protected int idProfil;
+    protected Integer id;
+    protected Integer idProfil;
     protected String login;
     protected String nom;
     protected String mail;
     protected String prenom;
     protected String password;
+    protected Banque banque;
     
     protected boolean suspended;
 	public String getAdresse() {
@@ -92,6 +94,21 @@ public class Utilisateur {
 	public void setSuspended(boolean suspended) {
 		this.suspended = suspended;
 	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public void setIdProfil(Integer idProfil) {
+		this.idProfil = idProfil;
+	}
+	public Banque getBanque() {
+		return banque;
+	}
+	public void setBanque(Banque banque) {
+		this.banque = banque;
+	}
+	
+	
+	
 	
 
 }

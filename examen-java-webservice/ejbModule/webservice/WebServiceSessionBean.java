@@ -12,6 +12,7 @@ import javax.jws.WebService;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
+import domains.Banque;
 import domains.Categorie;
 import domains.Commande;
 import domains.Entrepot;
@@ -19,6 +20,7 @@ import domains.Panier;
 import domains.PanierProduit;
 import domains.Produit;
 import domains.Utilisateur;
+import services.BanqueService;
 import services.CommandeService;
 import services.EntrepotService;
 import services.PanierService;
@@ -44,6 +46,9 @@ public class WebServiceSessionBean {
 
     @EJB
     CommandeService commandeService;
+    
+    @EJB
+    BanqueService    banqueService;
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -227,5 +232,17 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return utilisateurService.creerUtilisateur( utilisateur);
     }
+
+    @WebMethod(action = "getUtilisateurByEmailOrLogin")
+    public List<Utilisateur> getUtilisateurByEmailOrLogin(@WebParam( name = "email", mode = Mode.IN ) String email,
+    		@WebParam( name = "login", mode = Mode.IN ) String login)
+            throws NotSupportedException, SystemException {
+        return utilisateurService.getUtilisateurByEmailOrLogin(email, login);
+    }
     
+    @WebMethod(action = "modifierBanque")
+    public Banque modifierBanque(@WebParam( name = "banque", mode = Mode.IN ) Banque banque)
+            throws NotSupportedException, SystemException {
+        return banqueService.modifierBanque(banque);
+    }
 }

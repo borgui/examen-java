@@ -79,7 +79,12 @@
                     <button class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <a href="CommandeServlet?action=ajouterCommande&idPanier=<%= panier.getId()%>"><button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button></a>
+                <form method="post" action="CommandeServlet">
+                	<input hidden name="idPanier" value="<%= panier.getId()%>">
+                	<input hidden name="total" value="<%= total%>">
+                	<input hidden name="action" value="ajouterCommande">
+                    <input type="submit" class="btn btn-lg btn-block btn-success text-uppercase" value="Checkout">
+                </form>
                 </div>
             </div>
         </div>
