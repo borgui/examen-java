@@ -4,7 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,13 +17,19 @@ public class Commande {
 
     @Id
     @Column( name = "ID" )
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     Integer id;
 
     @Column( name = "DATE" )
     Date    date;
+    
+    @ManyToOne
+    @JoinColumn(name = "IDSTATUS")
+    CommandeStatus status;
 
-    @Column( name = "IDPANIER" )
-    Integer idPanier;
+    @ManyToOne
+    @JoinColumn( name = "IDPANIER" )
+    Panier panier;
 
     public Integer getId() {
         return id;
@@ -37,11 +47,22 @@ public class Commande {
         this.date = date;
     }
 
-    public Integer getIdPanier() {
-        return idPanier;
-    }
+	public Panier getPanier() {
+		return panier;
+	}
 
-    public void setIdPanier( Integer idPanier ) {
-        this.idPanier = idPanier;
-    }
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
+
+	public CommandeStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(CommandeStatus status) {
+		this.status = status;
+	}
+
+	
+    
 }

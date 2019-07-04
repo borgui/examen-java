@@ -24,6 +24,13 @@ public interface WebServiceSessionBean {
     public Utilisateur connexion(
             @WebParam( name = "login", targetNamespace = "" ) String login,
             @WebParam( name = "mdp", targetNamespace = "" ) String mdp );
+    
+    @WebMethod( action = "inscription" )
+    @RequestWrapper( localName = "inscription", targetNamespace = "http://webservice/", className = "webservice.inscription" )
+    @ResponseWrapper( localName = "inscriptionResponse", targetNamespace = "http://webservice/", className = "webservice.inscriptionResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Utilisateur inscription(
+            @WebParam( name = "utilisateur", targetNamespace = "" ) Utilisateur utilisateur );
 
     @WebMethod( action = "creerUtilisateur" )
     @RequestWrapper( localName = "creerUtilisateur", targetNamespace = "http://webservice/", className = "webservice.creerUtilisateur" )
@@ -227,5 +234,20 @@ public interface WebServiceSessionBean {
     @WebResult( name = "return", targetNamespace = "" )
     public Produit getProduitById(
             @WebParam( name = "idProduit", targetNamespace = "" ) Integer idProduit );
+
+
+    @WebMethod( action = "getCommandeByClient" )
+    @RequestWrapper( localName = "getCommandeByClient", targetNamespace = "http://webservice/", className = "webservice.getCommandeByClient" )
+    @ResponseWrapper( localName = "getCommandeByClientResponse", targetNamespace = "http://webservice/", className = "webservice.getCommandeByClientResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public List<Commande> getCommandeByClient(
+    		@WebParam(name="userId", targetNamespace = "") Integer userId);
+
     
+    @WebMethod( action = "ajouterCommande" )
+    @RequestWrapper( localName = "ajouterCommande", targetNamespace = "http://webservice/", className = "webservice.ajouterCommande" )
+    @ResponseWrapper( localName = "ajouterCommandeResponse", targetNamespace = "http://webservice/", className = "webservice.ajouterCommandeResponse" )
+    @WebResult( name = "return", targetNamespace = "" )
+    public Commande ajouterCommande(
+    		@WebParam(name="commande", targetNamespace = "") Commande commande);
 }

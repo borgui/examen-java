@@ -76,6 +76,9 @@
 							<label>Description</label>
 							<input type='text' name='description' required />
 							
+							<label>URL Image</label>
+							<input type='text' name='image' required />
+							
 							<label>Prix</label>
 							<input type='text' name='prix' required />
 							

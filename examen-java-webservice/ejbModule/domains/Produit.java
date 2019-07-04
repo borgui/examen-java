@@ -34,6 +34,9 @@ public class Produit {
 
     @Column( name = "NOM" )
     String  nom;
+    
+    @Column(name="image")
+    String image;
 
     @Column( name = "PRIX" )
     Double  prix;
@@ -105,6 +108,15 @@ public class Produit {
 		this.entrepot = entrepot;
 	}
 
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	
 	
 
 }

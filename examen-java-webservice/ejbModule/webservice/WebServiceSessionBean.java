@@ -13,11 +13,13 @@ import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 
 import domains.Categorie;
+import domains.Commande;
 import domains.Entrepot;
 import domains.Panier;
 import domains.PanierProduit;
 import domains.Produit;
 import domains.Utilisateur;
+import services.CommandeService;
 import services.EntrepotService;
 import services.PanierService;
 import services.ProduitService;
@@ -40,6 +42,8 @@ public class WebServiceSessionBean {
     @EJB
     PanierService    panierService;
 
+    @EJB
+    CommandeService commandeService;
 
     @WebMethod( action = "connexion" )
     public Utilisateur connexion( @WebParam( name = "login", mode = Mode.IN ) String login,
@@ -205,4 +209,23 @@ public class WebServiceSessionBean {
             throws NotSupportedException, SystemException {
         return produitService.getProduitById( idProduit );
     }
+    
+    @WebMethod( action = "getCommandeByClient" )
+    public List<Commande> getCommandeByClient( @WebParam( name = "userId", mode = Mode.IN ) Integer userId )
+            throws NotSupportedException, SystemException {
+        return commandeService.getByClient( userId );
+    }
+    
+    @WebMethod( action = "ajouterCommande" )
+    public Commande ajouterCommande( @WebParam( name = "commande", mode = Mode.IN ) Commande commande )
+            throws NotSupportedException, SystemException {
+        return commandeService.creerCommande( commande );
+    }
+    
+    @WebMethod( action = "inscription" )
+    public Utilisateur inscription( @WebParam( name = "utilisateur", mode = Mode.IN ) Utilisateur utilisateur )
+            throws NotSupportedException, SystemException {
+        return utilisateurService.creerUtilisateur( utilisateur);
+    }
+    
 }

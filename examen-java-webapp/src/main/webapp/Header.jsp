@@ -32,7 +32,8 @@
 						%>
 						<li id="categorieProduit"><a href="CategorieServlet?action=getCategorieShop">Catégories de produit</a></li>
 						<li id="panier"><a href="PanierServlet?action=getPanier">Panier</a></li>
-
+						<li id="panier"><a href="CommandeServlet?action=getListeCommandeClient">Mes commandes</a></li>
+					
 						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Mon compte</a>
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
@@ -57,6 +58,7 @@
 						<%
 							} else {
 						%>
+						<li id="inscription"><a href="Inscription.jsp">Inscription</a></li>
 						<li id="connexion"><a href="Connexion.jsp">Connexion</a></li>
 						<%
 							}

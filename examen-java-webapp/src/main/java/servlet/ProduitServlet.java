@@ -9,8 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.jboss.resteasy.spi.HttpRequest;
-
 import webservice.Categorie;
 import webservice.Entrepot;
 import webservice.Produit;
@@ -96,6 +94,7 @@ public class ProduitServlet extends AbstractServlet {
 		produit.setStock(Integer.parseInt(request.getParameter("stock")));
 		produit.setNom(request.getParameter("nom"));
 		produit.setDescription(request.getParameter("description"));
+		produit.setImage(request.getParameter("image"));
 		produit.setPrix(Double.parseDouble(request.getParameter("prix")));
 		produit.setIdVendeur((Integer) this.session.getAttribute("id"));
 		
@@ -140,6 +139,7 @@ public class ProduitServlet extends AbstractServlet {
 		produit.setStock(Integer.parseInt(request.getParameter("stock")));
 		produit.setNom(request.getParameter("nom"));
 		produit.setDescription(request.getParameter("description"));
+		produit.setImage(request.getParameter("image"));
 		produit.setPrix(Double.parseDouble(request.getParameter("prix")));
 		produit.setIdVendeur((Integer) this.session.getAttribute("id"));
 		

@@ -88,6 +88,7 @@ public class UtilisateurService {
         userTxn.begin();
 
         this.em.persist( utilisateur );
+        this.em.flush();
 
         try {
             userTxn.commit();

@@ -28,6 +28,9 @@ public class AbstractServlet extends HttpServlet {
 	protected static final String CONNEXION_ACTION = "connexion";
 	protected static final String DECONNEXION_ACTION = "deconnexion";
 	
+	protected static final String INSCRIPTION_ACTION = "inscription";
+
+	
 	protected static final String PRODUIT_CATEGORIE_PAGE = "ProduitCategorie";
 
 

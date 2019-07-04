@@ -29,6 +29,10 @@ public class Panier {
     @Column( name = "idFDP" )
     Integer idFDP;
     
+    @Column( nullable = false, columnDefinition = "INT(1)" )
+    Boolean actif;
+    
+    
     @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name="idPanier", referencedColumnName="id")
     List<PanierProduit> panierProduits = new ArrayList();
@@ -72,6 +76,15 @@ public class Panier {
 	public Integer getIdUser() {
 		return idUser;
 	}
+
+	public Boolean getActif() {
+		return actif;
+	}
+
+	public void setActif(Boolean actif) {
+		this.actif = actif;
+	}
     
+	
     
 }

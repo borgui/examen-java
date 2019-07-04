@@ -33,6 +33,9 @@
 							<label>Description</label>
 							<input type='text' name='description' value="<%= produit.getDescription() %>" required />
 							
+							<label>URL Image</label>
+							<input type='text' name='image' value="<%= produit.getImage() %>" required />
+							
 							<label>Prix</label>
 							<input type='text' name='prix' value="<%= produit.getPrix() %>"  required />
 							

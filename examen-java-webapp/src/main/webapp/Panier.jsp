@@ -36,7 +36,11 @@
                     <tbody>
                     <% for(PanierProduit panierProduit : panier.getPanierProduits()){ %>
                         <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                        <% if(panierProduit.getProduit().getImage() != null){ %>
+                			<td><img style="width:100px" src="<%=panierProduit.getProduit().getImage() %>" /> </td>
+                			<%} else { %>
+                            <td><img style="width:100px" src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <%} %>
                             <td><%=panierProduit.getProduit().getNom()%></td>
                             <td><input class="form-control" type="text" name="quantite" value="<%= panierProduit.getQuantite() %>" /></td>
                             <td class="text-right"><%= panierProduit.getProduit().getPrix() * panierProduit.getQuantite() %> &euro;</td>
@@ -75,7 +79,7 @@
                     <button class="btn btn-block btn-light">Continue Shopping</button>
                 </div>
                 <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                    <a href="CommandeServlet?action=ajouterCommande&idPanier=<%= panier.getId()%>"><button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button></a>
                 </div>
             </div>
         </div>

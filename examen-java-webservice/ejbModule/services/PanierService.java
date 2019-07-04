@@ -73,7 +73,7 @@ public class PanierService {
 	        UserTransaction userTxn = sessionContext.getUserTransaction();
 	        userTxn.begin();
 	        Panier panier = null;
-	        String queryString = "FROM Panier WHERE idUser = " + id;
+	        String queryString = "FROM Panier WHERE actif = 1 AND idUser = " + id;
 	        Query query = this.em.createQuery( queryString );
 	        List<Panier> paniers = (List<Panier>) query.getResultList();
 	        if(paniers.size() > 0) {

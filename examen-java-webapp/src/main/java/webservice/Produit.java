@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
     "prix",
     "stock",
     "categorie",
+    "image",
     "entrepot",
     "description",
     "idVendeur"
@@ -27,6 +28,7 @@ public class Produit {
     protected Categorie categorie;
     protected Entrepot entrepot;
     protected String description;
+    protected String image;
     protected Integer idVendeur;
     
 	public Integer getId() {
@@ -78,6 +80,14 @@ public class Produit {
 	public void setIdVendeur(Integer idVendeur) {
 		this.idVendeur = idVendeur;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
 	
 
 	

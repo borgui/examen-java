@@ -23,10 +23,17 @@
 						for (Produit produit : produitList) {
 					%>
 					<div class="col-3">
-						<div class="card">
+						<div class="card" style="height:550px">
+						<% if(produit.getImage() != null){ %>
+						<img class="card-img-top" src="<%= produit.getImage() %>" alt="Card image cap">
+						<%} else{ %>
+						<img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/320px-No_image_3x4.svg.png" alt="Card image cap">
+						
+						
+						<%} %>
                         <div class="card-body">
                             <h4 class="card-title"><a href="product.html" title="View Product"><%= produit.getNom()%></a></h4>
-                            <p class="card-text">
+                            <p class="card-text" style="height:50px">
                             <%=produit.getDescription()%>
                             <br/>
                             <div>Stock: <%= produit.getStock() %></div>

@@ -65,6 +65,7 @@ public class PanierServlet extends AbstractServlet {
 	
 	private Panier creerPanier(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
 		Panier panier = new Panier();
+		panier.setActif(true);
 		panier.setIdUser((Integer) session.getAttribute("id"));
 		panier = webservice.creerPanier(panier);
 		

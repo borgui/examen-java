@@ -26,9 +26,6 @@ public class AuthentificationServlet extends AbstractServlet {
             WebServiceSessionBean webService = getWebService();
 
             switch ( action ) {
-            case CONNEXION_ACTION:
-                connectUser( webService, request );
-                break;
             case DECONNEXION_ACTION:
                 disconnectUser();
                 break;
@@ -41,6 +38,30 @@ public class AuthentificationServlet extends AbstractServlet {
         }
 
     }
+    
+    protected void doPost( HttpServletRequest request, HttpServletResponse response )
+            throws ServletException, IOException {
+        initialize( request, response );
+
+        try {
+            WebServiceSessionBean webService = getWebService();
+
+            switch ( action ) {
+            case INSCRIPTION_ACTION:
+            	createUser(webService, request);
+            case CONNEXION_ACTION:
+                connectUser( webService, request );
+                break;
+            default:
+                break;
+            }
+
+        } catch ( MalformedURLException e ) {
+            redirectionToView( HOME_PAGE );
+        }
+
+    }
+
 
     private void disconnectUser() throws ServletException, IOException {
         // delete params in http session
@@ -79,5 +100,45 @@ public class AuthentificationServlet extends AbstractServlet {
             redirectionToView( CONNEXION_PAGE );
         }
     }
+    
+    private void createUser( WebServiceSessionBean webService, HttpServletRequest request )
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+    	Utilisateur utilisateur = new Utilisateur();
+    	utilisateur.setIdProfil(CLIENT);
+    	utilisateur.setNom(request.getParameter( "nom" ));
+    	utilisateur.setPrenom(request.getParameter( "login"));
+        utilisateur.setPassword(request.getParameter( "password"));
+        utilisateur.setMail(request.getParameter("email"));
+        utilisateur.setLogin(request.getParameter( "login"));
+        utilisateur.setSuspended(false);
+
+        
+        utilisateur = webService.inscription(utilisateur);
+        if ( utilisateur != null ) {
+            httpSession( utilisateur.getLogin(), utilisateur.getPassword(), utilisateur.getId() );
+            int idProfil = utilisateur.getIdProfil();
+
+            switch ( idProfil ) {
+            case CLIENT:
+                session.setAttribute( "session-role", "client" );
+                break;
+            case VENDEUR:
+                session.setAttribute( "session-role", "vendeur" );
+                break;
+            case ADMINISTRATEUR:
+                session.setAttribute( "session-role", "admin" );
+                break;
+            default:
+                break;
+            }
+
+            redirectionToView( HOME_PAGE );
+        } else {
+            setVariableToView( "alert-danger", "Identifiants incorrect ou compte bloqué" );
+            redirectionToView( CONNEXION_PAGE );
+        }
+    }
+
 
 }

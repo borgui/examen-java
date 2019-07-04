@@ -14,7 +14,8 @@ import javax.xml.bind.annotation.XmlType;
     "id",
     "idUser",
     "panierProduits",
-    "idFDP"
+    "idFDP",
+    "actif"
 })
 public class Panier {
 	
@@ -22,6 +23,7 @@ public class Panier {
     protected Integer idUser;
     protected Integer idFDP;
     protected List<PanierProduit> panierProduits;
+    protected Boolean actif;
     
 	public Integer getId() {
 		return id;
@@ -47,6 +49,14 @@ public class Panier {
 	public void setIdFDP(Integer idFDP) {
 		this.idFDP = idFDP;
 	}
+	public Boolean getActif() {
+		return actif;
+	}
+	public void setActif(Boolean actif) {
+		this.actif = actif;
+	}
+	
+	
 	
 	
 	

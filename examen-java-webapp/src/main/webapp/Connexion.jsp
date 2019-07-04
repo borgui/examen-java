@@ -7,7 +7,7 @@
 	<div class="container">
 		<div id="content">
 			<h2>Connexion</h2>
-			<form method="get" action="AuthentificationServlet">
+			<form method="post" action="AuthentificationServlet">
 				<input type="hidden" name="action" value="connexion">
 				<label>Identifiant</label> <input type='text' name='login' />
 				<label>Mot de passe</label> <input type='password' name='password' />
