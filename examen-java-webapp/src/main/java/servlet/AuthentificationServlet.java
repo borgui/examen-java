@@ -152,7 +152,16 @@ public class AuthentificationServlet extends AbstractServlet {
          
          List<Utilisateur> utilisateursExistant = webService.getUtilisateurByEmailOrLogin(utilisateur.getMail(), utilisateur.getLogin());
          if(utilisateursExistant != null && utilisateursExistant.size() > 0) {
-             return "Le login ou l'email utilisateur existe déjà";
+        	 if(utilisateur.getId() != null) {
+        		for(Utilisateur utilisateurExistant : utilisateursExistant) {
+        			if(utilisateurExistant.getId() != utilisateur.getId()) {
+        				return "Le login ou l'email utilisateur existe déjà";
+        			}
+        		}
+    
+        	 } else {
+                 return "Le login ou l'email utilisateur existe déjà";
+        	 }
          }
          return null;
     }

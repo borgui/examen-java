@@ -44,18 +44,14 @@ public class Utilisateur {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getIdProfil() {
+
+	public Integer getIdProfil() {
 		return idProfil;
 	}
-	public void setIdProfil(int idProfil) {
-		this.idProfil = idProfil;
-	}
+
 	public String getLogin() {
 		return login;
 	}
