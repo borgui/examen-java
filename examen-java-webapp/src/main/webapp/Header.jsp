@@ -34,7 +34,7 @@
 						<li id="panier"><a href="PanierServlet?action=getPanier">Panier</a></li>
 						<li id="panier"><a href="CommandeServlet?action=getListeCommandeClient">Mes commandes</a></li>
 					
-						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Mon compte</a>
+						<li id="entrepots"><a href="AuthentificationServlet?action=monCompte">Mon compte</a>
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>

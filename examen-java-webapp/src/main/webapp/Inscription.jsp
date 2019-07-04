@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
                 <label for="confirmpass">Confirm Password</label>
-                <input type="password" class="form-control" id="confirmpass">
+                <input type="password" class="form-control" id="confirmpass" name="confirmationPassword">
             </div>
             <div class="float-right">
                 <button type="submit" class="btn btn-primary">Creer compte</button>
