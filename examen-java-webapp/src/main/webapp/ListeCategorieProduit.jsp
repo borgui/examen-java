@@ -4,17 +4,19 @@
 <%@ page import="webservice.Categorie"%>
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/>
+
 <div class="content">
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Gérer catégorie produit</h2>
+				<h2><fmt:message key="categorie.title" /></h2>
 				<%
 					List<Categorie> categorieList = (List<Categorie>) request.getAttribute( "listeCategorie" );
 	
 					if (categorieList == null) {
 				%>
-				<p>Il n'y a aucune categorie</p>
+				<p><fmt:message key="entrepot.err.notfound" /></p>
 				<%
 					} else {
 				%>
@@ -22,9 +24,9 @@
 					<thead>
 						<tr>
 							<th scope="col">Id</th>
-							<th scope="col">Libelle</th>
-							<th scope="col">Modifier</th>
-							<th scope="col">Supprimer</th>
+							<th scope="col"><fmt:message key="categorie.table.libelle" /></th>
+							<th scope="col"><fmt:message key="categorie.table.modifier" /></th>
+							<th scope="col"><fmt:message key="categorie.table.supprimer" /></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -34,8 +36,8 @@
 						<tr>
 							<th scope="row"><%= categorie.getId() %></a></th>
 							<td><%= categorie.getLibelle() %></td>
-							<td><a href="CategorieServlet?action=getCategorieDetaill&id=<%=categorie.getId()%>">Modifier</a></td>
-							<td><a href="CategorieServlet?action=supprimerCategorie&id=<%=categorie.getId()%>">Supprimer </a></td>
+							<td><a href="CategorieServlet?action=getCategorieDetaill&id=<%=categorie.getId()%>"><fmt:message key="categorie.table.modifier" /></a></td>
+							<td><a href="CategorieServlet?action=supprimerCategorie&id=<%=categorie.getId()%>"><fmt:message key="categorie.table.supprimer" /> </a></td>
 						</tr>
 						<%
 							}
@@ -49,7 +51,7 @@
 			<div class="content">
 				<form method='get' action='CategorieServlet'>
 							<input hidden name="action" value="ajouterCategorie">
-							<label>Libelle</label>
+							<label><fmt:message key="categorie.table.libelle" /></label>
 							<input type='text' name='libelle' required />
 							<input type='submit' name='submit' value="Ajouter">
 						</form>
