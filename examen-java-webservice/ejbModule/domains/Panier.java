@@ -15,26 +15,25 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "Paniers" )
+@Table( name = "paniers" )
 public class Panier {
 
     @Id
     @Column( name = "ID" )
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    Integer id;
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    Integer             id;
 
     @Column( name = "idUser" )
-    Integer idUser;
+    Integer             idUser;
 
     @Column( name = "idFDP" )
-    Integer idFDP;
-    
+    Integer             idFDP;
+
     @Column( nullable = false, columnDefinition = "INT(1)" )
-    Boolean actif;
-    
-    
-    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name="idPanier", referencedColumnName="id")
+    Boolean             actif;
+
+    @OneToMany( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn( name = "idPanier", referencedColumnName = "id" )
     List<PanierProduit> panierProduits = new ArrayList();
 
     public Integer getId() {
@@ -65,26 +64,24 @@ public class Panier {
         this.idFDP = idFDP;
     }
 
-	public List<PanierProduit> getPanierProduits() {
-		return panierProduits;
-	}
+    public List<PanierProduit> getPanierProduits() {
+        return panierProduits;
+    }
 
-	public void setPanierProduits(List<PanierProduit> panierProduits) {
-		this.panierProduits = panierProduits;
-	}
+    public void setPanierProduits( List<PanierProduit> panierProduits ) {
+        this.panierProduits = panierProduits;
+    }
 
-	public Integer getIdUser() {
-		return idUser;
-	}
+    public Integer getIdUser() {
+        return idUser;
+    }
 
-	public Boolean getActif() {
-		return actif;
-	}
+    public Boolean getActif() {
+        return actif;
+    }
 
-	public void setActif(Boolean actif) {
-		this.actif = actif;
-	}
-    
-	
-    
+    public void setActif( Boolean actif ) {
+        this.actif = actif;
+    }
+
 }

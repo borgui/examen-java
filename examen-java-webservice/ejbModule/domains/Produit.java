@@ -10,39 +10,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "Produits" )
+@Table( name = "produits" )
 public class Produit {
 
     @Id
     @Column( name = "ID" )
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    Integer id;
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    Integer   id;
 
     @ManyToOne
     @JoinColumn( name = "idCategorie" )
     Categorie categorie;
 
     @Column( name = "description" )
-    String  description;
+    String    description;
 
     @ManyToOne
     @JoinColumn( name = "idEntrepot" )
-    Entrepot entrepot;
+    Entrepot  entrepot;
 
     @Column( name = "idVendeur" )
-    Integer idVendeur;
+    Integer   idVendeur;
 
     @Column( name = "NOM" )
-    String  nom;
-    
-    @Column(name="image")
-    String image;
+    String    nom;
+
+    @Column( name = "image" )
+    String    image;
 
     @Column( name = "PRIX" )
-    Double  prix;
+    Double    prix;
 
     @Column( name = "STOCK" )
-    Integer stock;
+    Integer   stock;
 
     public Integer getId() {
         return id;
@@ -92,31 +92,28 @@ public class Produit {
         this.description = description;
     }
 
-	public Categorie getCategorie() {
-		return categorie;
-	}
+    public Categorie getCategorie() {
+        return categorie;
+    }
 
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
+    public void setCategorie( Categorie categorie ) {
+        this.categorie = categorie;
+    }
 
-	public Entrepot getEntrepot() {
-		return entrepot;
-	}
+    public Entrepot getEntrepot() {
+        return entrepot;
+    }
 
-	public void setEntrepot(Entrepot entrepot) {
-		this.entrepot = entrepot;
-	}
+    public void setEntrepot( Entrepot entrepot ) {
+        this.entrepot = entrepot;
+    }
 
-	public String getImage() {
-		return image;
-	}
+    public String getImage() {
+        return image;
+    }
 
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
-	
+    public void setImage( String image ) {
+        this.image = image;
+    }
 
 }
