@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core"%>
+<fmt:setBundle basename="messages"/>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -26,27 +27,27 @@
 				</div>
 				<nav id="nav">
 					<ul>
-						<li id="home"><a href="Home.jsp">Accueil</a></li>
+						<li id="home"><a href="Home.jsp"><fmt:message key="home.title" /></a></li>
 						<%
 							if (session.getAttribute("session-role") == "client") {
 						%>
-						<li id="categorieProduit"><a href="CategorieServlet?action=getCategorieShop">Catégories de produit</a></li>
-						<li id="panier"><a href="PanierServlet?action=getPanier">Panier</a></li>
-						<li id="panier"><a href="CommandeServlet?action=getListeCommandeClient">Mes commandes</a></li>
+						<li id="categorieProduit"><a href="CategorieServlet?action=getCategorieShop"><fmt:message key="home.categproduit" /></a></li>
+						<li id="panier"><a href="PanierServlet?action=getPanier"><fmt:message key="home.panier" /></a></li>
+						<li id="panier"><a href="CommandeServlet?action=getListeCommandeClient"><fmt:message key="home.commandes" /></a></li>
 					
-						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Mon compte</a>
+						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot"><fmt:message key="home.profil" /></a>
 						<%
 							}else if(session.getAttribute("session-role") == "vendeur"){
 						%>
-						<li id="produits"><a href="ProduitServlet?action=getProduitVendeur">Gérer les produits</a></li>
+						<li id="produits"><a href="ProduitServlet?action=getProduitVendeur"><fmt:message key="home.manageproducts" /></a></li>
 					
 						<%
 							}else if(session.getAttribute("session-role") == "admin"){
 						%>
-						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur">Gérer comptes vendeurs</a></li>
-						<li id="catégorieProduit"><a href="CategorieServlet?action=getListeCategorie">Gérer catégorie produit</a></li>
+						<li id="compteVendeur"><a href="AdminServlet?action=getListeCompteVendeur"><fmt:message key="home.managevendor" /></a></li>
+						<li id="catégorieProduit"><a href="CategorieServlet?action=getListeCategorie"><fmt:message key="home.managecategprod" /></a></li>
 
-						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot">Gérer les entrepots</a>
+						<li id="entrepots"><a href="EntrepotServlet?action=getListeEntrepot"><fmt:message key="home.managewarehouse" /></a>
 						</li>
 						<%
 							}
@@ -54,12 +55,12 @@
 						<%
 							if (session.getAttribute("login") != null) {
 						%>
-						<li id="deconnexion"><a href="AuthentificationServlet?action=deconnexion">Déconnexion</a></li>
+						<li id="deconnexion"><a href="AuthentificationServlet?action=deconnexion"><fmt:message key="home.disconnect" /></a></li>
 						<%
 							} else {
 						%>
-						<li id="inscription"><a href="Inscription.jsp">Inscription</a></li>
-						<li id="connexion"><a href="Connexion.jsp">Connexion</a></li>
+						<li id="inscription"><a href="Inscription.jsp"><fmt:message key="home.signup" /></a></li>
+						<li id="connexion"><a href="Connexion.jsp"><fmt:message key="home.signin" /></a></li>
 						<%
 							}
 						%>
