@@ -46,14 +46,14 @@
 							<label><fmt:message key="produit.table.categorie" /> :</label>
 							<select name="idCategorie" id="categorie" required>
 							    <%for(Categorie categorie : categories){ %>
-							    <option value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
+							    <option <% if(produit.getCategorie().getId().equals(categorie.getId())){ %> selected="selected"<% } %> value="<%= categorie.getId() %>"><%= categorie.getLibelle() %></option>
 							    <% } %>
 							</select>							
 							
 							<label><fmt:message key="produit.table.entrepot" /> :</label>
 							<select name="idEntrepot" id="entrepot" required>
 							    <%for(Entrepot entrepot : entrepots){ %>
-							    <option value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>
+							    <option <% if(produit.getEntrepot().getId().equals(entrepot.getId())){ %> selected="selected"<% } %> value="<%= entrepot.getId() %>"><%= entrepot.getNom() %></option>
 							    <% } %>
 							</select>							
 							
