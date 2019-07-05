@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import webservice.Banque;
+import webservice.Panier;
 import webservice.Utilisateur;
 import webservice.WebServiceSessionBean;
 
@@ -118,6 +119,7 @@ public class AuthentificationServlet extends AbstractServlet {
         String login = request.getParameter( "login" );
         String password = request.getParameter( "password" );
         Utilisateur utilisateur = webService.connexion( login, password );
+        
         if ( utilisateur != null ) {
             httpSession( login, password, utilisateur.getId() );
             int idProfil = utilisateur.getIdProfil();
@@ -125,6 +127,7 @@ public class AuthentificationServlet extends AbstractServlet {
             switch ( idProfil ) {
             case CLIENT:
                 session.setAttribute( "session-role", "client" );
+                session.setAttribute("user", utilisateur);
                 break;
             case VENDEUR:
                 session.setAttribute( "session-role", "vendeur" );

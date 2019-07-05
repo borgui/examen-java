@@ -14,26 +14,14 @@
 			</div>
 			<div class="3u 6u$(medium) 12u$(small)">
 				<section class="widget links">
-					<h3>Random Stuff</h3>
-					<ul class="style2">
-						<li><a href="#">Etiam feugiat condimentum</a></li>
-						<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-						<li><a href="#">Sed porttitor cras in erat nec</a></li>
-						<li><a href="#">Felis varius pellentesque potenti</a></li>
-						<li><a href="#">Nullam scelerisque blandit leo</a></li>
-					</ul>
+					<h3>Hitema</h3>
+					<img alt="Logo_Hitema" src="https://www.hitema.fr/wp-content/uploads/2017/01/logo.png" style="max-width: 100%">
 				</section>
 			</div>
 			<div class="3u 6u(medium) 12u$(small)">
 				<section class="widget links">
-					<h3>Random Stuff</h3>
-					<ul class="style2">
-						<li><a href="#">Etiam feugiat condimentum</a></li>
-						<li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-						<li><a href="#">Sed porttitor cras in erat nec</a></li>
-						<li><a href="#">Felis varius pellentesque potenti</a></li>
-						<li><a href="#">Nullam scelerisque blandit leo</a></li>
-					</ul>
+					<h3>Localisation</h3>
+					<img alt="maps" src="images/maps.PNG" style="max-width: 100%">
 				</section>
 			</div>
 			<div class="3u 6u$(medium) 12u$(small)">
@@ -52,8 +40,7 @@
 								class="label">Pinterest</span></a></li>
 					</ul>
 					<p>
-						1234 Fictional Road<br /> Nashville, TN 00000<br /> (800)
-						555-0000
+						 88, Boulevard GALLIENI <br /> 92130 ISSY LES MOULINEAUX<br /> 01 41 33 04 70
 					</p>
 				</section>
 
@@ -63,7 +50,7 @@
 			<div class="12u">
 				<div id="copyright">
 					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved</li>
+						<li>&copy; Projet technique 2019 Hitema </li>
 						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 					</ul>
 				</div>
