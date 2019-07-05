@@ -7,8 +7,8 @@
 <div id="features-wrapper">
 	<div class="container">
 		<div class="row">
-			<h2>Bienvenue dans votre interface</h2>
-		</div>
+			<h2>Bienvenue ${!empty user ? user.nom : ''} ${!empty user ? user.prenom : ''}</h2>
+		
 	</div>
 </div>
 </div>
