@@ -24,11 +24,11 @@
 						for (Produit produit : produitList) {
 					%>
 					<div class="col-3">
-						<div class="card" style="height:550px">
+						<div class="card" style="height:610px;">
 						<% if(produit.getImage() != null){ %>
-						<img class="card-img-top" src="<%= produit.getImage() %>" alt="Card image cap">
+						<img class="card-img-top" style="padding:1px" src="<%= produit.getImage() %>" alt="Card image cap">
 						<%} else{ %>
-						<img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/320px-No_image_3x4.svg.png" alt="Card image cap">
+						<img class="card-img-top" style="padding:1px src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/320px-No_image_3x4.svg.png" alt="Card image cap">
 						
 						
 						<%} %>

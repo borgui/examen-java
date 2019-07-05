@@ -46,6 +46,7 @@ public class ProduitServlet extends AbstractServlet {
 			switch (action) {
 			case PRODUIT_CATEGORIE:
 				getCategorieProduit(webService, request);
+				break;
 			case PRODUIT_ACTION:
 				getListeProduit(webService, request);
 				break;
