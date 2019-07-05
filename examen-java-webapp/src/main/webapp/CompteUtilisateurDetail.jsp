@@ -5,6 +5,7 @@
 
 <%@ page import="java.util.List"%>
 <core:import url="Header.jsp" />
+<fmt:setBundle basename="messages"/>
 
 <%
 	Utilisateur utilisateur = (Utilisateur) request.getAttribute("compteUtilisateur");
@@ -13,7 +14,7 @@
 	<div id="main-wrapper">
 		<div class="container">
 			<div class="content">
-				<h2>Modifier utilisateur <%= utilisateur.getPrenom()%><%= utilisateur.getNom()  %></h2>
+				<h2><fmt:message key="user.title.manage" /> <%= utilisateur.getPrenom()%>&nbsp;<%= utilisateur.getNom()  %></h2>
 			</div>
 			<div class="content">
 				<form method='get' action='AdminServlet?action=modifierUtilisateur'>
@@ -22,19 +23,19 @@
 							<input hidden name="idProfil" value="<%= utilisateur.getIdProfil()%>">
 						
 						
-							<label>Nom</label>
+							<label><fmt:message key="user.table.nom" /></label>
 							<input type='text' name='nom' value="<%= utilisateur.getNom() %>" />
 							
-							<label>Prenom</label>
+							<label><fmt:message key="user.table.prenom" /></label>
 							<input type='text' name='prenom' value="<%= utilisateur.getPrenom() %>" required />
 							
-							<label>Email</label>
+							<label><fmt:message key="user.table.email" /></label>
 							<input type='text' name='email' value="<%= utilisateur.getMail() %>"  required />
 							
-							<label>Pseudo</label>
+							<label><fmt:message key="user.table.login" /></label>
 							<input type='text' name='login' value="<%= utilisateur.getLogin() %>"  />
 							
-							<label>Password :</label>
+							<label><fmt:message key="user.table.mdp" /> :</label>
 							<input type='text' name='password' value="<%= utilisateur.getPassword() %>"  required />
 							
 							
