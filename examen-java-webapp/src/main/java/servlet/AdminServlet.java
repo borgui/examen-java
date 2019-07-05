@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import webservice.Banque;
 import webservice.Utilisateur;
 import webservice.WebServiceSessionBean;
 
@@ -137,6 +138,10 @@ public class AdminServlet extends AbstractServlet {
         utilisateur.setMail( request.getParameter( "email" ) );
         utilisateur.setPassword( request.getParameter( "password" ) );
         utilisateur.setLogin( request.getParameter( "login" ) );
+        
+        Banque banque = new Banque();
+        banque.setBalance(0D);
+        utilisateur.setBanque(banque);
 
         Utilisateur compteVendeur = webservice.creerUtilisateur( utilisateur );
         setVariableToView( "alert-success", "Vendeur " + compteVendeur.getNom() + " ajouté" );
