@@ -48,14 +48,6 @@
 					}
 				%>
 			</div>
-			<div class="content">
-				<form method='get' action='CategorieServlet'>
-							<input hidden name="action" value="ajouterCategorie">
-							<label><fmt:message key="categorie.table.libelle" /></label>
-							<input type='text' name='libelle' required />
-							<input type='submit' name='submit' value="Ajouter">
-						</form>
-			</div>
 		</div>
 	</div>
 </div>
