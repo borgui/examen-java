@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -128,7 +129,8 @@ public class PanierServlet extends AbstractServlet {
 		panierProduit.setProduit(produit);
 		panierProduit = webservice.creerPanierProduit(panierProduit);
         setVariableToView( "alert-success", "Produit correctement ajouté" );
-		this.response.sendRedirect("ProduitServlet?action=getProduitCategorie&categorieId=" + request.getParameter("idCategorie"));
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ProduitServlet?action=getProduitCategorie&categorieId=" + request.getParameter("idCategorie"));
+		dispatcher.include(request, response);
 	}
 	
 	public void supprimerPanierProduit(WebServiceSessionBean webservice, HttpServletRequest request) throws ServletException, IOException{
