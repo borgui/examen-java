@@ -34,8 +34,6 @@
 								class="label">Facebook</span></a></li>
 						<li><a href="#" class="icon fa-instagram"><span
 								class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-dribbble"><span
-								class="label">Dribbble</span></a></li>
 						<li><a href="#" class="icon fa-pinterest"><span
 								class="label">Pinterest</span></a></li>
 					</ul>
@@ -50,9 +48,7 @@
 			<div class="12u">
 				<div id="copyright">
 					<ul class="menu">
-						<li>&copy; Projet technique 2019 Hitema </li>
-						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
+						<li>&copy; Amazoon 2019 - Hitema</li>					</ul>
 				</div>
 			</div>
 		</div>
