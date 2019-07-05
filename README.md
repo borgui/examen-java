@@ -1,3 +1,3 @@
-# **Examen java **
+# Examen java
 
 ## Sujet: Place de marché Amasoon
